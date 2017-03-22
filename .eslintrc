@@ -11,6 +11,6 @@
   },
   "globals": {
     "document": true,
-    "MyLib": true
+    "GaugeChart": true
   }
 }

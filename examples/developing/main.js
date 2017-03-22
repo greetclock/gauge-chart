@@ -1,1 +1,1 @@
-MyLib.print('Hi')
+GaugeChart.print('Hi')
