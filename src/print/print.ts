@@ -1,3 +1,5 @@
+import './print.css'
+
 /**
  * Simple demo function.
  * @param message - will be shown in the console.
