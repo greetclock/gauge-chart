@@ -1,2 +1,2 @@
 // GaugeChart.print('Hi')
-GaugeChart.gaugeChart(200, ['red', 'yellow', 'blue'], [42, 16, 42])
+GaugeChart.gaugeChart(200, ['red', 'yellow', 'blue'], [42, 16, 42], 20, 'gray')

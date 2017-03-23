@@ -56,39 +56,146 @@ function perc2Rad(perc) {
 
 /**
  * Function for drawing gauge.
+ * @param svg - original svg rectangle.
  * @param chartHeight - height of gauge.
  * @param chartColors - array of colors (strings).
  * @param chartRatios - array of ratios in percentage.
+ * @param outerRadius - outter radius of gauge.
  */
-export function gaugeChart(chartHeight, chartColors, chartRatios) {
+function gaugeOutline(svg, chartHeight, chartColors, chartRatios, outerRadius) {
+  let chartRatioSum = 0
+
+  chartColors.forEach((color, i) => {
+    let arc: any
+    i ? (
+      arc = d3.arc()
+        .innerRadius(chartHeight)
+        .outerRadius(outerRadius)
+        .startAngle(perc2Rad(chartRatioSum))
+        .endAngle(perc2Rad(chartRatioSum + chartRatios[i]))
+    ) : (
+      arc = d3.arc()
+        .innerRadius(chartHeight)
+        .outerRadius(outerRadius)
+        .startAngle(perc2Rad(0))
+        .endAngle(perc2Rad(chartRatios[i]))
+    )
+
+    svg.append('path')
+      .attr('d', arc)
+      .attr('fill', color)
+      .attr('transform', 'translate(' + chartHeight + ', ' + chartHeight + ')')
+      .attr('class', 'bar')
+
+    chartRatioSum += chartRatios[i]
+  })
+
+  return svg
+}
+
+/**
+ * Function for drawing needle base.
+ * @param svg - original svg rectangle.
+ * @param chartHeight - height of gauge.
+ */
+function needleBaseOutline(svg, chartHeight) {
+  let isTextOnChart = false
+
+  if (isTextOnChart) {
+    let innerGaugeRadius = chartHeight * 0.45
+    let arc = d3.arc()
+          .innerRadius(innerGaugeRadius)
+          .outerRadius(0)
+          .startAngle(perc2Rad(0))
+          .endAngle(perc2Rad(100))
+
+    svg.append('path')
+      .attr('d', arc)
+      .attr('fill', 'white')
+      .attr('transform', 'translate(' + chartHeight + ', ' + chartHeight + ')')
+      .attr('class', 'bar')
+  } else {
+    let innerGaugeRadius = chartHeight / 10
+    let arc = d3.arc()
+          .innerRadius(innerGaugeRadius)
+          .outerRadius(0)
+          .startAngle(perc2Rad(0))
+          .endAngle(perc2Rad(200))
+
+    svg.append('path')
+      .attr('d', arc)
+      .attr('fill', 'gray')
+      .attr('transform', 'translate(' + chartHeight + ', ' + (chartHeight * 0.9) + ')')
+      .attr('class', 'bar')
+  }
+
+  return svg
+}
+
+/**
+ * Function for drawing needle.
+ * @param svg - original svg rectangle.
+ * @param chartHeight - height of gauge.
+ * @param needleWidth - width of needle.
+ * @param needleColor - color of needle.
+ * @param outerRadius - outer radius of gauge.
+ */
+function needleOutline(svg, chartHeight, needleWidth, needleColor, outerRadius) {
+  let needleHeadLength = outerRadius * 0.84
+  let needleTailLength = outerRadius * 0.13
+  let needleWaypointOffset = needleWidth / 2
+
+  let needleAngle = 1.57
+
+  let topPointX = chartHeight * Math.cos(needleAngle)
+  let topPointY = chartHeight * Math.sin(needleAngle)
+
+  let hX = chartHeight
+  let hY = chartHeight * 0.9
+
+  // The data for our line
+  let lineData = [ { x: 0,                        y: needleHeadLength},
+                   { x: needleWaypointOffset, y: 0},
+                   { x: 0,                        y: -needleTailLength},
+                   { x: -needleWaypointOffset, y: 0},
+                   { x: 0,                        y: needleHeadLength}]
+
+  // This is the accessor function we talked about above
+  let lineFunction = d3.line()
+                      .x( (d) => d.x )
+                      .y( (d) => d.y )
+                      .curve(d3.curveLinear)
+
+  // The line SVG Path we draw
+  svg.append('path')
+   .attr('d', lineFunction(lineData))
+   .attr('stroke', needleColor)
+   .attr('stroke-width', 2)
+   .attr('fill', needleColor)
+   .attr('transform', 'translate(' + chartHeight + ', ' + (chartHeight * 0.9) + ')')
+   // .attr('transform', 'rotate(' + needleAngle + ')')
+
+   return svg
+}
+
+/**
+ * Function for drawing gauge.
+ * @param chartHeight - height of gauge.
+ * @param chartColors - array of colors (strings).
+ * @param chartRatios - array of ratios in percentage.
+ * @param needleWidth - width of needle.
+ * @param needleColor - color of needle.
+ */
+export function gaugeChart(chartHeight, chartColors, chartRatios, needleWidth, needleColor) {
   if (paramErrorChecker(chartColors, chartRatios)) {
+    let outerRadius = chartHeight * 0.7
+
     let svg = d3.select('#gaugeArea').append('svg')
       .attr('width', chartHeight * 2)
-      .attr('height', chartHeight)
-    let chartRatioSum = 0
+      .attr('height', 300) // chartHeight
 
-    chartColors.forEach((color, i) => {
-      let arc: any
-      i ? (
-        arc = d3.arc()
-          .innerRadius(chartHeight)
-          .outerRadius(chartHeight * 0.7)
-          .startAngle(perc2Rad(chartRatioSum))
-          .endAngle(perc2Rad(chartRatioSum + chartRatios[i]))
-      ) : (
-        arc = d3.arc()
-          .innerRadius(chartHeight)
-          .outerRadius(chartHeight * 0.7)
-          .startAngle(perc2Rad(0))
-          .endAngle(perc2Rad(chartRatios[i]))
-      )
-
-      svg.append('path')
-        .attr('d', arc)
-        .attr('fill', color)
-        .attr('transform', 'translate(' + chartHeight + ', ' + chartHeight + ')')
-
-      chartRatioSum += chartRatios[i]
-    }
+    svg = needleOutline(svg, chartHeight, needleWidth, needleColor, outerRadius)
+    svg = needleBaseOutline(svg, chartHeight)
+    svg = gaugeOutline(svg, chartHeight, chartColors, chartRatios, outerRadius)
   }
 }
