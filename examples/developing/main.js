@@ -1,2 +1,10 @@
 // GaugeChart.print('Hi')
-GaugeChart.gaugeChart(400, 75, ['red', 'yellow'], [50, 75, 90], ['20', '22', '25'])
+let element = document.querySelector('#gaugeArea')
+let gaugeOptions = {
+  chartColors: [],
+  chartRatios: [25, 50, 75],
+  gaugeRangeLabel: ['0', '100'],
+  gaugeCentralLabel: '60',
+}
+
+GaugeChart.gaugeChart(element, 600, 60, gaugeOptions)
