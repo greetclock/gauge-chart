@@ -1,4 +1,4 @@
-function delimeterRangeErrorChecker(chartRatios: number[]) {
+export function delimeterRangeErrorChecker(chartRatios: number[]) {
   if (chartRatios && (chartRatios.slice(-1)[0] >= 100 || chartRatios[0] <= 0)) {
     console.error
       ('Gauge-chart Error: gauge delimeters have to be LARGER than 0 and LESS than 100')
@@ -7,7 +7,7 @@ function delimeterRangeErrorChecker(chartRatios: number[]) {
   return true
 }
 
-function delimiterSortErrorChecker(chartRatios: number[]) {
+export function delimiterSortErrorChecker(chartRatios: number[]) {
   let isErrorFree = true
   if (chartRatios) {
     chartRatios.forEach((ratio, i) => {
@@ -21,33 +21,33 @@ function delimiterSortErrorChecker(chartRatios: number[]) {
   return isErrorFree
 }
 
-function colorsLackWarnChecker(chartRatios: number[], chartColors: string[]) {
+export function colorsLackWarnChecker(chartRatios: number[], chartColors: string[]) {
   if (chartRatios && chartColors && chartRatios.length > chartColors.length - 1){
     console.warn
      ('Gauge-chart Warning: list of colors is not complete, standard colors added to the chart')
   }
 }
 
-function colorsExcessWarnChecker(chartRatios: number[], chartColors: string[]) {
+export function colorsExcessWarnChecker(chartRatios: number[], chartColors: string[]) {
   if (chartRatios && chartColors && chartRatios.length < chartColors.length - 1){
     console.warn
      ('Gauge-chart Warning: list of colors exceeds number of slices, therefore it was shortened')
   }
 }
 
-function needleValueWarnChecker(needleValue) {
+export function needleValueWarnChecker(needleValue) {
   if (needleValue < 0 || needleValue > 100) {
     console.warn('Gauge-chart Warning: value of needdle is less that 0 or larger than 100')
   }
 }
 
-function warnChecker(chartRatios: number[], chartColors, needleValue: number) {
+export function warnChecker(chartRatios: number[], chartColors, needleValue: number) {
   colorsLackWarnChecker(chartRatios, chartColors)
   colorsExcessWarnChecker(chartRatios, chartColors)
   needleValueWarnChecker(needleValue)
 }
 
-function errorChecker(chartRatios: number[]) {
+export function errorChecker(chartRatios: number[]) {
   return delimeterRangeErrorChecker(chartRatios) &&
          delimiterSortErrorChecker(chartRatios)
 }
