@@ -157,9 +157,9 @@ describe('needle base outlining', () => {
     svg = gauge.needleBaseOutline(svg, gaugeHeight, offset, needleColor, gaugeCentralLabel)
 
     let svgHtml = svg.html().slice(svg.html().search('M'), svg.html().search('Z'))
-    svgHtml = pathValueChecker(svgHtml, 'M', 'A', [-36, 0])
-    svgHtml = pathValueChecker(svgHtml, 'A', 'A', [36, 36, 0, 1, 1, 36, 0])
-    svgHtml = pathValueChecker(svgHtml, 'A', '', [36, 36, 0, 1, 1, -36, 0])
+    svgHtml = pathValueChecker(svgHtml, 'M', 'A', [-40, 0])
+    svgHtml = pathValueChecker(svgHtml, 'A', 'A', [40, 40, 0, 1, 1, 40, 0])
+    svgHtml = pathValueChecker(svgHtml, 'A', '', [40, 40, 0, 1, 1, -40, 0])
   })
 })
 
@@ -209,9 +209,9 @@ describe('needle outlining', () => {
     // define the whole path string (M...L...L...L... for svg arc)
     let svgHtml = svg.html().slice(svg.html().search('M') + 1, svg.html().search('" stroke'))
     svgHtml = pathValueChecker(svgHtml, 'M', 'L', [0, -54.3])
-    svgHtml = pathValueChecker(svgHtml, 'L', 'L', [-24, 0])
-    svgHtml = pathValueChecker(svgHtml, 'L', 'L', [0, 24])
-    svgHtml = pathValueChecker(svgHtml, 'L', 'L', [24, 0])
+    svgHtml = pathValueChecker(svgHtml, 'L', 'L', [-28, 0])
+    svgHtml = pathValueChecker(svgHtml, 'L', 'L', [0, 28])
+    svgHtml = pathValueChecker(svgHtml, 'L', 'L', [28, 0])
     svgHtml = pathValueChecker(svgHtml, 'L', '', [0, -54.3])
   })
 })
@@ -246,9 +246,12 @@ describe('label outlining', () => {
 
     let svgHtml = svg.html().split('</text>')
     svgHtml.pop()  // removed last element (empty string)
-    expect(svgHtml[0]).toBe('<text x="0" y="97" font-size="20">')
-    expect(svgHtml[1]).toBe('<text x="0" y="97" font-size="20">')
-    expect(svgHtml[2]).toBe('<text x="92.5" y="80" font-size="30">' + gaugeCentralLabel)
+    expect(svgHtml[0]).toBe('<text x="0" y="108.6" font-size="16"' +
+                       ' font-family="Roboto,Helvetica Neue,sans-serif">')
+    expect(svgHtml[1]).toBe('<text x="0" y="108.6" font-size="16"' +
+                       ' font-family="Roboto,Helvetica Neue,sans-serif">')
+    expect(svgHtml[2]).toBe('<text x="94" y="85" font-size="24"' +
+                       ' font-family="Roboto,Helvetica Neue,sans-serif">' + gaugeCentralLabel)
   })
 
   it ('checks correct text of needle with range labels', () => {
@@ -262,9 +265,12 @@ describe('label outlining', () => {
 
     let svgHtml = svg.html().split('</text>')
     svgHtml.pop()  // removed last element (empty string)
-    expect(svgHtml[0]).toBe('<text x="27" y="97" font-size="20">' + gaugeRangeLabel[0])
-    expect(svgHtml[1]).toBe('<text x="163" y="97" font-size="20">' + gaugeRangeLabel[1])
-    expect(svgHtml[2]).toBe('<text x="100" y="80" font-size="30">')
+    expect(svgHtml[0]).toBe('<text x="28" y="108.6" font-size="16"' +
+                       ' font-family="Roboto,Helvetica Neue,sans-serif">' + gaugeRangeLabel[0])
+    expect(svgHtml[1]).toBe('<text x="164" y="108.6" font-size="16"' +
+                       ' font-family="Roboto,Helvetica Neue,sans-serif">' + gaugeRangeLabel[1])
+    expect(svgHtml[2]).toBe('<text x="100" y="85" font-size="24"' +
+                       ' font-family="Roboto,Helvetica Neue,sans-serif">')
   })
 
     it ('checks correct text of needle with central and range labels', () => {
@@ -278,9 +284,12 @@ describe('label outlining', () => {
 
     let svgHtml = svg.html().split('</text>')
     svgHtml.pop()  // removed last element (empty string)
-    expect(svgHtml[0]).toBe('<text x="27" y="97" font-size="20">' + gaugeRangeLabel[0])
-    expect(svgHtml[1]).toBe('<text x="163" y="97" font-size="20">' + gaugeRangeLabel[1])
-    expect(svgHtml[2]).toBe('<text x="92.5" y="80" font-size="30">' + gaugeCentralLabel)
+    expect(svgHtml[0]).toBe('<text x="28" y="108.6" font-size="16"' +
+                       ' font-family="Roboto,Helvetica Neue,sans-serif">' + gaugeRangeLabel[0])
+    expect(svgHtml[1]).toBe('<text x="164" y="108.6" font-size="16"' +
+                       ' font-family="Roboto,Helvetica Neue,sans-serif">' + gaugeRangeLabel[1])
+    expect(svgHtml[2]).toBe('<text x="94" y="85" font-size="24"' +
+                       ' font-family="Roboto,Helvetica Neue,sans-serif">' + gaugeCentralLabel)
   })
 })
 
