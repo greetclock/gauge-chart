@@ -35,7 +35,7 @@ export function colorsExcessWarnChecker(chartRatios: number[], chartColors: stri
   }
 }
 
-export function needleValueWarnChecker(needleValue) {
+export function needleValueWarnChecker(needleValue: number) {
   if (needleValue < 0 || needleValue > 100) {
     console.warn('Gauge-chart Warning: value of needdle is less that 0 or larger than 100')
   }

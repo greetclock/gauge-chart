@@ -228,5 +228,6 @@ export function gaugeChart(element: HTMLElement, gaugeWidth: number, needleValue
   svg = needleBaseOutline(svg, gaugeHeight, offset, needleColor, gaugeCentralLabel)
   svg = gaugeOutline(svg, gaugeHeight, offset, chartColors, outerRadius, chartRatios)
   svg = labelOutline(svg, gaugeHeight, offset, outerRadius, gaugeRangeLabel, gaugeCentralLabel)
-  console.log((svg.html()).match(/path/g).length / 2)
+
+  return svg
 }
