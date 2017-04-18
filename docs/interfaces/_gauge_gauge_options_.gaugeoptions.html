@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;print/print&quot; | trend-chart</title>
+	<title>GaugeOptions | trend-chart</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -38,6 +38,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -54,61 +56,91 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_print_print_.html">&quot;print/print&quot;</a>
+					<a href="../modules/_gauge_gauge_options_.html">&quot;gauge/gauge-options&quot;</a>
+				</li>
+				<li>
+					<a href="_gauge_gauge_options_.gaugeoptions.html">GaugeOptions</a>
 				</li>
 			</ul>
-			<h1>External module &quot;print/print&quot;</h1>
+			<h1>Interface GaugeOptions</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Optional gauge features (colors, ratios, labels).</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">GaugeOptions</span>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Functions</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_print_print_.html#print" class="tsd-kind-icon">print</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_gauge_gauge_options_.gaugeoptions.html#chartcolors" class="tsd-kind-icon">chart<wbr>Colors</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_gauge_gauge_options_.gaugeoptions.html#chartratios" class="tsd-kind-icon">chart<wbr>Ratios</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_gauge_gauge_options_.gaugeoptions.html#gaugecentrallabel" class="tsd-kind-icon">gauge<wbr>Central<wbr>Label</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_gauge_gauge_options_.gaugeoptions.html#gaugerangelabel" class="tsd-kind-icon">gauge<wbr>Range<wbr>Label</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="print" class="tsd-anchor"></a>
-					<h3>print</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">print<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in print/print.ts:5</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Simple demo function.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>message: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>will be shown in the console.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="chartcolors" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> chart<wbr>Colors</h3>
+					<div class="tsd-signature tsd-kind-icon">chart<wbr>Colors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in gauge/gauge-options.ts:5</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="chartratios" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> chart<wbr>Ratios</h3>
+					<div class="tsd-signature tsd-kind-icon">chart<wbr>Ratios<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in gauge/gauge-options.ts:6</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="gaugecentrallabel" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> gauge<wbr>Central<wbr>Label</h3>
+					<div class="tsd-signature tsd-kind-icon">gauge<wbr>Central<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in gauge/gauge-options.ts:8</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="gaugerangelabel" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> gauge<wbr>Range<wbr>Label</h3>
+					<div class="tsd-signature tsd-kind-icon">gauge<wbr>Range<wbr>Label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in gauge/gauge-options.ts:7</li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -119,24 +151,45 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_index_.html">"index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_print_index_.html">"print/index"</a>
+						<a href="../modules/_gauge_gauge_.html">"gauge/gauge"</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_print_print_.html">"print/print"</a>
+						<a href="../modules/_gauge_gauge_options_.html">"gauge/gauge-<wbr>options"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_print_print_spec_.html">"print/print.spec"</a>
+						<a href="../modules/_gauge_index_.html">"gauge/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_gauge_param_checker_.html">"gauge/param-<wbr>checker"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_index_.html">"index"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_print_print_.html#print" class="tsd-kind-icon">print</a>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="_gauge_gauge_options_.gaugeoptions.html" class="tsd-kind-icon">Gauge<wbr>Options</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_gauge_gauge_options_.gaugeoptions.html#chartcolors" class="tsd-kind-icon">chart<wbr>Colors</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_gauge_gauge_options_.gaugeoptions.html#chartratios" class="tsd-kind-icon">chart<wbr>Ratios</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_gauge_gauge_options_.gaugeoptions.html#gaugecentrallabel" class="tsd-kind-icon">gauge<wbr>Central<wbr>Label</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="_gauge_gauge_options_.gaugeoptions.html#gaugerangelabel" class="tsd-kind-icon">gauge<wbr>Range<wbr>Label</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 				</ul>
 			</nav>
 		</div>
