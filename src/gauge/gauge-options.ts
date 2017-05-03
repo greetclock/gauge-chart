@@ -2,8 +2,10 @@
  * Optional gauge features (colors, ratios, labels).
  */
 export interface GaugeOptions {
-  chartColors?: string[]
-  chartRatios?: number[]
-  gaugeRangeLabel?: string[]
-  gaugeCentralLabel?: string
+  needleValue?: number
+  needleColor?: string
+  arcColors?: string[]
+  arcRatios?: number[]
+  rangeLabel?: string[]
+  centralLabel?: string
 }

@@ -22,29 +22,33 @@ export function delimiterSortErrorChecker(chartRatios: number[]) {
 }
 
 export function colorsLackWarnChecker(chartRatios: number[], chartColors: string[]) {
-  if (chartRatios && chartColors && chartRatios.length > chartColors.length - 1){
+  if (chartRatios && chartColors && chartRatios.length > chartColors.length - 1)
     console.warn
      ('Gauge-chart Warning: list of colors is not complete, standard colors added to the chart')
-  }
 }
 
 export function colorsExcessWarnChecker(chartRatios: number[], chartColors: string[]) {
-  if (chartRatios && chartColors && chartRatios.length < chartColors.length - 1){
+  if (chartRatios && chartColors && chartRatios.length < chartColors.length - 1)
     console.warn
      ('Gauge-chart Warning: list of colors exceeds number of slices, therefore it was shortened')
-  }
 }
 
 export function needleValueWarnChecker(needleValue: number) {
-  if (needleValue < 0 || needleValue > 100) {
+  if (needleValue < 0 || needleValue > 100)
     console.warn('Gauge-chart Warning: value of needdle is less that 0 or larger than 100')
-  }
 }
 
-export function warnChecker(chartRatios: number[], chartColors, needleValue: number) {
+export function rangeLabelNumberWarnChecker(rangeLabel: string[]) {
+  if (rangeLabel.length > 2)
+    console.warn('Gauge-chart Warning: number of range label parameters is bigger than 2')
+}
+
+export function warnChecker(chartRatios: number[], chartColors,
+                     needleValue: number, rangeLabel: string[]) {
   colorsLackWarnChecker(chartRatios, chartColors)
   colorsExcessWarnChecker(chartRatios, chartColors)
-  needleValueWarnChecker(needleValue)
+  //needleValueWarnChecker(needleValue)
+  rangeLabelNumberWarnChecker(rangeLabel)
 }
 
 export function errorChecker(chartRatios: number[]) {
@@ -60,7 +64,8 @@ export function errorChecker(chartRatios: number[]) {
  * @param needleValue - value at which needle points.
  * @returns modified needleValue.
  */
-export function paramChecker(chartRatios: number[], chartColors: string[], needleValue: number) {
-  warnChecker(chartRatios, chartColors, needleValue)
+export function paramChecker(chartRatios: number[], chartColors: string[],
+                               needleValue: number, rangeLabel: string[]) {
+  warnChecker(chartRatios, chartColors, needleValue, rangeLabel)
   return errorChecker(chartRatios)
 }

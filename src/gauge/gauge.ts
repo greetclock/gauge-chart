@@ -9,21 +9,21 @@ import { paramChecker } from './param-checker'
 /**
  * Function that checks whether the number of colors is enough for drawing specified ratios.
  * Adds standard colors if not enough or cuts the array if there are too many of them.
- * @param chartRatios - array of ratios.
- * @param chartColors - array of colors (strings).
+ * @param arcRatios - array of ratios.
+ * @param arcColors - array of colors (strings).
  * @returns modified list of colors.
  */
-export function chartColorsModifier(chartRatios: number[], chartColors: string[]) {
-  if (chartRatios.length > chartColors.length - 1) {
-    let colorDiff = chartRatios.length - chartColors.length + 1
+export function arcColorsModifier(arcRatios: number[], arcColors: string[]) {
+  if (arcRatios.length > arcColors.length - 1) {
+    let colorDiff = arcRatios.length - arcColors.length + 1
     for (let i = 0; i < colorDiff; i++) {
-      chartColors.push(schemePaired[i % schemePaired.length])
+      arcColors.push(schemePaired[i % schemePaired.length])
     }
-  } else if (chartRatios.length < chartColors.length - 1) {
-    chartColors = chartColors.slice(0, chartRatios.length + 1)
+  } else if (arcRatios.length < arcColors.length - 1) {
+    arcColors = arcColors.slice(0, arcRatios.length + 1)
   }
 
-  return chartColors
+  return arcColors
 }
 
 /**
@@ -49,26 +49,57 @@ export function perc2RadWithShift(perc: number) {
  * Function for drawing gauge.
  * @param svg - original svg rectangle.
  * @param gaugeHeight - height of gauge.
- * @param chartColors - array of colors.
+ * @param arcColors - array of colors.
  * @param outerRadius - outter radius of gauge.
- * @param chartRatios - array of ratios in percentage.
+ * @param arcRatios - array of ratios in percentage.
  * @returns modified svg.
  */
-export function gaugeOutline(svg, gaugeHeight: number, offset: number, chartColors: string[],
-                        outerRadius: number, chartRatios: number[]) {
-  chartColors.forEach((color, i) => {
+export function arcOutline(svg, gaugeHeight: number, offset: number, arcColors: string[],
+                        outerRadius: number, arcRatios: number[]) {
+  arcColors.forEach((color, i) => {
     let arc = d3.arc()
       .innerRadius(gaugeHeight)
       .outerRadius(outerRadius)
-      .startAngle(i ? perc2RadWithShift(chartRatios[i - 1]) : perc2RadWithShift(0))
-      .endAngle(perc2RadWithShift(chartRatios[i] || 100))  // 100 for last pie slice
+      .startAngle(i ? perc2RadWithShift(arcRatios[i - 1]) : perc2RadWithShift(0))
+      .endAngle(perc2RadWithShift(arcRatios[i] || 100))  // 100 for last pie slice
 
-    svg.append('path')
+    let innerArc = svg.append('path')
       .attr('d', arc)
       .attr('fill', color)
       .attr('transform', 'translate(' + (gaugeHeight + offset * 2) + ', '
                                             + (gaugeHeight + offset) + ')')
-      .attr('class', 'bar')
+
+    arc = d3.arc()
+      .innerRadius(gaugeHeight)
+      .outerRadius(gaugeHeight + gaugeHeight * 0.1)
+      .startAngle(i ? perc2RadWithShift(arcRatios[i - 1]) : perc2RadWithShift(0))
+      .endAngle(perc2RadWithShift(arcRatios[i] || 100))  // 100 for last pie slice  
+
+    let outerArc = svg.append('path')
+      .attr('d', arc)
+      .attr('fill', 'transparent')
+      .attr('opacity', '0.2')
+      .attr('transform', 'translate(' + (gaugeHeight + offset * 2) + ', '
+                                            + (gaugeHeight + offset) + ')')
+
+    innerArc
+      .on('mouseover', () => {
+        innerArc.style('opacity', 0.8)
+        outerArc
+          .transition()
+          .duration(50)
+          .ease(d3.easeLinear)
+          .attr('fill', color)
+      })
+      .on('mouseout', () => {
+        innerArc.style('opacity', 1)
+        outerArc
+          .transition()
+          .duration(300)
+          .ease(d3.easeLinear)
+          .attr('fill', 'transparent')
+
+      })
   })
 
   return svg
@@ -79,13 +110,13 @@ export function gaugeOutline(svg, gaugeHeight: number, offset: number, chartColo
  * @param svg - original svg rectangle.
  * @param gaugeHeight - height of gauge.
  * @param needleColor - color of a needle.
- * @param gaugeCentralLabel - value of the central label.
+ * @param centralLabel - value of the central label.
  * @returns modified svg.
  */
 export function needleBaseOutline(svg, gaugeHeight: number, offset: number,
-                           needleColor: string, gaugeCentralLabel: string) {
+                           needleColor: string, centralLabel: string) {
   // Different circle radiuses in the base of needle
-  let innerGaugeRadius = gaugeCentralLabel ? gaugeHeight * 0.5 : gaugeHeight * 0.1
+  let innerGaugeRadius = centralLabel ? gaugeHeight * 0.5 : gaugeHeight * 0.1
   let arc = d3.arc()
       .innerRadius(innerGaugeRadius)
       .outerRadius(0)
@@ -95,7 +126,7 @@ export function needleBaseOutline(svg, gaugeHeight: number, offset: number,
   // White needle base if something should be written on it, gray otherwise
   svg.append('path')
     .attr('d', arc)
-    .attr('fill', gaugeCentralLabel ? 'white' : needleColor)
+    .attr('fill', centralLabel ? 'white' : needleColor)
     .attr('transform', 'translate(' + (gaugeHeight + offset * 2) + ', '
                                           + (gaugeHeight + offset) + ')')
     .attr('class', 'bar')
@@ -110,13 +141,13 @@ export function needleBaseOutline(svg, gaugeHeight: number, offset: number,
  * @param needleColor - color of needle.
  * @param outerRadius - outer radius of gauge.
  * @param needleValue - value at which needle points.
- * @param gaugeCentralLabel - value of the central label.
+ * @param centralLabel - value of the central label.
  * @returns modified svg.
  */
 export function needleOutline(svg, gaugeHeight: number, offset: number, needleColor: string,
-                        outerRadius: number, needleValue: number, gaugeCentralLabel: string) {
+                        outerRadius: number, needleValue: number, centralLabel: string) {
   // Thin needle if there is no central label and wide if there is.
-  let needleWidth = gaugeCentralLabel ? gaugeHeight * 0.7 : gaugeHeight * 0.1
+  let needleWidth = centralLabel ? gaugeHeight * 0.7 : gaugeHeight * 0.1
 
   let needleHeadLength = outerRadius * 0.97
   let needleTailLength = needleWidth * 0.5
@@ -124,31 +155,50 @@ export function needleOutline(svg, gaugeHeight: number, offset: number, needleCo
   let needleAngle = perc2RadWithShift(needleValue)
 
   // Data for our line
-  let lineData = [ { x: needleHeadLength * Math.sin(needleAngle),
-                     y: -needleHeadLength * Math.cos(needleAngle)},
-                   { x: -needleWaypointOffset * Math.cos(needleAngle),
-                     y: -needleWaypointOffset * Math.sin(needleAngle)},
-                   { x: -needleTailLength * Math.sin(needleAngle),
-                     y: needleTailLength * Math.cos(needleAngle)},
-                   { x: needleWaypointOffset * Math.cos(needleAngle),
-                     y: needleWaypointOffset * Math.sin(needleAngle)},
-                   { x: needleHeadLength * Math.sin(needleAngle),
-                     y: -needleHeadLength * Math.cos(needleAngle)} ]
+  /*let lineData = [ { x: needleHeadLength * Math.sin(needleAngle) + gaugeHeight + offset * 2,
+                     y: -needleHeadLength * Math.cos(needleAngle) + (gaugeHeight + offset)},
+                   { x: -needleWaypointOffset * Math.cos(needleAngle) + gaugeHeight + offset * 2,
+                     y: -needleWaypointOffset * Math.sin(needleAngle) + (gaugeHeight + offset)},
+                   { x: -needleTailLength * Math.sin(needleAngle) + gaugeHeight + offset * 2,
+                     y: needleTailLength * Math.cos(needleAngle) + (gaugeHeight + offset)},
+                   { x: needleWaypointOffset * Math.cos(needleAngle) + gaugeHeight + offset * 2,
+                     y: needleWaypointOffset * Math.sin(needleAngle) + (gaugeHeight + offset)},
+                   { x: needleHeadLength * Math.sin(needleAngle) + gaugeHeight + offset * 2,
+                     y: -needleHeadLength * Math.cos(needleAngle) + (gaugeHeight + offset)} ]*/
+
+  let lineData = [ { x: 0 + gaugeHeight + offset * 2,
+                     y: needleHeadLength + (gaugeHeight + offset)},
+                   { x: needleWaypointOffset + gaugeHeight + offset * 2,
+                     y: 0 + (gaugeHeight + offset)},
+                   { x: 0 + gaugeHeight + offset * 2,
+                     y: -needleTailLength + (gaugeHeight + offset)},
+                   { x: -needleWaypointOffset + gaugeHeight + offset * 2,
+                     y: 0 + (gaugeHeight + offset)},
+                   { x: 0 + gaugeHeight + offset * 2,
+                     y: needleHeadLength + (gaugeHeight + offset)} ]
 
   // Accessor function
   let lineFunction: any = d3.line()
                       .x( (d: any) => d.x )
                       .y( (d: any) => d.y )
                       .curve(d3.curveLinear)
+  //let pg = svg.append('path')
+  //            .attr('d', lineFunction(lineData))
+              
+  //pg.attr('transform', 'rotate(' + '-90' + ')')
+
+  let so = 40
 
   // SVG line path we draw
   svg.append('path')
    .attr('d', lineFunction(lineData))
+   //.attr('transform', 'rotate(100)')
+   .attr('transform', 'translate(' + so * 2.3  + ', ' + so * (-2.3) + ') rotate(' + so + ')')
    .attr('stroke', needleColor)
    .attr('stroke-width', 2)
    .attr('fill', needleColor)
-   .attr('transform', 'translate(' + (gaugeHeight + offset * 2) + ', '
-                                         + (gaugeHeight + offset) + ')')
+   //.attr('transform', 'translate(' + (gaugeHeight + offset * 2) + ', '
+   //                                      + (gaugeHeight + offset) + ')')
 
    return svg
 }
@@ -158,45 +208,45 @@ export function needleOutline(svg, gaugeHeight: number, offset: number, needleCo
  * @param svg - original svg rectangle.
  * @param gaugeHeight - height of gauge.
  * @param outerRadius - outer radius of gauge.
- * @param gaugeRangeLabel - range labels of gauge.
- * @param gaugeCentralLabel - value of the central label.
+ * @param rangeLabel - range labels of gauge.
+ * @param centralLabel - value of the central label.
  * @returns modified svg.
  */
 export function labelOutline(svg, gaugeHeight: number, offset: number, outerRadius: number,
-                     gaugeRangeLabel: string[], gaugeCentralLabel: string) {
+                     rangeLabel: string[], centralLabel: string) {
   let gaugeWidth = gaugeHeight - outerRadius
 
   // Specifications of fonts and offsets (responsive to chart size)
   let rangeLabelFontSize = gaugeHeight * 0.2
-  let leftRangeLabelOffsetX = gaugeRangeLabel.length ? offset * 2 +
-       (gaugeWidth - gaugeRangeLabel[0].length * rangeLabelFontSize * 0.5) * 0.5 : 0
+  let leftRangeLabelOffsetX = rangeLabel.length ? offset * 2 +
+       (gaugeWidth - rangeLabel[0].length * rangeLabelFontSize * 0.5) * 0.5 : 0
   let leftRangeLabelOffsetY = gaugeHeight + rangeLabelFontSize * 0.85 + offset * 1.5
-  let rightRangeLabelOffsetX = gaugeRangeLabel.length ? gaugeHeight * 2 + offset * 2 -
-      gaugeWidth / 2 - gaugeRangeLabel[1].length * rangeLabelFontSize * 0.5 * 0.5 : 0
+  let rightRangeLabelOffsetX = rangeLabel.length ? gaugeHeight * 2 + offset * 2 -
+      gaugeWidth / 2 - rangeLabel[1].length * rangeLabelFontSize * 0.5 * 0.5 : 0
   let rightRangeLabelOffsetY = gaugeHeight + rangeLabelFontSize * 0.85 + offset * 1.5
   let centralLabelFontSize = rangeLabelFontSize * 1.5
   let centralLabelOffsetX = gaugeHeight + offset * 2 -
-       gaugeCentralLabel.length * centralLabelFontSize * 0.5 * 0.5
+       centralLabel.length * centralLabelFontSize * 0.5 * 0.5
   let centralLabelOffsetY = gaugeHeight + offset * 0.5
 
   svg.append('text')
     .attr('x', leftRangeLabelOffsetX)
     .attr('y', leftRangeLabelOffsetY)
-    .text(gaugeRangeLabel ? gaugeRangeLabel[0] : '')
+    .text(rangeLabel ? rangeLabel[0] : '')
     .attr('font-size', rangeLabelFontSize)
     .attr('font-family', 'Roboto,Helvetica Neue,sans-serif')
 
   svg.append('text')
     .attr('x', rightRangeLabelOffsetX)
     .attr('y', rightRangeLabelOffsetY)
-    .text(gaugeRangeLabel ? gaugeRangeLabel[1] : '')
+    .text(rangeLabel ? rangeLabel[1] : '')
     .attr('font-size', rangeLabelFontSize)
     .attr('font-family', 'Roboto,Helvetica Neue,sans-serif')
 
   svg.append('text')
     .attr('x', centralLabelOffsetX)
     .attr('y', centralLabelOffsetY)
-    .text(gaugeCentralLabel)
+    .text(centralLabel)
     .attr('font-size', centralLabelFontSize)
     .attr('font-family', 'Roboto,Helvetica Neue,sans-serif')
 
@@ -209,18 +259,23 @@ export function labelOutline(svg, gaugeHeight: number, offset: number, outerRadi
  * @param needleValue: number - value at which an arrow points.
  * @param gaugeOptions?: string[] - object of optional parameters.
  */
-export function gaugeChart(element: HTMLElement, gaugeWidth: number, needleValue: number,
-                            gaugeOptions: GaugeOptions) {
-  let chartColors = gaugeOptions.chartColors || []
-  let chartRatios = gaugeOptions.chartRatios || []
-  if (!paramChecker(chartRatios, chartColors, needleValue)) {
+export function gaugeChart(element: HTMLElement, gaugeWidth: number, gaugeOptions: GaugeOptions) {
+  let defaultGaugeOption = {
+    needleValue: -1,
+    needleColor: 'gray',
+    arcColors: [],
+    arcRatios: [],
+    rangeLabel: [],
+    centralLabel: '',
+  }
+  let {needleValue, needleColor, arcColors, arcRatios, rangeLabel, centralLabel} =
+                   Object.assign(defaultGaugeOption, gaugeOptions)
+
+  if (!paramChecker(arcRatios, arcColors, needleValue, rangeLabel)) {
     return
   }
-  let gaugeCentralLabel = gaugeOptions.gaugeCentralLabel || ''
-  let gaugeRangeLabel = gaugeOptions.gaugeRangeLabel || []
-  const needleColor = 'gray'
-  chartColors = chartColorsModifier(chartRatios, chartColors)
-  needleValue = needleValueModifier(needleValue)
+
+  arcColors = arcColorsModifier(arcRatios, arcColors)
 
   let offset = gaugeWidth * 0.05
   let gaugeHeight = gaugeWidth * 0.5 - offset * 2
@@ -229,11 +284,15 @@ export function gaugeChart(element: HTMLElement, gaugeWidth: number, needleValue
   let svg = d3.select(element).append('svg')
                   .attr('width', gaugeWidth + offset * 2)
                   .attr('height', gaugeHeight + offset * 4)
-  svg = needleOutline(svg, gaugeHeight, offset, needleColor,
-                       outerRadius, needleValue, gaugeCentralLabel)
-  svg = needleBaseOutline(svg, gaugeHeight, offset, needleColor, gaugeCentralLabel)
-  svg = gaugeOutline(svg, gaugeHeight, offset, chartColors, outerRadius, chartRatios)
-  svg = labelOutline(svg, gaugeHeight, offset, outerRadius, gaugeRangeLabel, gaugeCentralLabel)
+
+  if (needleValue !== -1) {
+    needleValue = needleValueModifier(needleValue)
+    svg = needleOutline(svg, gaugeHeight, offset, needleColor,
+                       outerRadius, needleValue, centralLabel)
+    svg = needleBaseOutline(svg, gaugeHeight, offset, needleColor, centralLabel)
+  }
+  svg = arcOutline(svg, gaugeHeight, offset, arcColors, outerRadius, arcRatios)
+  svg = labelOutline(svg, gaugeHeight, offset, outerRadius, rangeLabel, centralLabel)
 
   return svg
 }
