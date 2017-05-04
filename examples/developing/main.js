@@ -1,11 +1,11 @@
 let element = document.querySelector('#gaugeArea')
 let gaugeOptions = {
-  needleValue: 0,
+  needleValue: 10,
   needleColor: 'gray',
   arcColors: [],
   arcRatios: [40],
-  rangeLabel: [],
-  centralLabel: '',
+  rangeLabel: ['1', '10'],
+  centralLabel: '2',
 }
 
 GaugeChart.gaugeChart(element, 250, gaugeOptions)

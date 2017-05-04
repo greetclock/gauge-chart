@@ -47,7 +47,7 @@ export function warnChecker(chartRatios: number[], chartColors,
                      needleValue: number, rangeLabel: string[]) {
   colorsLackWarnChecker(chartRatios, chartColors)
   colorsExcessWarnChecker(chartRatios, chartColors)
-  //needleValueWarnChecker(needleValue)
+  // needleValueWarnChecker(needleValue)
   rangeLabelNumberWarnChecker(rangeLabel)
 }
 
