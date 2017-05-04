@@ -224,14 +224,14 @@ export function labelOutline(svg, areaWidth: number, chartHeight: number, offset
     .attr('x', rightRangeLabelOffsetX)
     .attr('y', rangeLabelOffsetY)
     .text(rangeLabel ? rangeLabel[1] : '')
-    .attr('font-size', rangeLabelFontSize)
+    .attr('font-size', rangeLabelFontSize + 'px')
     .attr('font-family', 'Roboto,Helvetica Neue,sans-serif')
 
   svg.append('text')
     .attr('x', centralLabelOffsetX)
     .attr('y', centralLabelOffsetY)
     .text(centralLabel)
-    .attr('font-size', centralLabelFontSize)
+    .attr('font-size', centralLabelFontSize + 'px')
     .attr('font-family', 'Roboto,Helvetica Neue,sans-serif')
 
   return svg
