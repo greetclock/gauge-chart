@@ -95,27 +95,52 @@ describe('arc outlining', () => {
     let arcRatios = [50]
     let arcColors = ['red', 'blue']
     svg = gauge.arcOutline(svg, chartHeight, offset, arcColors, outerRadius, arcRatios)
-    // number of paths in svg html has to be 4 (2 arcs and 2 arcs shadown onmouseover)
+    // number of paths in svg html has to be 4 (2 arcs and 2 arc shadows onmouseover)
     expect((svg.html()).match(/path/g).length / 2).toBe(4)
 
-    let svgHtmlFirstPath = svg.html().slice(svg.html().search('path') + 1,
+    let svgHtmlPath = svg.html().slice(svg.html().search('path'),
                svg.html().search('/path'))
-    let svgHtmlSecondPath = svg.html().slice(svg.html().search('/path') + 1,
-               svg.html().lastIndexOf('/path'))
+    let svgLeftHtml = svg.html().slice(svg.html().search('/path') + 5)
 
-    let svgHtml = svgHtmlFirstPath.slice(svgHtmlFirstPath.search('M'),
-               svgHtmlFirstPath.search('Z'))
+    let svgHtml = svgHtmlPath.slice(svgHtmlPath.search('M'),
+               svgHtmlPath.search('Z'))
     svgHtml = pathValueChecker(svgHtml, 'M', 'A', [-80, 0])
     svgHtml = pathValueChecker(svgHtml, 'A', 'L', [80, 80, 0, 0, 1, 0, -80])
-    svgHtml = pathValueChecker(svgHtml, 'L', 'A', [0, -56])
-    svgHtml = pathValueChecker(svgHtml, 'A', '', [56, 56, 0, 0, 0, -56, 0])
+    svgHtml = pathValueChecker(svgHtml, 'L', 'A', [0, -60])
+    svgHtml = pathValueChecker(svgHtml, 'A', '', [60, 60, 0, 0, 0, -60, 0])
 
-    svgHtml = svgHtmlSecondPath.slice(svgHtmlSecondPath.search('M'),
-               svgHtmlSecondPath.search('Z'))
+    svgHtmlPath = svgLeftHtml.slice(svgLeftHtml.search('path'),
+               svgLeftHtml.search('/path'))
+    svgLeftHtml = svgLeftHtml.slice(svgLeftHtml.search('/path') + 5)
+
+    svgHtml = svgHtmlPath.slice(svgHtmlPath.search('M'),
+               svgHtmlPath.search('Z'))
+    svgHtml = pathValueChecker(svgHtml, 'M', 'A', [-88, 0])
+    svgHtml = pathValueChecker(svgHtml, 'A', 'L', [88, 88, 0, 0, 1, 0, -88])
+    svgHtml = pathValueChecker(svgHtml, 'L', 'A', [0, -80])
+    svgHtml = pathValueChecker(svgHtml, 'A', '', [80, 80, 0, 0, 0, -80, 0])
+
+    svgHtmlPath = svgLeftHtml.slice(svgLeftHtml.search('path'),
+               svgLeftHtml.search('/path'))
+    svgLeftHtml = svgLeftHtml.slice(svgLeftHtml.search('/path') + 5)
+
+    svgHtml = svgHtmlPath.slice(svgHtmlPath.search('M'),
+               svgHtmlPath.search('Z'))
     svgHtml = pathValueChecker(svgHtml, 'M', 'A', [0, -80])
     svgHtml = pathValueChecker(svgHtml, 'A', 'L', [80, 80, 0, 0, 1, 80, 0])
-    svgHtml = pathValueChecker(svgHtml, 'L', 'A', [56, 0])
-    svgHtml = pathValueChecker(svgHtml, 'A', '', [56, 56, 0, 0, 0, 0, -56])
+    svgHtml = pathValueChecker(svgHtml, 'L', 'A', [60, 0])
+    svgHtml = pathValueChecker(svgHtml, 'A', '', [60, 60, 0, 0, 0, 0, -60])
+
+    svgHtmlPath = svgLeftHtml.slice(svgLeftHtml.search('path'),
+               svgLeftHtml.search('/path'))
+    svgLeftHtml = svgLeftHtml.slice(svgLeftHtml.search('/path') + 5)
+
+    svgHtml = svgHtmlPath.slice(svgHtmlPath.search('M'),
+               svgHtmlPath.search('Z'))
+    svgHtml = pathValueChecker(svgHtml, 'M', 'A', [0, -88])
+    svgHtml = pathValueChecker(svgHtml, 'A', 'L', [88, 88, 0, 0, 1, 88, 0])
+    svgHtml = pathValueChecker(svgHtml, 'L', 'A', [80, 0])
+    svgHtml = pathValueChecker(svgHtml, 'A', '', [80, 80, 0, 0, 0, 0, -80])
   })
 })
 
@@ -192,11 +217,11 @@ describe('needle outlining', () => {
                                 outerRadius, needleValue, centralLabel)
     // define the whole path string (M...L...L...L...L... for svg arc)
     let svgHtml = svg.html().slice(svg.html().search('M'), svg.html().search('" stroke'))
-    svgHtml = pathValueChecker(svgHtml, 'M', 'L', [0, -54.3])
+    svgHtml = pathValueChecker(svgHtml, 'M', 'L', [0, -58.2])
     svgHtml = pathValueChecker(svgHtml, 'L', 'L', [-4, 0])
     svgHtml = pathValueChecker(svgHtml, 'L', 'L', [0, 4])
     svgHtml = pathValueChecker(svgHtml, 'L', 'L', [4, 0])
-    svgHtml = pathValueChecker(svgHtml, 'L', '', [0, -54.3])
+    svgHtml = pathValueChecker(svgHtml, 'L', '', [0, -58.2])
   })
 
   it ('checks correct path of needle with label', () => {
@@ -208,17 +233,17 @@ describe('needle outlining', () => {
                                 outerRadius, needleValue, centralLabel)
     // define the whole path string (M...L...L...L... for svg arc)
     let svgHtml = svg.html().slice(svg.html().search('M') + 1, svg.html().search('" stroke'))
-    svgHtml = pathValueChecker(svgHtml, 'M', 'L', [0, -54.3])
+    svgHtml = pathValueChecker(svgHtml, 'M', 'L', [0, -58.2])
     svgHtml = pathValueChecker(svgHtml, 'L', 'L', [-28, 0])
     svgHtml = pathValueChecker(svgHtml, 'L', 'L', [0, 28])
     svgHtml = pathValueChecker(svgHtml, 'L', 'L', [28, 0])
-    svgHtml = pathValueChecker(svgHtml, 'L', '', [0, -54.3])
+    svgHtml = pathValueChecker(svgHtml, 'L', '', [0, -58.2])
   })
 })
 
 describe('label outlining', () => {
   let offset = 10
-  let areaWidth = 250
+  let areaWidth = 200
   let chartWidth = 200 - offset * 2
   let chartHeight = 100 - offset * 2
   let element = document.createElement('test')
@@ -266,11 +291,11 @@ describe('label outlining', () => {
 
     let svgHtml = svg.html().split('</text>')
     svgHtml.pop()  // removed last element (empty string)
-    expect(svgHtml[0]).toBe('<text x="28" y="108.6" font-size="16"' +
+    expect(svgHtml[0]).toBe('<text x="25.2" y="109.2" font-size="16px"' +
                        ' font-family="Roboto,Helvetica Neue,sans-serif">' + rangeLabel[0])
-    expect(svgHtml[1]).toBe('<text x="164" y="108.6" font-size="16"' +
+    expect(svgHtml[1]).toBe('<text x="165.2" y="109.2" font-size="16px"' +
                        ' font-family="Roboto,Helvetica Neue,sans-serif">' + rangeLabel[1])
-    expect(svgHtml[2]).toBe('<text x="100" y="85" font-size="24"' +
+    expect(svgHtml[2]).toBe('<text x="100" y="90" font-size="24px"' +
                        ' font-family="Roboto,Helvetica Neue,sans-serif">')
   })
 
@@ -285,11 +310,11 @@ describe('label outlining', () => {
 
     let svgHtml = svg.html().split('</text>')
     svgHtml.pop()  // removed last element (empty string)
-    expect(svgHtml[0]).toBe('<text x="28" y="108.6" font-size="16"' +
+    expect(svgHtml[0]).toBe('<text x="25.2" y="109.2" font-size="16px"' +
                        ' font-family="Roboto,Helvetica Neue,sans-serif">' + rangeLabel[0])
-    expect(svgHtml[1]).toBe('<text x="164" y="108.6" font-size="16"' +
+    expect(svgHtml[1]).toBe('<text x="165.2" y="109.2" font-size="16px"' +
                        ' font-family="Roboto,Helvetica Neue,sans-serif">' + rangeLabel[1])
-    expect(svgHtml[2]).toBe('<text x="94" y="85" font-size="24"' +
+    expect(svgHtml[2]).toBe('<text x="93.28" y="90" font-size="24px"' +
                        ' font-family="Roboto,Helvetica Neue,sans-serif">' + centralLabel)
   })
 })
@@ -297,7 +322,7 @@ describe('label outlining', () => {
 describe('chart outlining', () => {
   it ('checks correct parameters of final svg', () => {
     let offset = 10
-    let areaWidth = 250
+    let areaWidth = 200
     let chartWidth = 200 - offset * 2
     let chartHeight = 100 - offset * 2
     let element = document.createElement('test')

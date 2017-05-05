@@ -2,7 +2,9 @@ import * as d3 from 'd3'
 import { schemePaired } from 'd3-scale-chromatic'
 import './gauge.css'
 
+import { Gauge } from './gauge-interface'
 import { GaugeOptions } from './gauge-options'
+import { Needle } from './needle-interface'
 import { paramChecker } from './param-checker'
 
 
@@ -145,46 +147,17 @@ export function needleBaseOutline(svg, chartHeight: number, offset: number,
  */
 export function needleOutline(svg, chartHeight: number, offset: number, needleColor: string,
                         outerRadius: number, needleValue: number, centralLabel: string) {
-  // Thin needle if there is no central label and wide if there is.
-  let needleWidth = centralLabel ? chartHeight * 0.7 : chartHeight * 0.1
 
-  let needleHeadLength = outerRadius * 0.97
-  let needleTailLength = needleWidth * 0.5
-  let needleWaypointOffset = needleWidth * 0.5
-  let needleAngle = perc2RadWithShift(needleValue)
+  let needle = new Needle(svg, needleValue, centralLabel, chartHeight,
+                               outerRadius, offset, needleColor)
+  needle.setValue(needleValue)
+  needle.getSelection()
 
-  // Data for our line
-  let lineData = [ { x: needleHeadLength * Math.sin(needleAngle),
-                     y: -needleHeadLength * Math.cos(needleAngle)},
-                   { x: -needleWaypointOffset * Math.cos(needleAngle),
-                     y: -needleWaypointOffset * Math.sin(needleAngle)},
-                   { x: -needleTailLength * Math.sin(needleAngle),
-                     y: needleTailLength * Math.cos(needleAngle)},
-                   { x: needleWaypointOffset * Math.cos(needleAngle),
-                     y: needleWaypointOffset * Math.sin(needleAngle)},
-                   { x: needleHeadLength * Math.sin(needleAngle),
-                     y: -needleHeadLength * Math.cos(needleAngle)} ]
-
-  // Accessor function
-  let lineFunction: any = d3.line()
-                      .x( (d: any) => d.x )
-                      .y( (d: any) => d.y )
-                      .curve(d3.curveLinear)
-
-  // SVG line path we draw
-  svg.append('path')
-   .attr('d', lineFunction(lineData))
-   .attr('stroke', needleColor)
-   .attr('stroke-width', 2)
-   .attr('fill', needleColor)
-   .attr('transform', 'translate(' + (chartHeight + offset * 2) + ', '
-                                         + (chartHeight + offset) + ')')
-
-   return svg
+  return { needle, svg }
 }
 
 /**
- * Function for drawing needle.
+ * Function for drawing labels.
  * @param svg - original svg rectangle.
  * @param chartHeight - height of gauge.
  * @param outerRadius - outer radius of gauge.
@@ -244,6 +217,9 @@ export function labelOutline(svg, areaWidth: number, chartHeight: number, offset
  * @param gaugeOptions?: string[] - object of optional parameters.
  */
 export function gaugeChart(element: HTMLElement, areaWidth: number, gaugeOptions: GaugeOptions) {
+
+  let g = new Gauge()
+
   let defaultGaugeOption = {
     needleValue: -1,
     needleColor: 'gray',
@@ -271,12 +247,15 @@ export function gaugeChart(element: HTMLElement, areaWidth: number, gaugeOptions
 
   if (needleValue !== -1) {
     needleValue = needleValueModifier(needleValue)
-    svg = needleOutline(svg, chartHeight, offset, needleColor,
+    let svgObj = needleOutline(svg, chartHeight, offset, needleColor,
                         outerRadius, needleValue, centralLabel)
-    svg = needleBaseOutline(svg, chartHeight, offset, needleColor, centralLabel)
+    //svg = svgObj.svg
+    g.needle = svgObj.needle
+    needleBaseOutline(svg, chartHeight, offset, needleColor, centralLabel)
   }
-  svg = arcOutline(svg, chartHeight, offset, arcColors, outerRadius, arcRatios)
-  svg = labelOutline(svg, areaWidth, chartHeight, offset, outerRadius, rangeLabel, centralLabel)
+  arcOutline(svg, chartHeight, offset, arcColors, outerRadius, arcRatios)
+  labelOutline(svg, areaWidth, chartHeight, offset, outerRadius, rangeLabel, centralLabel)
 
-  return svg
+  g._svg = svg
+  return g
 }
