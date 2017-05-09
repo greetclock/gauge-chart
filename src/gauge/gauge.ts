@@ -9,20 +9,20 @@ import { paramChecker } from './param-checker'
 
 
 /**
- * Function that checks whether the number of colors is enough for drawing specified ratios.
+ * Function that checks whether the number of colors is enough for drawing specified delimiters.
  * Adds standard colors if not enough or cuts the array if there are too many of them.
- * @param arcRatios - array of ratios.
+ * @param arcDelimiters - array of delimiters.
  * @param arcColors - array of colors (strings).
  * @returns modified list of colors.
  */
-export function arcColorsModifier(arcRatios: number[], arcColors: string[]) {
-  if (arcRatios.length > arcColors.length - 1) {
-    let colorDiff = arcRatios.length - arcColors.length + 1
+export function arcColorsModifier(arcDelimiters: number[], arcColors: string[]) {
+  if (arcDelimiters.length > arcColors.length - 1) {
+    let colorDiff = arcDelimiters.length - arcColors.length + 1
     for (let i = 0; i < colorDiff; i++) {
       arcColors.push(schemePaired[i % schemePaired.length])
     }
-  } else if (arcRatios.length < arcColors.length - 1) {
-    arcColors = arcColors.slice(0, arcRatios.length + 1)
+  } else if (arcDelimiters.length < arcColors.length - 1) {
+    arcColors = arcColors.slice(0, arcDelimiters.length + 1)
   }
 
   return arcColors
@@ -35,7 +35,7 @@ export function arcColorsModifier(arcRatios: number[], arcColors: string[]) {
  * @returns modified needleValue.
  */
 export function needleValueModifier(needleValue: number) {
-  return needleValue = needleValue < 0 ? 0 : needleValue > 100 ? 100 : needleValue
+  return needleValue < 0 ? 0 : needleValue > 100 ? 100 : needleValue
 }
 
 /**
@@ -48,22 +48,22 @@ export function perc2RadWithShift(perc: number) {
 }
 
 /**
- * Function for drawing gauge.
+ * Function for drawing gauge arc.
  * @param svg - original svg rectangle.
  * @param chartHeight - height of gauge.
  * @param arcColors - array of colors.
  * @param outerRadius - outter radius of gauge.
- * @param arcRatios - array of ratios in percentage.
+ * @param arcDelimiters - array of delimiters in percentage.
  * @returns modified svg.
  */
 export function arcOutline(svg, chartHeight: number, offset: number, arcColors: string[],
-                        outerRadius: number, arcRatios: number[]) {
+                        outerRadius: number, arcDelimiters: number[]) {
   arcColors.forEach((color, i) => {
     let arc = d3.arc()
       .innerRadius(chartHeight)
       .outerRadius(outerRadius)
-      .startAngle(i ? perc2RadWithShift(arcRatios[i - 1]) : perc2RadWithShift(0))
-      .endAngle(perc2RadWithShift(arcRatios[i] || 100))  // 100 for last pie slice
+      .startAngle(i ? perc2RadWithShift(arcDelimiters[i - 1]) : perc2RadWithShift(0))
+      .endAngle(perc2RadWithShift(arcDelimiters[i] || 100))  // 100 for last arc slice
 
     let innerArc = svg.append('path')
       .attr('d', arc)
@@ -74,8 +74,8 @@ export function arcOutline(svg, chartHeight: number, offset: number, arcColors: 
     arc = d3.arc()
       .innerRadius(chartHeight)
       .outerRadius(chartHeight + chartHeight * 0.1)
-      .startAngle(i ? perc2RadWithShift(arcRatios[i - 1]) : perc2RadWithShift(0))
-      .endAngle(perc2RadWithShift(arcRatios[i] || 100))  // 100 for last pie slice
+      .startAngle(i ? perc2RadWithShift(arcDelimiters[i - 1]) : perc2RadWithShift(0))
+      .endAngle(perc2RadWithShift(arcDelimiters[i] || 100))  // 100 for last arc slice
 
     let outerArc = svg.append('path')
       .attr('d', arc)
@@ -102,8 +102,6 @@ export function arcOutline(svg, chartHeight: number, offset: number, arcColors: 
           .attr('fill', 'transparent')
       })
   })
-
-  return svg
 }
 
 /**
@@ -131,8 +129,6 @@ export function needleBaseOutline(svg, chartHeight: number, offset: number,
     .attr('transform', 'translate(' + (chartHeight + offset * 2) + ', '
                                           + (chartHeight + offset) + ')')
     .attr('class', 'bar')
-
-  return svg
 }
 
 /**
@@ -146,14 +142,14 @@ export function needleBaseOutline(svg, chartHeight: number, offset: number,
  * @returns modified svg.
  */
 export function needleOutline(svg, chartHeight: number, offset: number, needleColor: string,
-                        outerRadius: number, needleValue: number, centralLabel: string) {
-
+                        outerRadius: number, centralLabel: string) {
+  let needleValue = 0
   let needle = new Needle(svg, needleValue, centralLabel, chartHeight,
                                outerRadius, offset, needleColor)
   needle.setValue(needleValue)
   needle.getSelection()
 
-  return { needle, svg }
+  return needle
 }
 
 /**
@@ -170,7 +166,7 @@ export function labelOutline(svg, areaWidth: number, chartHeight: number, offset
   let arcWidth = chartHeight - outerRadius
 
   // Fonts specification (responsive to chart size)
-  let rangeLabelFontSize = Math.round(chartHeight * 0.2)
+  let rangeLabelFontSize = Math.round(chartHeight * 0.18)
   let realRangeFontSize = rangeLabelFontSize * 0.6 // counted empirically
   let centralLabelFontSize = rangeLabelFontSize * 1.5
   let realCentralFontSize = centralLabelFontSize * 0.56
@@ -206,8 +202,6 @@ export function labelOutline(svg, areaWidth: number, chartHeight: number, offset
     .text(centralLabel)
     .attr('font-size', centralLabelFontSize + 'px')
     .attr('font-family', 'Roboto,Helvetica Neue,sans-serif')
-
-  return svg
 }
 
 /**
@@ -217,25 +211,25 @@ export function labelOutline(svg, areaWidth: number, chartHeight: number, offset
  * @param gaugeOptions?: string[] - object of optional parameters.
  */
 export function gaugeChart(element: HTMLElement, areaWidth: number, gaugeOptions: GaugeOptions) {
-
   let g = new Gauge()
 
   let defaultGaugeOption = {
-    needleValue: -1,
+    hasNeedle: false,
     needleColor: 'gray',
+    needleUpdateSpeed: 1000,
     arcColors: [],
-    arcRatios: [],
+    arcDelimiters: [],
     rangeLabel: [],
     centralLabel: '',
   }
-  let {needleValue, needleColor, arcColors, arcRatios, rangeLabel, centralLabel} =
-                   Object.assign(defaultGaugeOption, gaugeOptions)
-
-  if (!paramChecker(arcRatios, arcColors, needleValue, rangeLabel)) {
+  let {hasNeedle, needleColor, needleUpdateSpeed, arcColors, arcDelimiters,
+       rangeLabel, centralLabel} = Object.assign(defaultGaugeOption, gaugeOptions)
+  g.needleUpdateSpeed = needleUpdateSpeed
+  if (!paramChecker(arcDelimiters, arcColors, rangeLabel)) {
     return
   }
 
-  arcColors = arcColorsModifier(arcRatios, arcColors)
+  arcColors = arcColorsModifier(arcDelimiters, arcColors)
 
   let offset = areaWidth * 0.05
   let chartHeight = areaWidth * 0.5 - offset * 2
@@ -245,15 +239,11 @@ export function gaugeChart(element: HTMLElement, areaWidth: number, gaugeOptions
                   .attr('width', chartWidth + offset * 2)
                   .attr('height', chartHeight + offset * 4)
 
-  if (needleValue !== -1) {
-    needleValue = needleValueModifier(needleValue)
-    let svgObj = needleOutline(svg, chartHeight, offset, needleColor,
-                        outerRadius, needleValue, centralLabel)
-    //svg = svgObj.svg
-    g.needle = svgObj.needle
+  if (hasNeedle) {
+    g.needle = needleOutline(svg, chartHeight, offset, needleColor, outerRadius, centralLabel)
     needleBaseOutline(svg, chartHeight, offset, needleColor, centralLabel)
   }
-  arcOutline(svg, chartHeight, offset, arcColors, outerRadius, arcRatios)
+  arcOutline(svg, chartHeight, offset, arcColors, outerRadius, arcDelimiters)
   labelOutline(svg, areaWidth, chartHeight, offset, outerRadius, rangeLabel, centralLabel)
 
   g._svg = svg

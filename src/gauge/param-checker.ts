@@ -1,19 +1,19 @@
-export function delimeterRangeErrorChecker(chartRatios: number[]) {
-  if (chartRatios && (chartRatios.slice(-1)[0] >= 100 || chartRatios[0] <= 0)) {
+export function delimiterRangeErrorChecker(chartDelimiters: number[]) {
+  if (chartDelimiters && (chartDelimiters.slice(-1)[0] >= 100 || chartDelimiters[0] <= 0)) {
     console.error
-      ('Gauge-chart Error: gauge delimeters have to be LARGER than 0 and LESS than 100')
+      ('Gauge-chart Error: gauge delimiters have to be LARGER than 0 and LESS than 100')
     return false
   }
   return true
 }
 
-export function delimiterSortErrorChecker(chartRatios: number[]) {
+export function delimiterSortErrorChecker(chartDelimiters: number[]) {
   let isErrorFree = true
-  if (chartRatios) {
-    chartRatios.forEach((ratio, i) => {
-      if (i && ratio < chartRatios[i - 1]) {
+  if (chartDelimiters) {
+    chartDelimiters.forEach((delimiter, i) => {
+      if (i && delimiter < chartDelimiters[i - 1]) {
         console.error
-          ('Gauge-chart Error: gauge delimeters are not sorted')
+          ('Gauge-chart Error: gauge delimiters are not sorted')
         isErrorFree = false
       }
     })
@@ -21,14 +21,14 @@ export function delimiterSortErrorChecker(chartRatios: number[]) {
   return isErrorFree
 }
 
-export function colorsLackWarnChecker(chartRatios: number[], chartColors: string[]) {
-  if (chartRatios && chartColors && chartRatios.length > chartColors.length - 1)
+export function colorsLackWarnChecker(chartDelimiters: number[], chartColors: string[]) {
+  if (chartDelimiters && chartColors && chartDelimiters.length > chartColors.length - 1)
     console.warn
      ('Gauge-chart Warning: list of colors is not complete, standard colors added to the chart')
 }
 
-export function colorsExcessWarnChecker(chartRatios: number[], chartColors: string[]) {
-  if (chartRatios && chartColors && chartRatios.length < chartColors.length - 1)
+export function colorsExcessWarnChecker(chartDelimiters: number[], chartColors: string[]) {
+  if (chartDelimiters && chartColors && chartDelimiters.length < chartColors.length - 1)
     console.warn
      ('Gauge-chart Warning: list of colors exceeds number of slices, therefore it was shortened')
 }
@@ -43,29 +43,28 @@ export function rangeLabelNumberWarnChecker(rangeLabel: string[]) {
     console.warn('Gauge-chart Warning: number of range label parameters is bigger than 2')
 }
 
-export function warnChecker(chartRatios: number[], chartColors,
-                     needleValue: number, rangeLabel: string[]) {
-  colorsLackWarnChecker(chartRatios, chartColors)
-  colorsExcessWarnChecker(chartRatios, chartColors)
+export function warnChecker(chartDelimiters: number[], chartColors, rangeLabel: string[]) {
+  colorsLackWarnChecker(chartDelimiters, chartColors)
+  colorsExcessWarnChecker(chartDelimiters, chartColors)
   // needleValueWarnChecker(needleValue)
   rangeLabelNumberWarnChecker(rangeLabel)
 }
 
-export function errorChecker(chartRatios: number[]) {
-  return delimeterRangeErrorChecker(chartRatios) &&
-         delimiterSortErrorChecker(chartRatios)
+export function errorChecker(chartDelimiters: number[]) {
+  return delimiterRangeErrorChecker(chartDelimiters) &&
+         delimiterSortErrorChecker(chartDelimiters)
 }
 
 /**
  * Function that checks whether there are any errors or typos in specified parameters.
  * Outputs to console errors and warnings if there are any.
- * @param chartRatios - array of ratios in percentage.
+ * @param chartDelimiters - array of delimiters in percentage.
  * @param chartColors - array of colors.
  * @param needleValue - value at which needle points.
  * @returns modified needleValue.
  */
-export function paramChecker(chartRatios: number[], chartColors: string[],
-                               needleValue: number, rangeLabel: string[]) {
-  warnChecker(chartRatios, chartColors, needleValue, rangeLabel)
-  return errorChecker(chartRatios)
+export function paramChecker(chartDelimiters: number[],
+                     chartColors: string[], rangeLabel: string[]) {
+  warnChecker(chartDelimiters, chartColors, rangeLabel)
+  return errorChecker(chartDelimiters)
 }

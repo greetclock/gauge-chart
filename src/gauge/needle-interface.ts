@@ -75,5 +75,4 @@ export class Needle {
   private getLine() {
     return this.lineFunction(this.calcCoordinates())
   }
-
 }
