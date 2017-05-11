@@ -56,11 +56,15 @@ GaugeChart
   .updateNeedle(50)
 ```
 
-![Alt text](http://i64.tinypic.com/k363df.png "Optional Title")
 
-By default, the needle is positioned to 0, thus in order to move it you have to use .updateNeedle(val), where val corresponds to the value on the chart.
+Result:
+
+![Gauge Example](/examples/img/gauge1.png "Gauge Example")
+
+By default, the needle is positioned to 0, thus in order to move it you have to use .updateNeedle(*val*), where *val* corresponds to the value on the chart.
 
 Feel free to change or delete any of the gaugeOptions properties as long as there values are in permitted ranges.
+
 
 | Name | Values Range | Description |
 | ---- | ------------ | ----------- |
@@ -72,8 +76,10 @@ Feel free to change or delete any of the gaugeOptions properties as long as ther
 | rangeLabel | array of two strings | depicts gauge ranges on both sides of the chart |
 | centralLabel | string | depicts gauge inner label |
 
+
 Some examples of what you can get out of the library:
 
+![Gauge Examples](/examples/img/gauge2.png "Gauge Examples")
 
 Like it? Give us a star :)
 
