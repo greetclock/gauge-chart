@@ -37,7 +37,6 @@ Just copy this code into your js / ts file or into *<script> </script>* tags in 
 // Element inside which you want to see the chart
 let element = document.querySelector('#gaugeArea')
 
-
 // Properties of the gauge
 let gaugeOptions = {
   hasNeedle: true,
@@ -48,7 +47,6 @@ let gaugeOptions = {
   rangeLabel: ['0', '100'],
   centralLabel: '50',
 }
-
 
 // Drawing and updating the chart
 GaugeChart
