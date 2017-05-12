@@ -325,7 +325,7 @@ describe('chart outlining', () => {
     let element = document.createElement('test')
     let gaugeOptions = {}
     let g = gauge.gaugeChart(element, areaWidth, gaugeOptions)
-    let svgHtml = g._svg.html().split(/<\/[a-z]+>/g)
+    let svgHtml = (g as any).svg.html().split(/<\/[a-z]+>/g)
     svgHtml.pop()  // removed last element (empty string)
     expect(svgHtml.length).toBe(5)
     let pathNum = 0
@@ -354,10 +354,11 @@ describe('needle value updating', () => {
               .attr('width', chartWidth + offset * 2)
               .attr('height', chartHeight + offset * 2)
     let centralLabel = ''
-    let g = new Gauge()
-    g.needle = gauge.needleOutline(svg, chartHeight, offset, needleColor,
+
+    let needle = gauge.needleOutline(svg, chartHeight, offset, needleColor,
                                     outerRadius, centralLabel)
-    g._svg = svg
+    let needleUpdateSpeed = 1000
+    let g = new Gauge(svg, needleUpdateSpeed, needle)
     g.updateNeedle(10)
     setTimeout(() => {
       // define the whole path string (M...L...L...L...L... for svg arc)
@@ -368,7 +369,7 @@ describe('needle value updating', () => {
       svgHtml = pathValueChecker(svgHtml, 'L', 'L', [1.2, -3.8])
       svgHtml = pathValueChecker(svgHtml, 'L', '', [-55.4, -18])
       done()
-    }, g.needleUpdateSpeed * 2)
+    }, needleUpdateSpeed * 2)
   })
 })
 

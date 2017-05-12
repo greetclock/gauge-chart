@@ -1,6 +1,6 @@
 # Gauge Library
 
-[![npm version]()]()
+[![npm version](https://badge.fury.io/js/)](https://www.npmjs.com/package/)
 
 **A library for creating nice and flexible gauge charts.**
 
@@ -102,7 +102,7 @@ Some examples of what you can get out of the library using different properties:
 Like it? Give us a star :)
 
 ## Contributing
-Build the library with `npm run build`. This will fetch all dependencies and then compile the `dist` files. To see the examples locally you can start a web server with `npm start dev` and go to `localhost:8080` (`localhost:8081` if port `8080` is busy).
+Build the library with `npm run build`. For a production version with console warnings, execute `npm run build:prod_warn`. This will fetch all dependencies and then compile the `dist` files. To see the examples locally you can start a web server with `npm start dev` and go to `localhost:8080` (`localhost:8081` if port `8080` is busy).
 
 ## License (MIT)
 Copyright (c) 2017 RECOGIZER GROUP GmbH.

@@ -2,7 +2,7 @@
   "name": "gauge-chart",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/bundle.js",
   "scripts": {
     "test": "karma start",
     "watch:test": "npm run test -- --auto-watch --no-single-run",

@@ -211,8 +211,6 @@ export function labelOutline(svg, areaWidth: number, chartHeight: number, offset
  * @param gaugeOptions?: string[] - object of optional parameters.
  */
 export function gaugeChart(element: HTMLElement, areaWidth: number, gaugeOptions: GaugeOptions) {
-  let g = new Gauge()
-
   let defaultGaugeOption = {
     hasNeedle: false,
     needleColor: 'gray',
@@ -224,7 +222,6 @@ export function gaugeChart(element: HTMLElement, areaWidth: number, gaugeOptions
   }
   let {hasNeedle, needleColor, needleUpdateSpeed, arcColors, arcDelimiters,
        rangeLabel, centralLabel} = Object.assign(defaultGaugeOption, gaugeOptions)
-  g.needleUpdateSpeed = needleUpdateSpeed
   if (!paramChecker(arcDelimiters, arcColors, rangeLabel)) {
     return
   }
@@ -239,13 +236,13 @@ export function gaugeChart(element: HTMLElement, areaWidth: number, gaugeOptions
                   .attr('width', chartWidth + offset * 2)
                   .attr('height', chartHeight + offset * 4)
 
+  let needle = null
   if (hasNeedle) {
-    g.needle = needleOutline(svg, chartHeight, offset, needleColor, outerRadius, centralLabel)
+    needle = needleOutline(svg, chartHeight, offset, needleColor, outerRadius, centralLabel)
     needleBaseOutline(svg, chartHeight, offset, needleColor, centralLabel)
   }
   arcOutline(svg, chartHeight, offset, arcColors, outerRadius, arcDelimiters)
   labelOutline(svg, areaWidth, chartHeight, offset, outerRadius, rangeLabel, centralLabel)
 
-  g._svg = svg
-  return g
+  return new Gauge(svg, needleUpdateSpeed, needle)
 }

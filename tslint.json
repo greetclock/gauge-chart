@@ -93,6 +93,7 @@
     "one-line": [
       false
     ],
+    "prefer-const": false,
     "quotemark": [
       true,
       "single",

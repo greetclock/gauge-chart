@@ -2,6 +2,7 @@ let webpackMerge = require('webpack-merge')
 let path = require('path')
 let commonConfig = require('./common.config.js')
 let helpers = require('./helpers')
+let DefinePlugin = require('webpack/lib/DefinePlugin')
 
 const ENV = 'test'
 process.env.ENV = ENV
@@ -9,6 +10,11 @@ process.env.NODE_ENV = ENV
 
 module.exports = function () {
   return webpackMerge(commonConfig({ env: ENV }), {
+    plugins: [
+      new DefinePlugin({
+        ENV: `'${ENV}'`,
+      }),
+    ],
     module: {
       rules: [{
         enforce: 'pre',

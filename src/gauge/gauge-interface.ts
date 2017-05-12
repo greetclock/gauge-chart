@@ -7,9 +7,19 @@ import * as logger from './logger'
  */
 
 export class Gauge {
-  _svg: any
-  needle = null
-  needleUpdateSpeed = 1000
+  private svg: any
+  private needleUpdateSpeed: number
+  private needle
+
+  constructor(
+    svg,
+    needleUpdateSpeed,
+    needle = null,
+  ) {
+    this.svg = svg
+    this.needleUpdateSpeed = needleUpdateSpeed
+    this.needle = needle
+  }
 
   updateNeedle(needleValue) {
     if (!this.needle) {
