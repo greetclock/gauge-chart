@@ -1,4 +1,4 @@
-import * as d3 from 'd3'
+import { curveLinear, line } from 'd3'
 
 import * as gauge from './gauge'
 /**
@@ -24,10 +24,10 @@ export class Needle {
     this.outerRadius = outerRadius
     this.offset = offset
     this.needleColor = needleColor
-    this.lineFunction = d3.line()
+    this.lineFunction = line()
             .x( (d: any) => d.x )
             .y( (d: any) => d.y )
-            .curve(d3.curveLinear)
+            .curve(curveLinear)
 
     this.needleSvg = svg.append('path')
       .attr('d', this.getLine())

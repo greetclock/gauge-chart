@@ -1,4 +1,4 @@
-import * as d3 from 'd3'
+import { arc, easeLinear, select } from 'd3'
 import { schemePaired } from 'd3-scale-chromatic'
 import './gauge.css'
 
@@ -59,26 +59,26 @@ export function perc2RadWithShift(perc: number) {
 export function arcOutline(svg, chartHeight: number, offset: number, arcColors: string[],
                         outerRadius: number, arcDelimiters: number[]) {
   arcColors.forEach((color, i) => {
-    let arc = d3.arc()
+    let gaugeArc = arc()
       .innerRadius(chartHeight)
       .outerRadius(outerRadius)
       .startAngle(i ? perc2RadWithShift(arcDelimiters[i - 1]) : perc2RadWithShift(0))
       .endAngle(perc2RadWithShift(arcDelimiters[i] || 100))  // 100 for last arc slice
 
     let innerArc = svg.append('path')
-      .attr('d', arc)
+      .attr('d', gaugeArc)
       .attr('fill', color)
       .attr('transform', 'translate(' + (chartHeight + offset * 2) + ', '
                                             + (chartHeight + offset) + ')')
 
-    arc = d3.arc()
+    gaugeArc = arc()
       .innerRadius(chartHeight)
       .outerRadius(chartHeight + chartHeight * 0.1)
       .startAngle(i ? perc2RadWithShift(arcDelimiters[i - 1]) : perc2RadWithShift(0))
       .endAngle(perc2RadWithShift(arcDelimiters[i] || 100))  // 100 for last arc slice
 
     let outerArc = svg.append('path')
-      .attr('d', arc)
+      .attr('d', gaugeArc)
       .attr('fill', 'transparent')
       .attr('opacity', '0.2')
       .attr('transform', 'translate(' + (chartHeight + offset * 2) + ', '
@@ -90,7 +90,7 @@ export function arcOutline(svg, chartHeight: number, offset: number, arcColors: 
         outerArc
           .transition()
           .duration(50)
-          .ease(d3.easeLinear)
+          .ease(easeLinear)
           .attr('fill', color)
       })
       .on('mouseout', () => {
@@ -98,7 +98,7 @@ export function arcOutline(svg, chartHeight: number, offset: number, arcColors: 
         outerArc
           .transition()
           .duration(300)
-          .ease(d3.easeLinear)
+          .ease(easeLinear)
           .attr('fill', 'transparent')
       })
   })
@@ -116,7 +116,7 @@ export function needleBaseOutline(svg, chartHeight: number, offset: number,
                            needleColor: string, centralLabel: string) {
   // Different circle radiuses in the base of needle
   let innerGaugeRadius = centralLabel ? chartHeight * 0.5 : chartHeight * 0.1
-  let arc = d3.arc()
+  let gaugeArc = arc()
       .innerRadius(innerGaugeRadius)
       .outerRadius(0)
       .startAngle(perc2RadWithShift(0))
@@ -124,7 +124,7 @@ export function needleBaseOutline(svg, chartHeight: number, offset: number,
 
   // White needle base if something should be written on it, gray otherwise
   svg.append('path')
-    .attr('d', arc)
+    .attr('d', gaugeArc)
     .attr('fill', centralLabel ? 'white' : needleColor)
     .attr('transform', 'translate(' + (chartHeight + offset * 2) + ', '
                                           + (chartHeight + offset) + ')')
@@ -235,7 +235,7 @@ export function gaugeChart(element: HTMLElement, areaWidth: number, gaugeOptions
   let chartHeight = areaWidth * 0.5 - offset * 2
   let chartWidth = areaWidth - offset * 2
   let outerRadius = chartHeight * 0.75
-  let svg = d3.select(element).append('svg')
+  let svg = select(element).append('svg')
                   .attr('width', chartWidth + offset * 2)
                   .attr('height', chartHeight + offset * 4)
 

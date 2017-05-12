@@ -1,4 +1,4 @@
-import * as d3 from 'd3'
+import { easeCubic, interpolateNumber } from 'd3'
 import * as gauge from './gauge'
 import * as logger from './logger'
 
@@ -22,10 +22,10 @@ export class Gauge {
       .transition()
       // for dynamic speed change .duration(Math.abs(needleValue - this.needle.getValue()) * 20)
       .duration(this.needleUpdateSpeed)
-      .ease(d3.easeCubic)
+      .ease(easeCubic)
       .tween('needle animation', () => {
         let prevValue = this.needle.getValue()
-        let i = d3.interpolateNumber(prevValue, needleValue)
+        let i = interpolateNumber(prevValue, needleValue)
         return (t) => {
           this.needle.setValue(i(t))
         }
