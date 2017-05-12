@@ -6,6 +6,10 @@ import * as logger from './logger'
  * Gauge interface.
  */
 
+export interface GaugeInterface {
+  updateNeedle(needleValue: number): void
+}
+
 export class Gauge {
   private svg: any
   private needleUpdateSpeed: number

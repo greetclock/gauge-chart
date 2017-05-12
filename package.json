@@ -21,7 +21,6 @@
     "@types/source-map": "^0.5.0",
     "@types/webpack": "^2.2.7",
     "awesome-typescript-loader": "^3.0.8",
-    "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
     "eslint": "^3.16.1",
     "eslint-config-airbnb": "^14.1.0",
