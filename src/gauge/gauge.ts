@@ -2,7 +2,7 @@ import { arc, easeLinear, select } from 'd3'
 import { schemePaired } from 'd3-scale-chromatic'
 import './gauge.css'
 
-import { Gauge } from './gauge-interface'
+import { Gauge, GaugeInterface } from './gauge-interface'
 import { GaugeOptions } from './gauge-options'
 import { Needle } from './needle-interface'
 import { paramChecker } from './param-checker'
@@ -210,7 +210,8 @@ export function labelOutline(svg, areaWidth: number, chartHeight: number, offset
  * @param needleValue: number - value at which an arrow points.
  * @param gaugeOptions?: string[] - object of optional parameters.
  */
-export function gaugeChart(element: HTMLElement, areaWidth: number, gaugeOptions: GaugeOptions) {
+export function gaugeChart(element: HTMLElement, areaWidth: number,
+                           gaugeOptions: GaugeOptions): GaugeInterface {
   let defaultGaugeOption = {
     hasNeedle: false,
     needleColor: 'gray',

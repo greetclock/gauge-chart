@@ -1,2 +1,2 @@
 export * from './gauge'
-export * from './gauge-interface'
+export { GaugeInterface } from './gauge-interface'
