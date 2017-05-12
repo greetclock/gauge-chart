@@ -212,8 +212,8 @@ export function labelOutline(svg, areaWidth: number, chartHeight: number, offset
 export function gaugeChart(
   element: HTMLElement,
   areaWidth: number,
-  gaugeOptions: GaugeOptions,
-): GaugeInterface {
+  gaugeOptions: GaugeChart.GaugeOptions,
+): GaugeChart.GaugeInterface {
   let defaultGaugeOption = {
     hasNeedle: false,
     needleColor: 'gray',

@@ -1,16 +1,16 @@
-// export as namespace GaugeChart;
+export as namespace GaugeChart;
 
-declare function gaugeChart(
+export function gaugeChart(
   element: HTMLElement,
   areaWidth: number,
   gaugeOptions: GaugeOptions,
 ): GaugeInterface;
 
-interface GaugeInterface {
+export interface GaugeInterface {
   updateNeedle(needleValue: number): void
 }
 
-interface GaugeOptions {
+export interface GaugeOptions {
   needleValue?: number
   needleColor?: string
   arcColors?: string[]

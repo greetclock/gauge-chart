@@ -19,7 +19,8 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     new UglifyJsPlugin({
     }),
     new CopyWebpackPlugin([{
-      from: 'src/global.d.ts', to: 'dist/index.d.ts',
+      from: 'src/global.d.ts',
+      to: 'index.d.ts',
     }]),
   ],
 })
