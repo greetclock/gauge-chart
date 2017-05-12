@@ -7,7 +7,8 @@
     "test": "karma start",
     "watch:test": "npm run test -- --auto-watch --no-single-run",
     "dev": "webpack-dev-server --config webpack/dev.config.js --hot",
-    "build": "webpack --config webpack/prod.config.js",
+    "build": "ENV=production webpack --config webpack/prod.config.js",
+    "build:prod_warn": "ENV=prod_warn webpack --config webpack/prod.config.js",
     "typedoc": "typedoc --out docs --exclude '**/*.spec.ts' ./src/"
   },
   "author": "",

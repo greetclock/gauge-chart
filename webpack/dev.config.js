@@ -5,7 +5,6 @@ let DefinePlugin = require('webpack/lib/DefinePlugin')
 
 const ENV = 'development'
 process.env.ENV = ENV
-process.env.NODE_ENV = ENV
 
 module.exports = webpackMerge(commonConfig({ env: ENV }), {
   devServer: {
