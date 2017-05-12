@@ -1,8 +1,6 @@
 # Gauge Library
 
 [![npm version]()]()
-[![Code Climate]()]()
-[![Test Coverage]()]()
 
 **A library for creating nice and flexible gauge charts.**
 
