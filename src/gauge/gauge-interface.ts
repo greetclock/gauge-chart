@@ -1,5 +1,6 @@
 import * as d3 from 'd3'
 import * as gauge from './gauge'
+import * as logger from './logger'
 
 /**
  * Gauge interface.
@@ -12,7 +13,7 @@ export class Gauge {
 
   updateNeedle(needleValue) {
     if (!this.needle) {
-      console.warn('Gauge-chart Warning: no needle to update')
+      logger.warn('Gauge-chart Warning: no needle to update')
       return
     }
     needleValue = gauge.needleValueModifier(needleValue)
