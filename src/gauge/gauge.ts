@@ -2,9 +2,8 @@ import { arc, easeLinear, select } from 'd3'
 import { schemePaired } from 'd3-scale-chromatic'
 import './gauge.css'
 
-import { Gauge, GaugeInterface } from './gauge-interface'
-import { GaugeOptions } from './gauge-options'
-import { Needle } from './needle-interface'
+import { Gauge } from './gauge-interface'
+import { Needle } from './needle'
 import { paramChecker } from './param-checker'
 
 
