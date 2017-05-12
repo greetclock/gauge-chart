@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "main": "dist/bundle.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "test": "karma start",
     "watch:test": "npm run test -- --auto-watch --no-single-run",
