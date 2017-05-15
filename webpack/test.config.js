@@ -21,7 +21,7 @@ module.exports = function () {
         test: /\.js$/,
         loader: 'source-map-loader',
       }, {
-        test: /\.ts$/,
+        test: /\.spec.ts$/,
         use: [
           {
             loader: 'awesome-typescript-loader',
