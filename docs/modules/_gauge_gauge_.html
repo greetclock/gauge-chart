@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;gauge/gauge&quot; | trend-chart</title>
+	<title>&quot;gauge/gauge&quot; | gauge-chart</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">trend-chart</a>
+					<a href="../index.html" class="title">gauge-chart</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -38,8 +38,6 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
-							<input type="checkbox" id="tsd-filter-externals" checked />
-							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
 							<input type="checkbox" id="tsd-filter-only-exported" />
 							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
@@ -71,11 +69,17 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_gauge_gauge_.gaugeoptions.html" class="tsd-kind-icon">Gauge<wbr>Options</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_gauge_gauge_.html#chartcolorsmodifier" class="tsd-kind-icon">chart<wbr>Colors<wbr>Modifier</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_gauge_gauge_.html#arccolorsmodifier" class="tsd-kind-icon">arc<wbr>Colors<wbr>Modifier</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_gauge_gauge_.html#arcoutline" class="tsd-kind-icon">arc<wbr>Outline</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_gauge_gauge_.html#gaugechart" class="tsd-kind-icon">gauge<wbr>Chart</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_gauge_gauge_.html#gaugeoutline" class="tsd-kind-icon">gauge<wbr>Outline</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_gauge_gauge_.html#labeloutline" class="tsd-kind-icon">label<wbr>Outline</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_gauge_gauge_.html#needlebaseoutline" class="tsd-kind-icon">needle<wbr>Base<wbr>Outline</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_gauge_gauge_.html#needleoutline" class="tsd-kind-icon">needle<wbr>Outline</a></li>
@@ -89,41 +93,100 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="chartcolorsmodifier" class="tsd-anchor"></a>
-					<h3>chart<wbr>Colors<wbr>Modifier</h3>
+					<a name="arccolorsmodifier" class="tsd-anchor"></a>
+					<h3>arc<wbr>Colors<wbr>Modifier</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">chart<wbr>Colors<wbr>Modifier<span class="tsd-signature-symbol">(</span>chartRatios<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, chartColors<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">arc<wbr>Colors<wbr>Modifier<span class="tsd-signature-symbol">(</span>arcDelimiters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, arcColors<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in gauge/gauge.ts:16</li>
+									<li>Defined in gauge/gauge.ts:17</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Function that checks whether the number of colors is enough for drawing specified ratios.
+									<p>Function that checks whether the number of colors is enough for drawing specified delimiters.
 									Adds standard colors if not enough or cuts the array if there are too many of them.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>chartRatios: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>arcDelimiters: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>array of ratios.</p>
+										<p>array of delimiters.</p>
 									</div>
 								</li>
 								<li>
-									<h5>chartColors: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>arcColors: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>array of colors (strings).</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
 							<p>modified list of colors.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="arcoutline" class="tsd-anchor"></a>
+					<h3>arc<wbr>Outline</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">arc<wbr>Outline<span class="tsd-signature-symbol">(</span>svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, chartHeight<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, arcColors<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, outerRadius<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, arcDelimiters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in gauge/gauge.ts:58</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Function for drawing gauge arc.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>svg: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>original svg rectangle.</p>
+									</div>
+								</li>
+								<li>
+									<h5>chartHeight: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>height of gauge.</p>
+									</div>
+								</li>
+								<li>
+									<h5>offset: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>arcColors: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>array of colors.</p>
+									</div>
+								</li>
+								<li>
+									<h5>outerRadius: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>outter radius of gauge.</p>
+									</div>
+								</li>
+								<li>
+									<h5>arcDelimiters: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>array of delimiters in percentage.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<p>modified svg.</p>
 						</li>
 					</ul>
 				</section>
@@ -131,13 +194,13 @@
 					<a name="gaugechart" class="tsd-anchor"></a>
 					<h3>gauge<wbr>Chart</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">gauge<wbr>Chart<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElement</span>, gaugeWidth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, needleValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, gaugeOptions<span class="tsd-signature-symbol">: </span><a href="../interfaces/_gauge_gauge_options_.gaugeoptions.html" class="tsd-signature-type">GaugeOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Selection</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EnterElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Document</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Window</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">gauge<wbr>Chart<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElement</span>, areaWidth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, gaugeOptions<span class="tsd-signature-symbol">: </span><a href="../interfaces/_gauge_gauge_.gaugeoptions.html" class="tsd-signature-type">GaugeOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_gauge_gauge_interface_.gaugeinterface.html" class="tsd-signature-type">GaugeInterface</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in gauge/gauge.ts:212</li>
+									<li>Defined in gauge/gauge.ts:221</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -151,75 +214,13 @@
 									<h5>element: <span class="tsd-signature-type">HTMLElement</span></h5>
 								</li>
 								<li>
-									<h5>gaugeWidth: <span class="tsd-signature-type">number</span></h5>
+									<h5>areaWidth: <span class="tsd-signature-type">number</span></h5>
 								</li>
 								<li>
-									<h5>needleValue: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>gaugeOptions: <a href="../interfaces/_gauge_gauge_options_.gaugeoptions.html" class="tsd-signature-type">GaugeOptions</a></h5>
+									<h5>gaugeOptions: <a href="../interfaces/_gauge_gauge_.gaugeoptions.html" class="tsd-signature-type">GaugeOptions</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Selection</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Element</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">EnterElement</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Document</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Window</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="gaugeoutline" class="tsd-anchor"></a>
-					<h3>gauge<wbr>Outline</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">gauge<wbr>Outline<span class="tsd-signature-symbol">(</span>svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, gaugeHeight<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, chartColors<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, outerRadius<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, chartRatios<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in gauge/gauge.ts:57</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Function for drawing gauge.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>svg: <span class="tsd-signature-type">any</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>original svg rectangle.</p>
-									</div>
-								</li>
-								<li>
-									<h5>gaugeHeight: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>height of gauge.</p>
-									</div>
-								</li>
-								<li>
-									<h5>offset: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>chartColors: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>array of colors.</p>
-									</div>
-								</li>
-								<li>
-									<h5>outerRadius: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>outter radius of gauge.</p>
-									</div>
-								</li>
-								<li>
-									<h5>chartRatios: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>array of ratios in percentage.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-							<p>modified svg.</p>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_gauge_gauge_interface_.gaugeinterface.html" class="tsd-signature-type">GaugeInterface</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -227,18 +228,18 @@
 					<a name="labeloutline" class="tsd-anchor"></a>
 					<h3>label<wbr>Outline</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">label<wbr>Outline<span class="tsd-signature-symbol">(</span>svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, gaugeHeight<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, outerRadius<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, gaugeRangeLabel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, gaugeCentralLabel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">label<wbr>Outline<span class="tsd-signature-symbol">(</span>svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, areaWidth<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, chartHeight<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, outerRadius<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, rangeLabel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, centralLabel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in gauge/gauge.ts:165</li>
+									<li>Defined in gauge/gauge.ts:163</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Function for drawing needle.</p>
+									<p>Function for drawing labels.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -250,7 +251,10 @@
 									</div>
 								</li>
 								<li>
-									<h5>gaugeHeight: <span class="tsd-signature-type">number</span></h5>
+									<h5>areaWidth: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>chartHeight: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>height of gauge.</p>
 									</div>
@@ -265,19 +269,19 @@
 									</div>
 								</li>
 								<li>
-									<h5>gaugeRangeLabel: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>rangeLabel: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>range labels of gauge.</p>
 									</div>
 								</li>
 								<li>
-									<h5>gaugeCentralLabel: <span class="tsd-signature-type">string</span></h5>
+									<h5>centralLabel: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>value of the central label.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 							<p>modified svg.</p>
 						</li>
 					</ul>
@@ -286,13 +290,13 @@
 					<a name="needlebaseoutline" class="tsd-anchor"></a>
 					<h3>needle<wbr>Base<wbr>Outline</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">needle<wbr>Base<wbr>Outline<span class="tsd-signature-symbol">(</span>svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, gaugeHeight<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, needleColor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, gaugeCentralLabel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">needle<wbr>Base<wbr>Outline<span class="tsd-signature-symbol">(</span>svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, chartHeight<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, needleColor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, centralLabel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in gauge/gauge.ts:85</li>
+									<li>Defined in gauge/gauge.ts:114</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -309,7 +313,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>gaugeHeight: <span class="tsd-signature-type">number</span></h5>
+									<h5>chartHeight: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>height of gauge.</p>
 									</div>
@@ -324,13 +328,13 @@
 									</div>
 								</li>
 								<li>
-									<h5>gaugeCentralLabel: <span class="tsd-signature-type">string</span></h5>
+									<h5>centralLabel: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>value of the central label.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 							<p>modified svg.</p>
 						</li>
 					</ul>
@@ -339,13 +343,13 @@
 					<a name="needleoutline" class="tsd-anchor"></a>
 					<h3>needle<wbr>Outline</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">needle<wbr>Outline<span class="tsd-signature-symbol">(</span>svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, gaugeHeight<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, needleColor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, outerRadius<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, needleValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, gaugeCentralLabel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">needle<wbr>Outline<span class="tsd-signature-symbol">(</span>svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, chartHeight<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, needleColor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, outerRadius<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, centralLabel<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/_gauge_needle_interface_.needle.html" class="tsd-signature-type">Needle</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in gauge/gauge.ts:116</li>
+									<li>Defined in gauge/gauge.ts:143</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -362,7 +366,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>gaugeHeight: <span class="tsd-signature-type">number</span></h5>
+									<h5>chartHeight: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>height of gauge.</p>
 									</div>
@@ -383,19 +387,13 @@
 									</div>
 								</li>
 								<li>
-									<h5>needleValue: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>value at which needle points.</p>
-									</div>
-								</li>
-								<li>
-									<h5>gaugeCentralLabel: <span class="tsd-signature-type">string</span></h5>
+									<h5>centralLabel: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>value of the central label.</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/_gauge_needle_interface_.needle.html" class="tsd-signature-type">Needle</a></h4>
 							<p>modified svg.</p>
 						</li>
 					</ul>
@@ -410,7 +408,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in gauge/gauge.ts:35</li>
+									<li>Defined in gauge/gauge.ts:36</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -443,7 +441,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in gauge/gauge.ts:44</li>
+									<li>Defined in gauge/gauge.ts:45</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -474,10 +472,19 @@
 						<a href="_gauge_gauge_.html">"gauge/gauge"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_gauge_gauge_options_.html">"gauge/gauge-<wbr>options"</a>
+						<a href="_gauge_gauge_interface_.html">"gauge/gauge-<wbr>interface"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_gauge_gauge_spec_.html">"gauge/gauge.spec"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_gauge_index_.html">"gauge/index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_gauge_logger_.html">"gauge/logger"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_gauge_needle_interface_.html">"gauge/needle-<wbr>interface"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_gauge_param_checker_.html">"gauge/param-<wbr>checker"</a>
@@ -489,14 +496,17 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_gauge_gauge_.gaugeoptions.html" class="tsd-kind-icon">Gauge<wbr>Options</a>
+					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_gauge_gauge_.html#chartcolorsmodifier" class="tsd-kind-icon">chart<wbr>Colors<wbr>Modifier</a>
+						<a href="_gauge_gauge_.html#arccolorsmodifier" class="tsd-kind-icon">arc<wbr>Colors<wbr>Modifier</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_gauge_gauge_.html#arcoutline" class="tsd-kind-icon">arc<wbr>Outline</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="_gauge_gauge_.html#gaugechart" class="tsd-kind-icon">gauge<wbr>Chart</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_gauge_gauge_.html#gaugeoutline" class="tsd-kind-icon">gauge<wbr>Outline</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="_gauge_gauge_.html#labeloutline" class="tsd-kind-icon">label<wbr>Outline</a>

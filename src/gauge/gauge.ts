@@ -229,8 +229,8 @@ export function gaugeChart(element: HTMLElement, areaWidth: number,
     rangeLabel: [],
     centralLabel: '',
   }
-  let {hasNeedle, needleColor, needleUpdateSpeed, arcColors, arcDelimiters,
-       rangeLabel, centralLabel} = Object.assign(defaultGaugeOption, gaugeOptions)
+  let { hasNeedle, needleColor, needleUpdateSpeed, arcColors, arcDelimiters,
+    rangeLabel, centralLabel } = (Object as any).assign(defaultGaugeOption, gaugeOptions)
   if (!paramChecker(arcDelimiters, arcColors, rangeLabel)) {
     return
   }
