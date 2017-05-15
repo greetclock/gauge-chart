@@ -10,7 +10,8 @@
     "dev": "webpack-dev-server --config webpack/dev.config.js --hot",
     "build": "ENV=production webpack --config webpack/prod.config.js",
     "build:prod_warn": "ENV=prod_warn webpack --config webpack/prod.config.js",
-    "typedoc": "typedoc --out docs --exclude '**/*.spec.ts' ./src/"
+    "typedoc": "typedoc --out docs --exclude '**/*.spec.ts' ./src/",
+    "check-updates": "ncu"
   },
   "author": "",
   "license": "ISC",
