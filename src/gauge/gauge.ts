@@ -3,7 +3,6 @@ import { schemePaired } from 'd3-scale-chromatic'
 import './gauge.css'
 
 import { Gauge, GaugeInterface } from './gauge-interface'
-import { GaugeOptions } from './gauge-options'
 import { Needle } from './needle-interface'
 import { paramChecker } from './param-checker'
 
@@ -202,6 +201,15 @@ export function labelOutline(svg, areaWidth: number, chartHeight: number, offset
     .text(centralLabel)
     .attr('font-size', centralLabelFontSize + 'px')
     .attr('font-family', 'Roboto,Helvetica Neue,sans-serif')
+}
+
+export interface GaugeOptions {
+  needleValue?: number
+  needleColor?: string
+  arcColors?: string[]
+  arcRatios?: number[]
+  rangeLabel?: string[]
+  centralLabel?: string
 }
 
 /**
