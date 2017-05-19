@@ -218,7 +218,7 @@ export interface GaugeOptions {
  * @param needleValue: number - value at which an arrow points.
  * @param gaugeOptions?: string[] - object of optional parameters.
  */
-export function gaugeChart(element: HTMLElement, areaWidth: number,
+export function gaugeChart(element: Element, areaWidth: number,
                            gaugeOptions: GaugeOptions): GaugeInterface {
   let defaultGaugeOption = {
     hasNeedle: false,
