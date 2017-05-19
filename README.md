@@ -22,7 +22,7 @@ Or to add manually a link to the library into your html file:
   <script src=""></script>
 ```
 
-## Creating your first gauge chart
+## Usage
 
 Create an element for positioning gauge in your html file:
 
@@ -64,7 +64,7 @@ By default, the needle is positioned on 0, thus in order to move it you have to 
 
 Feel free to change or delete any of the gaugeOptions properties as long as there values are in permitted ranges.
 
-## Properties Specification
+## Options
 
 #### gaugeOptions: { ... }
 
@@ -104,6 +104,5 @@ Like it? Give us a star :)
 ## Contributing
 Build the library with `npm run build`. For a production version with console warnings, execute `npm run build:prod_warn`. This will fetch all dependencies and then compile the `dist` files. To see the examples locally you can start a web server with `npm start dev` and go to `localhost:8080` (`localhost:8081` if port `8080` is busy).
 
-## License (MIT)
-Copyright (c) 2017 RECOGIZER GROUP GmbH.
-
+## License
+MIT License. Copyright (c) 2017 RECOGIZER GROUP GmbH.
