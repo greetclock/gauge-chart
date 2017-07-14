@@ -8,6 +8,7 @@ import * as logger from './logger'
 
 export interface GaugeInterface {
   updateNeedle(needleValue: number): void
+  removeGauge(): void
 }
 
 export class Gauge {
@@ -44,5 +45,9 @@ export class Gauge {
           this.needle.setValue(i(t))
         }
       })
+  }
+
+  removeGauge() {
+    this.svg.remove()
   }
 }
