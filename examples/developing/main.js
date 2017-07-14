@@ -8,8 +8,9 @@ let gaugeOptions = {
   arcDelimiters: [],
   rangeLabel: ['', ''],
   centralLabel: '',
+  rangeLabelFontSize: null,
 }
 
 GaugeChart
-  .gaugeChart(element, 200, gaugeOptions)
+  .gaugeChart(element, 185, gaugeOptions)
   .updateNeedle(80)

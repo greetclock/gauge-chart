@@ -161,11 +161,11 @@ export function needleOutline(svg, chartHeight: number, offset: number, needleCo
  * @returns modified svg.
  */
 export function labelOutline(svg, areaWidth: number, chartHeight: number, offset: number,
-                        outerRadius: number, rangeLabel: string[], centralLabel: string) {
+    outerRadius: number, rangeLabel: string[], centralLabel: string, rangeLabelFontSize: number) {
   let arcWidth = chartHeight - outerRadius
 
   // Fonts specification (responsive to chart size)
-  let rangeLabelFontSize = Math.round(chartHeight * 0.18)
+  rangeLabelFontSize = rangeLabelFontSize || Math.round(chartHeight * 0.18)
   let realRangeFontSize = rangeLabelFontSize * 0.6 // counted empirically
   let centralLabelFontSize = rangeLabelFontSize * 1.5
   let realCentralFontSize = centralLabelFontSize * 0.56
@@ -228,9 +228,11 @@ export function gaugeChart(element: Element, areaWidth: number,
     arcDelimiters: [],
     rangeLabel: [],
     centralLabel: '',
+    rangeLabelFontSize: undefined,
   }
   let { hasNeedle, needleColor, needleUpdateSpeed, arcColors, arcDelimiters,
-    rangeLabel, centralLabel } = (Object as any).assign(defaultGaugeOption, gaugeOptions)
+    rangeLabel, centralLabel, rangeLabelFontSize } =
+    (Object as any).assign(defaultGaugeOption, gaugeOptions)
   if (!paramChecker(arcDelimiters, arcColors, rangeLabel)) {
     return
   }
@@ -251,7 +253,8 @@ export function gaugeChart(element: Element, areaWidth: number,
     needleBaseOutline(svg, chartHeight, offset, needleColor, centralLabel)
   }
   arcOutline(svg, chartHeight, offset, arcColors, outerRadius, arcDelimiters)
-  labelOutline(svg, areaWidth, chartHeight, offset, outerRadius, rangeLabel, centralLabel)
+  labelOutline(svg, areaWidth, chartHeight, offset, outerRadius, rangeLabel,
+    centralLabel, rangeLabelFontSize)
 
   return new Gauge(svg, needleUpdateSpeed, needle)
 }

@@ -255,8 +255,9 @@ describe('label outlining', () => {
               .attr('height', chartHeight + offset * 2)
     let centralLabel = '2'
     let rangeLabel = ['0', '4']
+    let rangeLabelFontSize = null
     gauge.labelOutline(svg, areaWidth, chartHeight, offset, outerRadius,
-                              rangeLabel, centralLabel)
+                              rangeLabel, centralLabel, rangeLabelFontSize)
     expect(svg).not.toBe(null)
     expect((svg.html()).match(/text/g).length / 2).toBe(3)
   })
@@ -267,8 +268,9 @@ describe('label outlining', () => {
               .attr('height', chartHeight + offset * 2)
     let centralLabel = '2'
     let rangeLabel = []
+    let rangeLabelFontSize = null
     gauge.labelOutline(svg, areaWidth, chartHeight, offset, outerRadius,
-                              rangeLabel, centralLabel)
+                              rangeLabel, centralLabel, rangeLabelFontSize)
 
     let svgHtml = svg.html().split('</text>')
     svgHtml.pop()  // removed last element (empty string)
@@ -286,8 +288,9 @@ describe('label outlining', () => {
               .attr('height', chartHeight + offset * 2)
     let centralLabel = ''
     let rangeLabel = ['0', '4']
+    let rangeLabelFontSize = null
     gauge.labelOutline(svg, areaWidth, chartHeight, offset, outerRadius,
-                              rangeLabel, centralLabel)
+                              rangeLabel, centralLabel, rangeLabelFontSize)
 
     let svgHtml = svg.html().split('</text>')
     svgHtml.pop()  // removed last element (empty string)
@@ -305,8 +308,9 @@ describe('label outlining', () => {
               .attr('height', chartHeight + offset * 2)
     let centralLabel = '2'
     let rangeLabel = ['0', '4']
+    let rangeLabelFontSize = null
     gauge.labelOutline(svg, areaWidth, chartHeight, offset, outerRadius,
-                              rangeLabel, centralLabel)
+                              rangeLabel, centralLabel, rangeLabelFontSize)
 
     let svgHtml = svg.html().split('</text>')
     svgHtml.pop()  // removed last element (empty string)
