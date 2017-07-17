@@ -16,26 +16,39 @@ export class Needle {
   public lineData
   public lineFunction
   public needleSvg
+  public outerNeedle
 
-  constructor(svg, needleValue, centralLabel, chartHeight, outerRadius, offset, needleColor) {
+  constructor(svg, needleValue, centralLabel, chartHeight, outerRadius,
+    offset, needleColor, outerNeedle) {
     this.needleValue = needleValue
     this.centralLabel = centralLabel
     this.chartHeight = chartHeight
     this.outerRadius = outerRadius
     this.offset = offset
     this.needleColor = needleColor
+    this.outerNeedle = outerNeedle
     this.lineFunction = line()
             .x( (d: any) => d.x )
             .y( (d: any) => d.y )
             .curve(curveLinear)
 
-    this.needleSvg = svg.append('path')
-      .attr('d', this.getLine())
-      .attr('stroke', this.needleColor)
-      .attr('stroke-width', 2)
-      .attr('fill', this.needleColor)
-      .attr('transform', 'translate(' + (this.chartHeight + this.offset * 2) + ', '
-                                            + (this.chartHeight + this.offset) + ')')
+    if (outerNeedle) {
+      this.needleSvg = svg.append('path')
+        .attr('d', this.getLine())
+        .attr('stroke', this.needleColor)
+        .attr('stroke-width', 2)
+        .attr('fill', this.needleColor)
+        .attr('transform', 'translate(' + (this.chartHeight + this.offset * 2) + ', '
+                                             + (this.chartHeight + this.offset) + ')')
+    } else {
+      this.needleSvg = svg.append('path')
+        .attr('d', this.getLine())
+        .attr('stroke', this.needleColor)
+        .attr('stroke-width', 2)
+        .attr('fill', this.needleColor)
+        .attr('transform', 'translate(' + (this.chartHeight + this.offset * 2) + ', '
+                                             + (this.chartHeight + this.offset) + ')')
+    }
   }
 
   public setValue(needleValue) {
@@ -51,12 +64,27 @@ export class Needle {
   public calcCoordinates(){
     // Thin needle if there is no central label and wide if there is.
     let needleWidth = this.centralLabel ? this.chartHeight * 0.7 : this.chartHeight * 0.1
-    let needleHeadLength = this.outerRadius * 0.97
+    needleWidth = this.outerNeedle ? this.chartHeight * 0.25 : needleWidth
+    let needleHeadLength = this.outerNeedle ? this.outerRadius * 1.4 : this.outerRadius * 0.97
     let needleTailLength = needleWidth * 0.5
     let needleWaypointOffset = needleWidth * 0.5
     let needleAngle = gauge.perc2RadWithShift(this.needleValue)
-
-    return [ { x: needleHeadLength * Math.sin(needleAngle),
+    let needleCoords: any
+    if (this.outerNeedle) {
+      needleCoords = [ { x: needleHeadLength * Math.sin(needleAngle),
+               y: -needleHeadLength * Math.cos(needleAngle)},
+             { x: (needleHeadLength + needleTailLength) * Math.sin(needleAngle) +
+                needleWaypointOffset * Math.cos(needleAngle),
+               y: -(needleHeadLength + needleTailLength) * Math.cos(needleAngle) +
+                needleWaypointOffset * Math.sin(needleAngle)},
+             { x: (needleHeadLength + needleTailLength) * Math.sin(needleAngle) -
+                needleWaypointOffset * Math.cos(needleAngle),
+               y: -(needleHeadLength + needleTailLength) * Math.cos(needleAngle) -
+                needleWaypointOffset * Math.sin(needleAngle)},
+             { x: needleHeadLength * Math.sin(needleAngle),
+               y: -needleHeadLength * Math.cos(needleAngle)}]
+    } else {
+      needleCoords = [ { x: needleHeadLength * Math.sin(needleAngle),
                y: -needleHeadLength * Math.cos(needleAngle)},
              { x: -needleWaypointOffset * Math.cos(needleAngle),
                y: -needleWaypointOffset * Math.sin(needleAngle)},
@@ -66,6 +94,8 @@ export class Needle {
                y: needleWaypointOffset * Math.sin(needleAngle)},
              { x: needleHeadLength * Math.sin(needleAngle),
                y: -needleHeadLength * Math.cos(needleAngle)} ]
+    }
+    return needleCoords
   }
 
   public getSelection() {

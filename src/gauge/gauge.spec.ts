@@ -157,7 +157,8 @@ describe('needle base outlining', () => {
               .attr('width', chartWidth + offset * 2)
               .attr('height', chartHeight + offset * 2)
     let centralLabel = ''
-    gauge.needleBaseOutline(svg, chartHeight, offset, needleColor, centralLabel)
+    let outerNeedle = false
+    gauge.needleBaseOutline(svg, chartHeight, offset, needleColor, centralLabel, outerNeedle)
     expect(svg).not.toBe(null)
     expect((svg.html()).match(/path/g).length / 2).toBe(1)
   })
@@ -167,7 +168,8 @@ describe('needle base outlining', () => {
               .attr('width', chartWidth + offset * 2)
               .attr('height', chartHeight + offset * 2)
     let centralLabel = ''
-    gauge.needleBaseOutline(svg, chartHeight, offset, needleColor, centralLabel)
+    let outerNeedle = false
+    gauge.needleBaseOutline(svg, chartHeight, offset, needleColor, centralLabel, outerNeedle)
     // define the whole path string (M...A...A...Z for svg arc)
     let svgHtml = svg.html().slice(svg.html().search('M') + 1, svg.html().search('Z'))
     svgHtml = pathValueChecker(svgHtml, 'M', 'A', [-8, 0])
@@ -180,7 +182,8 @@ describe('needle base outlining', () => {
               .attr('width', chartWidth + offset * 2)
               .attr('height', chartHeight + offset * 2)
     let centralLabel = '23'
-    gauge.needleBaseOutline(svg, chartHeight, offset, needleColor, centralLabel)
+    let outerNeedle = false
+    gauge.needleBaseOutline(svg, chartHeight, offset, needleColor, centralLabel, outerNeedle)
 
     let svgHtml = svg.html().slice(svg.html().search('M'), svg.html().search('Z'))
     svgHtml = pathValueChecker(svgHtml, 'M', 'A', [-40, 0])
@@ -202,8 +205,9 @@ describe('needle outlining', () => {
               .attr('width', chartWidth + offset * 2)
               .attr('height', chartHeight + offset * 2)
     let centralLabel = ''
+    let outerNeedle = false
     gauge.needleOutline(svg, chartHeight, offset, needleColor,
-                                outerRadius, centralLabel)
+                                outerRadius, centralLabel, outerNeedle)
     expect(svg).not.toBe(null)
     expect((svg.html()).match(/path/g).length / 2).toBe(1)
   })
@@ -213,8 +217,9 @@ describe('needle outlining', () => {
               .attr('width', chartWidth + offset * 2)
               .attr('height', chartHeight + offset * 2)
     let centralLabel = ''
+    let outerNeedle = false
     gauge.needleOutline(svg, chartHeight, offset, needleColor,
-                                outerRadius, centralLabel)
+                                outerRadius, centralLabel, outerNeedle)
     // define the whole path string (M...L...L...L...L... for svg arc)
     let svgHtml = svg.html().slice(svg.html().search('M'), svg.html().search('" stroke'))
     svgHtml = pathValueChecker(svgHtml, 'M', 'L', [-58.2, 0])
@@ -229,8 +234,9 @@ describe('needle outlining', () => {
               .attr('width', chartWidth + offset * 2)
               .attr('height', chartHeight + offset * 2)
     let centralLabel = '23'
+    let outerNeedle = false
     gauge.needleOutline(svg, chartHeight, offset, needleColor,
-                                outerRadius, centralLabel)
+                                outerRadius, centralLabel, outerNeedle)
     // define the whole path string (M...L...L...L... for svg arc)
     let svgHtml = svg.html().slice(svg.html().search('M') + 1, svg.html().search('" stroke'))
     svgHtml = pathValueChecker(svgHtml, 'M', 'L', [-58.2, 0])
@@ -358,9 +364,9 @@ describe('needle value updating', () => {
               .attr('width', chartWidth + offset * 2)
               .attr('height', chartHeight + offset * 2)
     let centralLabel = ''
-
+    let outerNeedle = false
     let needle = gauge.needleOutline(svg, chartHeight, offset, needleColor,
-                                    outerRadius, centralLabel)
+                                    outerRadius, centralLabel, outerNeedle)
     let needleUpdateSpeed = 1000
     let g = new Gauge(svg, needleUpdateSpeed, needle)
     g.updateNeedle(10)

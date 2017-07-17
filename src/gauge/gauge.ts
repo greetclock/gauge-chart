@@ -112,9 +112,9 @@ export function arcOutline(svg, chartHeight: number, offset: number, arcColors: 
  * @returns modified svg.
  */
 export function needleBaseOutline(svg, chartHeight: number, offset: number,
-                           needleColor: string, centralLabel: string) {
+                    needleColor: string, centralLabel: string, outerNeedle: boolean) {
   // Different circle radiuses in the base of needle
-  let innerGaugeRadius = centralLabel ? chartHeight * 0.5 : chartHeight * 0.1
+  let innerGaugeRadius = centralLabel || outerNeedle ? chartHeight * 0.5 : chartHeight * 0.1
   let gaugeArc = arc()
       .innerRadius(innerGaugeRadius)
       .outerRadius(0)
@@ -124,7 +124,7 @@ export function needleBaseOutline(svg, chartHeight: number, offset: number,
   // White needle base if something should be written on it, gray otherwise
   svg.append('path')
     .attr('d', gaugeArc)
-    .attr('fill', centralLabel ? 'white' : needleColor)
+    .attr('fill', centralLabel || outerNeedle ? 'white' : needleColor)
     .attr('transform', 'translate(' + (chartHeight + offset * 2) + ', '
                                           + (chartHeight + offset) + ')')
     .attr('class', 'bar')
@@ -141,10 +141,10 @@ export function needleBaseOutline(svg, chartHeight: number, offset: number,
  * @returns modified svg.
  */
 export function needleOutline(svg, chartHeight: number, offset: number, needleColor: string,
-                        outerRadius: number, centralLabel: string) {
+                        outerRadius: number, centralLabel: string, outerNeedle: boolean) {
   let needleValue = 0
   let needle = new Needle(svg, needleValue, centralLabel, chartHeight,
-                               outerRadius, offset, needleColor)
+                               outerRadius, offset, needleColor, outerNeedle)
   needle.setValue(needleValue)
   needle.getSelection()
 
@@ -229,9 +229,10 @@ export function gaugeChart(element: Element, areaWidth: number,
     rangeLabel: [],
     centralLabel: '',
     rangeLabelFontSize: undefined,
+    outerNeedle: false,
   }
   let { hasNeedle, needleColor, needleUpdateSpeed, arcColors, arcDelimiters,
-    rangeLabel, centralLabel, rangeLabelFontSize } =
+    rangeLabel, centralLabel, rangeLabelFontSize, outerNeedle } =
     (Object as any).assign(defaultGaugeOption, gaugeOptions)
   if (!paramChecker(arcDelimiters, arcColors, rangeLabel)) {
     return
@@ -239,7 +240,7 @@ export function gaugeChart(element: Element, areaWidth: number,
 
   arcColors = arcColorsModifier(arcDelimiters, arcColors)
 
-  let offset = areaWidth * 0.05
+  let offset = areaWidth * 0.075
   let chartHeight = areaWidth * 0.5 - offset * 2
   let chartWidth = areaWidth - offset * 2
   let outerRadius = chartHeight * 0.75
@@ -249,8 +250,9 @@ export function gaugeChart(element: Element, areaWidth: number,
 
   let needle = null
   if (hasNeedle) {
-    needle = needleOutline(svg, chartHeight, offset, needleColor, outerRadius, centralLabel)
-    needleBaseOutline(svg, chartHeight, offset, needleColor, centralLabel)
+    needle = needleOutline(svg, chartHeight, offset, needleColor, outerRadius,
+      centralLabel, outerNeedle)
+    needleBaseOutline(svg, chartHeight, offset, needleColor, centralLabel, outerNeedle)
   }
   arcOutline(svg, chartHeight, offset, arcColors, outerRadius, arcDelimiters)
   labelOutline(svg, areaWidth, chartHeight, offset, outerRadius, rangeLabel,

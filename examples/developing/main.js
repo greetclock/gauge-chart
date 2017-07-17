@@ -5,12 +5,13 @@ let gaugeOptions = {
   needleColor: 'gray',
   needleUpdateSpeed: 1000,
   arcColors: [],
-  arcDelimiters: [],
-  rangeLabel: ['', ''],
+  arcDelimiters: [10, 60],
+  rangeLabel: ['0', '350'],
   centralLabel: '',
-  rangeLabelFontSize: null,
+  rangeLabelFontSize: false,
+  outerNeedle: true,
 }
 
 GaugeChart
-  .gaugeChart(element, 185, gaugeOptions)
-  .updateNeedle(80)
+  .gaugeChart(element, 400, gaugeOptions)
+  .updateNeedle(50)
