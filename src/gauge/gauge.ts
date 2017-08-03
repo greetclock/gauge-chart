@@ -141,8 +141,8 @@ export function needleBaseOutline(svg, chartHeight: number, offset: number,
  * @returns modified svg.
  */
 export function needleOutline(svg, chartHeight: number, offset: number, needleColor: string,
-                        outerRadius: number, centralLabel: string, outerNeedle: boolean) {
-  let needleValue = 0
+            outerRadius: number, centralLabel: string, outerNeedle: boolean, needleStartValue: number) {
+  let needleValue = needleStartValue
   let needle = new Needle(svg, needleValue, centralLabel, chartHeight,
                                outerRadius, offset, needleColor, outerNeedle)
   needle.setValue(needleValue)
@@ -222,17 +222,18 @@ export function gaugeChart(element: Element, areaWidth: number,
                            gaugeOptions: GaugeOptions): GaugeInterface {
   let defaultGaugeOption = {
     hasNeedle: false,
+    outerNeedle: false,
     needleColor: 'gray',
+    needleStartValue: 0,
     needleUpdateSpeed: 1000,
     arcColors: [],
     arcDelimiters: [],
     rangeLabel: [],
     centralLabel: '',
     rangeLabelFontSize: undefined,
-    outerNeedle: false,
   }
   let { hasNeedle, needleColor, needleUpdateSpeed, arcColors, arcDelimiters,
-    rangeLabel, centralLabel, rangeLabelFontSize, outerNeedle } =
+    rangeLabel, centralLabel, rangeLabelFontSize, outerNeedle, needleStartValue } =
     (Object as any).assign(defaultGaugeOption, gaugeOptions)
   if (!paramChecker(arcDelimiters, arcColors, rangeLabel)) {
     return
@@ -251,7 +252,7 @@ export function gaugeChart(element: Element, areaWidth: number,
   let needle = null
   if (hasNeedle) {
     needle = needleOutline(svg, chartHeight, offset, needleColor, outerRadius,
-      centralLabel, outerNeedle)
+      centralLabel, outerNeedle, needleStartValue)
     needleBaseOutline(svg, chartHeight, offset, needleColor, centralLabel, outerNeedle)
   }
   arcOutline(svg, chartHeight, offset, arcColors, outerRadius, arcDelimiters)

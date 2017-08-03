@@ -51,7 +51,7 @@ export declare function needleBaseOutline(svg: any, chartHeight: number, offset:
  * @param centralLabel - value of the central label.
  * @returns modified svg.
  */
-export declare function needleOutline(svg: any, chartHeight: number, offset: number, needleColor: string, outerRadius: number, centralLabel: string, outerNeedle: boolean): Needle;
+export declare function needleOutline(svg: any, chartHeight: number, offset: number, needleColor: string, outerRadius: number, centralLabel: string, outerNeedle: boolean, needleStartValue: number): Needle;
 /**
  * Function for drawing labels.
  * @param svg - original svg rectangle.

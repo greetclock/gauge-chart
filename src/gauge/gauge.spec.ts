@@ -206,8 +206,9 @@ describe('needle outlining', () => {
               .attr('height', chartHeight + offset * 2)
     let centralLabel = ''
     let outerNeedle = false
+    let needleStartValue = 0
     gauge.needleOutline(svg, chartHeight, offset, needleColor,
-                                outerRadius, centralLabel, outerNeedle)
+               outerRadius, centralLabel, outerNeedle, needleStartValue)
     expect(svg).not.toBe(null)
     expect((svg.html()).match(/path/g).length / 2).toBe(1)
   })
@@ -218,8 +219,9 @@ describe('needle outlining', () => {
               .attr('height', chartHeight + offset * 2)
     let centralLabel = ''
     let outerNeedle = false
+    let needleStartValue = 0
     gauge.needleOutline(svg, chartHeight, offset, needleColor,
-                                outerRadius, centralLabel, outerNeedle)
+                  outerRadius, centralLabel, outerNeedle, needleStartValue)
     // define the whole path string (M...L...L...L...L... for svg arc)
     let svgHtml = svg.html().slice(svg.html().search('M'), svg.html().search('" stroke'))
     svgHtml = pathValueChecker(svgHtml, 'M', 'L', [-58.2, 0])
@@ -235,8 +237,9 @@ describe('needle outlining', () => {
               .attr('height', chartHeight + offset * 2)
     let centralLabel = '23'
     let outerNeedle = false
+    let needleStartValue = 0
     gauge.needleOutline(svg, chartHeight, offset, needleColor,
-                                outerRadius, centralLabel, outerNeedle)
+                    outerRadius, centralLabel, outerNeedle, needleStartValue)
     // define the whole path string (M...L...L...L... for svg arc)
     let svgHtml = svg.html().slice(svg.html().search('M') + 1, svg.html().search('" stroke'))
     svgHtml = pathValueChecker(svgHtml, 'M', 'L', [-58.2, 0])
@@ -365,8 +368,9 @@ describe('needle value updating', () => {
               .attr('height', chartHeight + offset * 2)
     let centralLabel = ''
     let outerNeedle = false
+    let needleStartValue = 0
     let needle = gauge.needleOutline(svg, chartHeight, offset, needleColor,
-                                    outerRadius, centralLabel, outerNeedle)
+                    outerRadius, centralLabel, outerNeedle, needleStartValue)
     let needleUpdateSpeed = 1000
     let g = new Gauge(svg, needleUpdateSpeed, needle)
     g.updateNeedle(10)
