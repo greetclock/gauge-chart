@@ -1,0 +1,84 @@
+<html>
+<head>
+  <script src="gauge.js"></script>
+</head>
+<body>
+  <div id="gaugeArea0"></div>
+  <div style="display: flex; flex-direction: row;">
+    <div id="gaugeArea1"></div>
+    <div id="gaugeArea2"></div>
+    <div id="gaugeArea3"></div>
+    <div id="gaugeArea4"></div>
+  </div>
+  <script>
+    // Element inside which you want to see the chart.
+	let element0 = document.querySelector('#gaugeArea0')
+    let element1 = document.querySelector('#gaugeArea1')
+	let element2 = document.querySelector('#gaugeArea2')
+	let element3 = document.querySelector('#gaugeArea3')
+	let element4 = document.querySelector('#gaugeArea4')
+
+    // Properties of the gauge.
+	let options0 = {
+      hasNeedle: true,
+      arcColors: ['rgb(44, 151, 222)', 'lightgray'],
+      arcDelimiters: [40],
+      rangeLabel: ['0', '100'],
+    }
+	
+    let options1 = {
+      arcColors: ['rgb(44, 151, 222)', 'lightgray'],
+      arcDelimiters: [80],
+      rangeLabel: ['0%', '100%'],
+	  centralLabel: '70%',
+    }
+	
+    let options2 = {
+      hasNeedle: true,
+	  needleColor: 'black',
+      arcColors: ['rgb(61, 204, 91)', 'rgb(239, 214, 19)', 'rgb(255, 84, 84)'],
+      arcDelimiters: [40, 60],
+      rangeLabel: ['0', '100'],
+    }
+		
+	let options3 = {
+	  hasNeedle: true,
+	  outerNeedle: true,
+	  needleColor: 'rgb(166, 206, 227)',
+      arcDelimiters: [],
+      rangeLabel: ['-10', '10'],
+	  centralLabel: '2',
+	  rangeLabelFontSize: 42,
+    }
+	
+	let options4 = {
+	  hasNeedle: true,
+	  needleColor: 'black',
+      arcDelimiters: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98],
+	  arcColors: ['black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black', 'white', 'black'],
+	  centralLabel: 'zebra',
+    }
+
+    // Drawing and updating the chart.
+	GaugeChart
+      .gaugeChart(element0, 400, options0)
+      .updateNeedle(50)
+	
+    GaugeChart
+      .gaugeChart(element1, 400, options1)
+      .updateNeedle(70)
+	
+	 GaugeChart
+      .gaugeChart(element2, 400, options2)
+      .updateNeedle(20)
+	 
+	 GaugeChart
+      .gaugeChart(element3, 400, options3)
+      .updateNeedle(60)
+	 
+	 GaugeChart
+      .gaugeChart(element4, 400, options4)
+      .updateNeedle(30)
+  </script>
+</body>
+</html>
