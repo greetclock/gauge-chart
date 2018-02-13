@@ -1,10 +1,8 @@
-# RecoGaugeLibrary
+# Gauge Chart
 
-[![npm version](https://badge.fury.io/js/)](https://www.npmjs.com/package/)
+[![npm version](https://badge.fury.io/js/)](https://www.npmjs.com/package/gauge-chart)
 
 **A library for creating nice and flexible gauge charts.**
-
-For Angular version of the library, please visit [this repository]().
 
 You can [catch us on twitter](https://twitter.com/recogizer): [@recogizer](https://twitter.com/recogizer) or head over to [our company's website](http://www.recogizer.com/).
 
@@ -12,16 +10,16 @@ You can [catch us on twitter](https://twitter.com/recogizer): [@recogizer](https
 
 ## Installation
 
-Install via npm:
+The easiest way to get started is to install it via npm:
 
 ```
-npm install 
+  npm install gauge-chart 
 ```
 
-Or add manually a link to the library into your html file:
+Or to add manually a link to the library into your html file:
 
 ```html
-<script src=""></script>
+  <script src=""></script>
 ```
 
 ## Usage
@@ -29,80 +27,71 @@ Or add manually a link to the library into your html file:
 Create an element for positioning gauge in your html file:
 
 ```html
-<div id="gaugeArea"></div>
+  <div id="gaugeArea"></div>
 ```
 
-Now you're ready to draw your first gauge.
+Now you're ready to draw your own gauge.
 
-Just copy this code into the .js / .ts file or into `<script></script>` tag in HTML file:
+Just copy this code into your js / ts file or into `<script> </script>` tags in html file:
 
 ```javascript
-// Element inside which you want to see the chart.
+// Element inside which you want to see the chart
 let element = document.querySelector('#gaugeArea')
 
-// Properties of the gauge.
-let options = {
+// Properties of the gauge
+let gaugeOptions = {
   hasNeedle: true,
+  needleColor: 'gray',
+  needleUpdateSpeed: 1000,
   arcColors: ['rgb(44, 151, 222)', 'lightgray'],
   arcDelimiters: [30],
   rangeLabel: ['0', '100'],
+  centralLabel: '50',
 }
 
-// Drawing and updating the chart.
+// Drawing and updating the chart
 GaugeChart
-  .gaugeChart(element, 300, options)
+  .gaugeChart(element, 300, gaugeOptions)
   .updateNeedle(50)
 ```
+
 
 #### Result:
 
 ![Gauge Example](/examples/img/gauge1.png "Gauge Example")
 
-## Settings
+By default, the needle is pointing to 0, thus in order to move it you have to use `.updateNeedle(val)`, where `val` denotes the value on the chart.
 
-### .gaugeChart( ... )
+Feel free to change or delete any of the gaugeOptions properties as long as their values are in permitted ranges.
 
-All variables below are mandatory. Chart height is unchangeable and always holds `0.5 * chartWidth`.
+## Options
+
+#### gaugeOptions: { ... }
 
 | Name | Values Ranges | Description |
 | ---- | ------------- | ----------- |
-| element | HTML element | specifies an element which contains a chart |
-| chartWidth | number larger than 0 | gives a width to the gauge (px) |
-| options | object | provides gauge properties (can be empty) |
+| hasNeedle | true / false | determines whether to show the needle or not |
+| needleColor | [value supported by CSS](https://www.w3schools.com/colors/default.asp) | colorizes needle with specified colors |
+| needleUpdateSpeed | number larger than 0 | determines the speed of needle update animation |
+| arcColors | [array of values supported by CSS](https://www.w3schools.com/colors/default.asp) | colorizes gauge with specified color |
+| arcDelimiters | array of numbers from 0 to 100 | specifies delimiters of the gauge in ascending order |
+| rangeLabel | array of two strings | depicts gauge ranges on both sides of the chart |
+| centralLabel | string | depicts gauge inner label |
 
-### .updateNeedle( ... )
 
-Dynamically changes needle value.
+#### .gaugeChart( ... )
+
+| Name | Values Ranges | Description |
+| ---- | ------------- | ----------- |
+| element | html element | specifies an element which contains a chart |
+| chartWidth | number larger than 0 | gives a width to the gauge (height is always 0.5 * chartWidth) |
+| gaugeOptions | object | provides gauge properties (can be empty) |
+
+#### .updateNeedle( ... )
 
 | Name | Values Ranges | Description |
 | ---- | ------------- | ----------- |
 | needleValue | number from 0 to 100 | specifies needle value on the gauge |
-
-### options: { ... }
-
-None of the options listed below are mandatory. You can experiment with combining any of them in any order within permitted value ranges.
-
-##### Needle options
-| Name | Values Ranges | Description | Default |
-| ---- | ------------- | ----------- | ------- |
-| hasNeedle | true / false | show / hide needle | false |
-| outerNeedle | true / false | outer / inner needle | false |
-| needleColor | [value supported by CSS](https://www.w3schools.com/colors/default.asp) | needle color | 'gray' |
-| needleStartValue | number from 0 to 100 | needle start value | 0 |
-| needleUpdateSpeed | number larger than 0 | needle update animation speed (ms) | 1000 |
-
-##### Arc options
-| Name | Values Ranges | Description | Default |
-| ---- | ------------- | ----------- | ------- |
-| arcColors | [array of values supported by CSS](https://www.w3schools.com/colors/default.asp) | arc colors | [ ] |
-| arcDelimiters | array of numbers from 0 to 100 | arc delimiters (in asc. order) | [ ] |
-
-##### Label options
-| Name | Values Ranges | Description | Default |
-| ---- | ------------- | ----------- | ------- |
-| rangeLabel | array of two strings | range labels | [ ] |
-| centralLabel | string | inner label | ' ' |
-| rangeLabelFontSize | number larger than 0 | particular font size for range labels (px) | undefined |
 
 ## Examples
 
@@ -110,10 +99,8 @@ Some examples of what you can get out of the library using different properties:
 
 ![Gauge Examples](/examples/img/gauge2.png "Gauge Examples")
 
-Like it? Give us a star :)
-
 ## Contributing
-Build the library with `npm run build`. For a production version with console warnings, execute `npm run build:prod_warn`. This will fetch all dependencies and then compile `dist` files. To see the examples locally you can start a web server with `npm start dev` and go to `localhost:8080` (`8081` if `8080` is busy).
+Build the library with `npm run build`. For a production version with console warnings, execute `npm run build:prod_warn`. This will fetch all dependencies and then compile the `dist` files. To see the examples locally you can start a web server with `npm run dev` and go to `localhost:8080` (`localhost:8081` if port `8080` is busy).
 
 ## License
-MIT License. Copyright (c) 2017 RECOGIZER GROUP GmbH.
+MIT License. Copyright (c) 2017-2018 RECOGIZER GROUP GmbH.
