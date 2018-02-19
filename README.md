@@ -104,3 +104,6 @@ Build the library with `npm run build`. For a production version with console wa
 
 ## License
 MIT License. Copyright (c) 2017-2018 RECOGIZER GROUP GmbH.
+
+## Authors
+Alexey Karpov, Maxim Maltsev.
