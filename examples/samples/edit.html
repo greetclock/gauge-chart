@@ -12,31 +12,36 @@
 		</div>
 	</a>
   <div class="edit-container">
-    <div id="edit-box" class="edit-box">
-	    Chart width: <input id="input-chartWidth" type="number" onchange="optionChange()" class="edit-box__input" /><br />
-	    Needle value: <input id="input-needleValue" type="number" onchange="optionChange()" class="edit-box__input" /><br />
-	    <h3>Extra Options:</h3>
-			hasNeedle: <select onchange="optionChange()" id="input-hasNeedle">
-									<option value="true">true</option>
-									<option value="false">false</option>
-									<option value="blank" selected></option>
-								</select><br />
-	    outerNeedle:  <select onchange="optionChange()" id="input-outerNeedle">
-											<option value="true">true</option>
-											<option value="false">false</option>
-											<option value="blank" selected></option>
-										</select><br />
-	    needleColor: <input id="input-needleColor" type="text" onchange="optionChange()" class="edit-box__input" /><br />
-	    needleStartValue: <input id="input-needleStartValue" type="number" onchange="optionChange()" class="edit-box__input" /><br />
-	    needleUpdateSpeed: <input id="input-needleUpdateSpeed" type="number" onchange="optionChange()" class="edit-box__input" /><br />
-	    arcColors: <input id="input-arcColors" type="text" onchange="optionChange()" class="edit-box__input" /><br />
-	    arcDelimiters: <input id="input-arcDelimiters" type="text" onchange="optionChange()" class="edit-box__input" /><br />
-	    rangeLabel: <input id="input-rangeLabel" type="text" onchange="optionChange()" class="edit-box__input" /><br />
-	    centralLabel: <input id="input-centralLabel" type="text" onchange="optionChange()" class="edit-box__input" /><br />
-			rangeLabelFontSize: <input id="input-rangeLabelFontSize" type="number" onchange="optionChange()" class="edit-box__input" /><br />
-			<span class="copy" onclick="copy()">copy code</span>
+		<div class="edit-leftside">
+    	<div id="edit-box" class="edit-box">
+	  	  Chart width: <input id="input-chartWidth" type="number" onchange="optionChange()" class="edit-box__input" /><br />
+	  	  Needle value: <input id="input-needleValue" type="number" onchange="optionChange()" class="edit-box__input" /><br />
+	  	  <h3>Extra Options:</h3>
+				hasNeedle: <select onchange="optionChange()" id="input-hasNeedle">
+										<option value="true">true</option>
+										<option value="false">false</option>
+										<option value="blank" selected></option>
+									</select><br />
+	  	  outerNeedle:  <select onchange="optionChange()" id="input-outerNeedle">
+												<option value="true">true</option>
+												<option value="false">false</option>
+												<option value="blank" selected></option>
+											</select><br />
+	  	  needleColor: <input id="input-needleColor" type="text" onchange="optionChange()" class="edit-box__input" /><br />
+	  	  needleStartValue: <input id="input-needleStartValue" type="number" onchange="optionChange()" class="edit-box__input" /><br />
+	  	  needleUpdateSpeed: <input id="input-needleUpdateSpeed" type="number" onchange="optionChange()" class="edit-box__input" /><br />
+	  	  arcColors: <input id="input-arcColors" type="text" onchange="optionChange()" class="edit-box__input" /><br />
+	  	  arcDelimiters: <input id="input-arcDelimiters" type="text" onchange="optionChange()" class="edit-box__input" /><br />
+	  	  rangeLabel: <input id="input-rangeLabel" type="text" onchange="optionChange()" class="edit-box__input" /><br />
+	  	  centralLabel: <input id="input-centralLabel" type="text" onchange="optionChange()" class="edit-box__input" /><br />
+				rangeLabelFontSize: <input id="input-rangeLabelFontSize" type="number" onchange="optionChange()" class="edit-box__input" /><br />
+			</div>
+			<div class="button-wrap">
+				<span class="button" onclick="saveAsPng()">save as image</span>
+				<span class="button" onclick="copyAsCode()">copy as code</span>
+			</div>
 			<textarea id="code"></textarea>
-	  </div>
+		</div>
 	  <div id="gaugeArea"></div>
   </div>
   <a href="https://github.com/recogizer">
@@ -45,8 +50,9 @@
 	
 	<footer>© 2018 RECOGIZER GROUP GmbH - All Rights Reserved.</footer>
 
-  <!-- SCRIPTS -->
+	<!-- SCRIPTS -->
+	<script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="gauge.js"></script>
-  <script src="main.js"></script>
+	<script src="main.js"></script>
 </body>
 </html>

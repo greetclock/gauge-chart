@@ -12,7 +12,7 @@ let gaugeOptions = {
   arcDelimiters: [10, 60],
   // label options
   rangeLabel: ['0', '350'],
-  centralLabel: '',
+  centralLabel: '10',
   rangeLabelFontSize: false,
 }
 

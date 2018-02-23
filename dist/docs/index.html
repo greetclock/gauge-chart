@@ -62,14 +62,14 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="gauge-library">Gauge Library</h1>
-				<p><a href="https://www.npmjs.com/package/"><img src="https://badge.fury.io/js/" alt="npm version"></a></p>
+				<h1 id="gauge-chart">Gauge Chart</h1>
+				<p><a href="https://www.npmjs.com/package/gauge-chart"><img src="https://badge.fury.io/js/" alt="npm version"></a></p>
 				<p><strong>A library for creating nice and flexible gauge charts.</strong></p>
 				<p>You can <a href="https://twitter.com/recogizer">catch us on twitter</a>: <a href="https://twitter.com/recogizer">@recogizer</a> or head over to <a href="http://www.recogizer.com/">our company&#39;s website</a>.</p>
 				<h2 id="-demo-documentation-"><a href="">Demo</a> | <a href="">Documentation</a></h2>
 				<h2 id="installation">Installation</h2>
 				<p>The easiest way to get started is to install it via npm:</p>
-				<pre><code>   npm <span class="hljs-keyword">install</span>
+				<pre><code>  npm <span class="hljs-keyword">install</span> gauge-chart
 </code></pre><p>Or to add manually a link to the library into your html file:</p>
 				<pre><code class="lang-html">  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">""</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 </code></pre>
@@ -100,8 +100,8 @@ GaugeChart
 </code></pre>
 				<h4 id="result-">Result:</h4>
 				<p><img src="/examples/img/gauge1.png" alt="Gauge Example" title="Gauge Example"></p>
-				<p>By default, the needle is positioned on 0, thus in order to move it you have to use <code>.updateNeedle(val)</code>, where <code>val</code> denotes the value on the chart.</p>
-				<p>Feel free to change or delete any of the gaugeOptions properties as long as there values are in permitted ranges.</p>
+				<p>By default, the needle is pointing to 0, thus in order to move it you have to use <code>.updateNeedle(val)</code>, where <code>val</code> denotes the value on the chart.</p>
+				<p>Feel free to change or delete any of the gaugeOptions properties as long as their values are in permitted ranges.</p>
 				<h2 id="options">Options</h2>
 				<h4 id="gaugeoptions-">gaugeOptions: { ... }</h4>
 				<table>
@@ -196,12 +196,13 @@ GaugeChart
 				</table>
 				<h2 id="examples">Examples</h2>
 				<p>Some examples of what you can get out of the library using different properties:</p>
-				<p><img src="/examples/img/gauge2.png" alt="Gauge Examples" title="Gauge Examples"></p>
-				<p>Like it? Give us a star :)</p>
+				<p><img src="/examples/img/gauges.png" alt="Gauge Examples" title="Gauge Examples"></p>
 				<h2 id="contributing">Contributing</h2>
-				<p>Build the library with <code>npm run build</code>. For a production version with console warnings, execute <code>npm run build:prod_warn</code>. This will fetch all dependencies and then compile the <code>dist</code> files. To see the examples locally you can start a web server with <code>npm start dev</code> and go to <code>localhost:8080</code> (<code>localhost:8081</code> if port <code>8080</code> is busy).</p>
+				<p>Build the library with <code>npm run build</code>. For a production version with console warnings, execute <code>npm run build:prod_warn</code>. This will fetch all dependencies and then compile the <code>dist</code> files. To see the examples locally you can start a web server with <code>npm run dev</code> and go to <code>localhost:8080</code> (<code>localhost:8081</code> if port <code>8080</code> is busy).</p>
 				<h2 id="license">License</h2>
-				<p>MIT License. Copyright (c) 2017 RECOGIZER GROUP GmbH.</p>
+				<p>MIT License. Copyright (c) 2017-2018 RECOGIZER GROUP GmbH.</p>
+				<h2 id="authors">Authors</h2>
+				<p>Alexey Karpov, Maxim Maltsev.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

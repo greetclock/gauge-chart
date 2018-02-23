@@ -34,6 +34,11 @@ a { text-decoration: none; }
 
 .edit:hover { background-color: #f8f8f8; }
 
+.edit-leftside {
+  display: flex;
+  flex-direction: column;
+}
+
 .edit-container {
   display: flex;
   flex-direction: row;
@@ -61,13 +66,22 @@ a { text-decoration: none; }
   font-size: 42px;
 }
 
-.copy {
-  font-size: 12px;
+.button-wrap {
+  display: flex;
+  flex-direction: row;
   float: right;
+  width: 292px;
+  justify-content: flex-end;
+}
+
+.button {
+  font-size: 12px;
   font-weight: 800; 
-  margin-top: 15px;
   cursor: pointer;
-  margin-right: -12px;
+  padding: 3px;
+  background-color: #444;
+  color: white;
+  margin-left: 4px;
 }
 
 #code { opacity: 0; }

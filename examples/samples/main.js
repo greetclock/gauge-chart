@@ -97,7 +97,7 @@ function colorsStrToArr(str) {
   return colorArr
 }
 
-function copy() {
+function copyAsCode() {
 	let optionNames = ['chartWidth', 'needleValue']
 	let extraOptionNames = ['hasNeedle', 'outerNeedle', 'needleColor', 'needleStartValue',
 		'needleUpdateSpeed', 'arcColors', 'arcDelimiters', 'rangeLabel', 'centralLabel', 'rangeLabelFontSize']
@@ -138,6 +138,70 @@ function copy() {
 			
 	}
 	code += '}'
+	let codeElement = document.getElementById('code')
+	codeElement.value = code
+	codeElement.select()
+	document.execCommand('Copy')
+}
+
+function saveAsPng() {
+	let doctype = '<?xml version="1.0" standalone="no"?>'
+		+ '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">'
+	
+		// serializing SVG XML to a string.
+	let source = (new XMLSerializer()).serializeToString(d3.select('svg').node())
+	// creating a file blob of our SVG.
+	let blob = new Blob([ doctype + source], { type: 'image/svg+xml;charset=utf-8' })
+	let url = window.URL.createObjectURL(blob)
+	let width = document.querySelector('svg').getBoundingClientRect().width
+	let height = document.querySelector('svg').getBoundingClientRect().height
+	// Putting the svg into an image tag so that the Canvas element can read it in.
+	let img = d3.select('body').append('img')
+		.attr('id', 'img')
+	 .attr('width', width)
+	 .attr('height', height)
+	 .style('display', 'none')
+	 .node()
+	let href = d3.select('body').append('a')
+		.attr('id', 'link')
+		.attr('download', 'gauge.png')
+	img.onload = function() {
+		// putting the image into a canvas element.
+		let canvas = d3.select('body').append('canvas')
+			.attr('id', 'canvas')
+			.style('display', 'none')
+			.node()
+		canvas.width = width
+		canvas.height = height
+		let ctx = canvas.getContext('2d')
+		ctx.drawImage(img, 0, 0)
+		let canvasUrl = canvas.toDataURL('image/png')
+		let img2 = d3.select('#link').append('img')
+			.attr('id', 'img2')
+			.attr('width', width)
+			.attr('height', height)
+			.style('display', 'none')
+			.node()
+		// base64 encoded version of the PNG
+		img2.src = canvasUrl
+		let link = d3.select('#link')
+			.attr('href', canvasUrl)
+		document.getElementById('link').click()
+		// deleting redundant data
+		let imgNode = document.getElementById('img')
+		let img2Node = document.getElementById('img2')
+		let canvasNode = document.getElementById('canvas')
+		let linkNode = document.getElementById('link')
+		imgNode.parentNode.removeChild(imgNode)
+		img2Node.parentNode.removeChild(img2Node)
+		canvasNode.parentNode.removeChild(canvasNode)
+		linkNode.parentNode.removeChild(linkNode)
+	}
+	// starting loading the image.
+	img.src = url
+}
+
+function copyAsLink() {
 	let codeElement = document.getElementById('code')
 	codeElement.value = code
 	codeElement.select()
