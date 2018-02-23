@@ -124,7 +124,7 @@ export function needleBaseOutline(svg, chartHeight: number, offset: number,
   // White needle base if something should be written on it, gray otherwise
   svg.append('path')
     .attr('d', gaugeArc)
-    .attr('fill', centralLabel || outerNeedle ? 'white' : needleColor)
+    .attr('fill', centralLabel || outerNeedle ? 'transparent' : needleColor)
     .attr('transform', 'translate(' + (chartHeight + offset * 2) + ', '
                                           + (chartHeight + offset) + ')')
     .attr('class', 'bar')

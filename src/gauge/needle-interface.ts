@@ -70,6 +70,7 @@ export class Needle {
     let needleWaypointOffset = needleWidth * 0.5
     let needleAngle = gauge.perc2RadWithShift(this.needleValue)
     let needleCoords: any
+
     if (this.outerNeedle) {
       needleCoords = [ { x: needleHeadLength * Math.sin(needleAngle),
                y: -needleHeadLength * Math.cos(needleAngle)},
@@ -86,12 +87,14 @@ export class Needle {
     } else {
       needleCoords = [ { x: needleHeadLength * Math.sin(needleAngle),
                y: -needleHeadLength * Math.cos(needleAngle)},
-             { x: -needleWaypointOffset * Math.cos(needleAngle),
-               y: -needleWaypointOffset * Math.sin(needleAngle)},
-             { x: -needleTailLength * Math.sin(needleAngle),
-               y: needleTailLength * Math.cos(needleAngle)},
-             { x: needleWaypointOffset * Math.cos(needleAngle),
-               y: needleWaypointOffset * Math.sin(needleAngle)},
+             { x: (needleWaypointOffset * 1.5) * Math.sin(needleAngle) -
+                (needleWaypointOffset / 3) * Math.cos(needleAngle),
+               y: - (needleWaypointOffset * 1.5)  * Math.cos(needleAngle) -
+                (needleWaypointOffset / 3) * Math.sin(needleAngle)},
+             { x: (needleWaypointOffset * 1.5)  * Math.sin(needleAngle) +
+                (needleWaypointOffset / 3) * Math.cos(needleAngle),
+               y: - (needleWaypointOffset * 1.5)  * Math.cos(needleAngle) +
+                 (needleWaypointOffset / 3) * Math.sin(needleAngle)},
              { x: needleHeadLength * Math.sin(needleAngle),
                y: -needleHeadLength * Math.cos(needleAngle)} ]
     }
