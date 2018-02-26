@@ -1,25 +1,23 @@
 # Gauge Chart
 
-[![npm version](https://badge.fury.io/js/)](https://www.npmjs.com/package/gauge-chart)
-
 **A library for creating nice and flexible gauge charts.**
 
 You can [catch us on twitter](https://twitter.com/recogizer): [@recogizer](https://twitter.com/recogizer) or head over to [our company's website](http://www.recogizer.com/).
 
-## [Demo]() | [Documentation]()
+## [Demo](https://recogizer.github.io/gauge-chart/examples/samples/) | [Documentation](https://recogizer.github.io/gauge-chart/docs/)
 
 ## Installation
 
 The easiest way to get started is to install it via npm:
 
 ```
-  npm install gauge-chart 
+  npm install gauge-chart
 ```
 
 Or to add manually a link to the library into your html file:
 
 ```html
-  <script src=""></script>
+  <script src="https://cdn.rawgit.com/recogizer/gauge-chart/4a7d7f58/dist/bundle.js"></script>
 ```
 
 ## Usage
@@ -106,4 +104,4 @@ Build the library with `npm run build`. For a production version with console wa
 MIT License. Copyright (c) 2017-2018 RECOGIZER GROUP GmbH.
 
 ## Authors
-Alexey Karpov, Maxim Maltsev.
+[Alexey Karpov](https://github.com/cherurg), [Maxim Maltsev](https://github.com/mmaltsev).
