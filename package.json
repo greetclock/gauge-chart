@@ -1,7 +1,7 @@
 {
-  "name": "gauge-chart",
+  "name": "@recogizer/gauge-chart",
   "version": "0.4.2",
-  "description": "",
+  "description": "**A library for creating nice and flexible gauge charts.**",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -13,8 +13,8 @@
     "typedoc": "typedoc --out docs --exclude '**/*.spec.ts' ./src/",
     "check-updates": "ncu"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "“Maxim Maltsev” <“maltsevmn@ya.ru”>, “Alexey Karpov” <“karpovad@yandex.ru”>",
+  "license": "MIT",
   "devDependencies": {
     "@types/d3": "^4.7.0",
     "@types/jasmine": "^2.5.46",
@@ -57,5 +57,17 @@
   "dependencies": {
     "d3": "^4.8.0",
     "d3-scale-chromatic": "^1.1.1"
-  }
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/recogizer/gauge-chart.git"
+  },
+  "bugs": {
+    "url": "https://github.com/recogizer/gauge-chart/issues"
+  },
+  "homepage": "https://github.com/recogizer/gauge-chart#readme"
 }
