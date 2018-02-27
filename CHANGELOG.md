@@ -1,3 +1,6 @@
+## 0.4.3
+* Updated readme.
+
 ## 0.4.2
 * Updated docs and readme.
 
