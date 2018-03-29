@@ -11,13 +11,15 @@
     "build": "ENV=production webpack --config webpack/prod.config.js",
     "build:prod_warn": "ENV=prod_warn webpack --config webpack/prod.config.js",
     "typedoc": "typedoc --out docs --exclude '**/*.spec.ts' ./src/",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "fix-all-ts":
+      "prettier --write src/**/*.ts && tslint --fix -c ./tslint.json 'src/**/*.ts'"
   },
   "lint-staged": {
     "*.{js,json,css,md}": ["prettier --write", "git add"],
     "*.ts": [
-      "tslint --fix -c ./tslint.json 'src/**/*{.ts,.tsx}'",
       "prettier --write",
+      "tslint --fix -c ./tslint.json 'src/**/*.ts'",
       "git add"
     ]
   },
