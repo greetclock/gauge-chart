@@ -1,5 +1,5 @@
 /**
- * Logger methods for controlling console logs in build version .
+ * Logger methods for controlling console logs in build version.
  */
 
 export function error(...args) {
@@ -7,6 +7,5 @@ export function error(...args) {
 }
 
 export function warn(...args) {
-  if (ENV !== 'production')
-    console.warn.apply(console, arguments)
+  if (ENV !== 'production') console.warn.apply(console, arguments)
 }
