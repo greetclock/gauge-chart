@@ -1,13 +1,11 @@
 {
   "extends": "airbnb",
   "rules": {
-    "semi": [
-      "error",
-      "never"
-    ],
+    "semi": ["error", "never"],
     "prefer-const": 0,
     "func-names": 0,
-    "import/no-extraneous-dependencies": 0
+    "import/no-extraneous-dependencies": 0,
+    "space-before-function-paren": "off"
   },
   "globals": {
     "document": true,
