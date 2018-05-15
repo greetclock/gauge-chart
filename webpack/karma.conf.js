@@ -1,10 +1,9 @@
 let testWebpackConfig = require('./test.config.js')
 
-module.exports = function (config) {
+module.exports = function(config) {
   let webpack = testWebpackConfig()
 
   let configuration = {
-
     // base path that will be used to resolve all patterns (e.g. files, exclude)
     basePath: '',
 
@@ -27,15 +26,15 @@ module.exports = function (config) {
      *
      * we are building the test environment in ./spec-bundle.js
      */
-    files: [
-      { pattern: './webpack/spec-bundle.js', watched: false },
-    ],
+    files: [{ pattern: './webpack/spec-bundle.js', watched: false }],
 
     /*
      * preprocess matching files before serving them to the browser
      * available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
      */
-    preprocessors: { './webpack/spec-bundle.js': ['coverage', 'webpack', 'sourcemap'] },
+    preprocessors: {
+      './webpack/spec-bundle.js': ['coverage', 'webpack', 'sourcemap'],
+    },
 
     // Webpack Config at ./test.config.js
     webpack,
@@ -90,9 +89,7 @@ module.exports = function (config) {
      * start these browsers
      * available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
      */
-    browsers: [
-      'Chrome',
-    ],
+    browsers: ['Chrome'],
 
     /*
      * Continuous Integration mode

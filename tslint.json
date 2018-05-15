@@ -1,45 +1,22 @@
 {
   "extends": "tslint:recommended",
   "rules": {
-    "align": [
-      false
-    ],
-    "array-type": [
-      true,
-      "array"
-    ],
+    "align": [false],
+    "array-type": [true, "array"],
     "arrow-parens": false,
     "ban": false,
     "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
+    "comment-format": [true, "check-space"],
     "curly": false,
-    "cyclomatic-complexity": [
-      true,
-      10
-    ],
+    "cyclomatic-complexity": [true, 10],
     "eofline": true,
     "forin": true,
-    "import-destructuring-spacing": true,
-    "indent": [
-      true,
-      "spaces"
-    ],
-    "interface-name": [
-      false
-    ],
+    "indent": [true, "spaces"],
+    "interface-name": [false],
     "jsdoc-format": true,
     "label-position": true,
-    "linebreak-style": [
-      true,
-      "LF"
-    ],
-    "max-line-length": [
-      true,
-      100
-    ],
+    "linebreak-style": [true, "LF"],
+    "max-line-length": [true, 100],
     "member-access": false,
     "member-ordering": [
       true,
@@ -53,28 +30,15 @@
     "no-arg": true,
     "no-bitwise": true,
     "no-conditional-assignment": true,
-    "no-consecutive-blank-lines": [
-      true,
-      2
-    ],
-    "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
+    "no-consecutive-blank-lines": [true, 2],
+    "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],
     "no-construct": true,
     "no-debugger": true,
     "no-default-export": true,
     "no-duplicate-variable": true,
     "no-empty": false,
     "no-eval": true,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
+    "no-inferrable-types": [true, "ignore-params"],
     "no-internal-module": true,
     "no-null-keyword": false,
     "no-parameter-properties": false,
@@ -85,40 +49,18 @@
     "no-switch-case-fall-through": true,
     "no-trailing-whitespace": true,
     "no-unused-expression": true,
-    "no-unused-variable": true,
-    "no-use-before-declare": true,
     "no-var-keyword": true,
     "no-var-requires": true,
     "object-literal-sort-keys": false,
-    "one-line": [
-      false
-    ],
+    "one-line": [false],
     "prefer-const": false,
-    "quotemark": [
-      true,
-      "single",
-      "avoid-escape"
-    ],
+    "quotemark": [true, "single", "avoid-escape"],
     "radix": true,
-    "semicolon": [
-      true,
-      "never"
-    ],
+    "semicolon": [true, "never"],
     "switch-default": true,
-    "trailing-comma": [
-      true,
-      {
-        "multiline": "always",
-        "singleline": "never"
-      }
-    ],
-    "triple-equals": [
-      true,
-      "allow-null-check"
-    ],
-    "typedef": [
-      false
-    ],
+    "trailing-comma": false,
+    "triple-equals": [true, "allow-null-check"],
+    "typedef": [false],
     "typedef-whitespace": [
       true,
       {
@@ -147,11 +89,9 @@
       "check-branch",
       "check-decl",
       "check-operator",
-      "check-separator",
       "check-type"
-    ]
+    ],
+    "import-spacing": false
   },
-  "rulesDirectory": [
-    "node_modules/tslint-microsoft-contrib"
-  ]
+  "rulesDirectory": ["node_modules/tslint-microsoft-contrib"]
 }
