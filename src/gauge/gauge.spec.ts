@@ -355,13 +355,13 @@ describe('needle outlining', () => {
       needleStartValue,
     )
     // define the whole path string (M...L...L...L... for svg arc)
+    console.log('hi')
     let svgHtml = svg
       .html()
       .slice(svg.html().search('M') + 1, svg.html().search('" stroke'))
     svgHtml = pathValueChecker(svgHtml, 'M', 'L', [-58.2, 0])
-    svgHtml = pathValueChecker(svgHtml, 'L', 'L', [0, 28])
-    svgHtml = pathValueChecker(svgHtml, 'L', 'L', [28, 0])
-    svgHtml = pathValueChecker(svgHtml, 'L', 'L', [0, -28])
+    svgHtml = pathValueChecker(svgHtml, 'L', 'L', [-42, 9.3])
+    svgHtml = pathValueChecker(svgHtml, 'L', 'L', [-42, -9.3])
     svgHtml = pathValueChecker(svgHtml, 'L', '', [-58.2, 0])
   })
 })
