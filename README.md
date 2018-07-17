@@ -19,7 +19,7 @@ The easiest way to get started is to install it via npm:
 Or to add manually a link to the library into your html file:
 
 ```html
-  <script src="https://cdn.rawgit.com/recogizer/gauge-chart/4a7d7f58/dist/bundle.js"></script>
+  <script src="https://unpkg.com/gauge-chart@latest/dist/bundle.js"></script>
 ```
 
 ## Usage
