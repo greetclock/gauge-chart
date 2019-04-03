@@ -2,6 +2,8 @@
 
 **A library for creating nice and flexible gauge charts.**
 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 You can [catch us on twitter](https://twitter.com/recogizer): [@recogizer](https://twitter.com/recogizer) or head over to [our company's website](http://www.recogizer.com/).
 
 ## [Demo](https://recogizer.github.io/gauge-chart/examples/samples/) | [Documentation](https://recogizer.github.io/gauge-chart/docs/)
@@ -17,7 +19,7 @@ The easiest way to get started is to install it via npm:
 Or to add manually a link to the library into your html file:
 
 ```html
-  <script src="https://cdn.rawgit.com/recogizer/gauge-chart/4a7d7f58/dist/bundle.js"></script>
+  <script src="https://unpkg.com/gauge-chart@latest/dist/bundle.js"></script>
 ```
 
 ## Usage
@@ -70,7 +72,7 @@ Feel free to change or delete any of the gaugeOptions properties as long as thei
 | ---- | ------------- | ----------- |
 | hasNeedle | true / false | determines whether to show the needle or not |
 | needleColor | [value supported by CSS](https://www.w3schools.com/colors/default.asp) | colorizes needle with specified colors |
-| needleUpdateSpeed | number larger than 0 | determines the speed of needle update animation |
+| needleUpdateSpeed | number ⩾ 0 | determines the speed of needle update animation |
 | arcColors | [array of values supported by CSS](https://www.w3schools.com/colors/default.asp) | colorizes gauge with specified color |
 | arcDelimiters | array of numbers from 0 to 100 | specifies delimiters of the gauge in ascending order |
 | rangeLabel | array of two strings | depicts gauge ranges on both sides of the chart |
@@ -101,7 +103,7 @@ Some examples of what you can get out of the library using different properties:
 Build the library with `npm run build`. For a production version with console warnings, execute `npm run build:prod_warn`. This will fetch all dependencies and then compile the `dist` files. To see the examples locally you can start a web server with `npm run dev` and go to `localhost:8080` (`localhost:8081` if port `8080` is busy).
 
 ## License
-MIT License. Copyright (c) 2017-2018 RECOGIZER GROUP GmbH.
+MIT License. Copyright (c) 2017-2019 RECOGIZER GROUP GmbH.
 
 ## Authors
 [Alexey Karpov](https://github.com/cherurg), [Maxim Maltsev](https://github.com/mmaltsev).

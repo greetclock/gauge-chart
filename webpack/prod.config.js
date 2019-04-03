@@ -10,11 +10,10 @@ process.env.ENV = ENV
 
 module.exports = webpackMerge(commonConfig({ env: ENV }), {
   plugins: [
-    new TypedocWebpackPlugin({ }, path.resolve(__dirname, '../src')),
+    new TypedocWebpackPlugin({}, path.resolve(__dirname, '../src')),
     new DefinePlugin({
       ENV: `'${ENV}'`,
     }),
-    new UglifyJsPlugin({
-    }),
+    new UglifyJsPlugin({}),
   ],
 })

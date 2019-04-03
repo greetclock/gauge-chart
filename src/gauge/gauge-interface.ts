@@ -16,11 +16,7 @@ export class Gauge {
   private needleUpdateSpeed: number
   private needle
 
-  constructor(
-    svg,
-    needleUpdateSpeed,
-    needle = null,
-  ) {
+  constructor(svg, needleUpdateSpeed, needle = null) {
     this.svg = svg
     this.needleUpdateSpeed = needleUpdateSpeed
     this.needle = needle
@@ -41,9 +37,7 @@ export class Gauge {
       .tween('needle animation', () => {
         let prevValue = this.needle.getValue()
         let i = interpolateNumber(prevValue, needleValue)
-        return (t) => {
-          this.needle.setValue(i(t))
-        }
+        return t => this.needle.setValue(i(t))
       })
   }
 

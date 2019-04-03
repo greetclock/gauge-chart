@@ -4,7 +4,7 @@ const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin
 
 let helpers = require('./helpers')
 
-module.exports = function () {
+module.exports = function() {
   // let isProd = options.env === 'production'
 
   return {
@@ -16,26 +16,26 @@ module.exports = function () {
       libraryTarget: 'umd2',
     },
     module: {
-      rules: [{
-        test: /\.ts$/,
-        loader: 'awesome-typescript-loader',
-        options: {
-          configFileName: 'tsconfig.json',
+      rules: [
+        {
+          test: /\.ts$/,
+          loader: 'awesome-typescript-loader',
+          options: {
+            configFileName: 'tsconfig.json',
+          },
+          exclude: [/\.(spec|e2e)\.ts$/],
         },
-        exclude: [/\.(spec|e2e)\.ts$/],
-      }, {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          use: 'css-loader',
-        }),
-      }],
+        {
+          test: /\.css$/,
+          use: ExtractTextPlugin.extract({
+            use: 'css-loader',
+          }),
+        },
+      ],
     },
     resolve: {
       extensions: ['.ts', '.js', '.css'],
     },
-    plugins: [
-      new ExtractTextPlugin('styles.css'),
-      new CheckerPlugin(),
-    ],
+    plugins: [new ExtractTextPlugin('styles.css'), new CheckerPlugin()],
   }
 }
