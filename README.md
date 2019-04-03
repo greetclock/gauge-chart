@@ -103,7 +103,7 @@ Some examples of what you can get out of the library using different properties:
 Build the library with `npm run build`. For a production version with console warnings, execute `npm run build:prod_warn`. This will fetch all dependencies and then compile the `dist` files. To see the examples locally you can start a web server with `npm run dev` and go to `localhost:8080` (`localhost:8081` if port `8080` is busy).
 
 ## License
-MIT License. Copyright (c) 2017-2018 RECOGIZER GROUP GmbH.
+MIT License. Copyright (c) 2017-2019 RECOGIZER GROUP GmbH.
 
 ## Authors
 [Alexey Karpov](https://github.com/cherurg), [Maxim Maltsev](https://github.com/mmaltsev).
