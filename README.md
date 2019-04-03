@@ -72,7 +72,7 @@ Feel free to change or delete any of the gaugeOptions properties as long as thei
 | ---- | ------------- | ----------- |
 | hasNeedle | true / false | determines whether to show the needle or not |
 | needleColor | [value supported by CSS](https://www.w3schools.com/colors/default.asp) | colorizes needle with specified colors |
-| needleUpdateSpeed | number larger than 0 | determines the speed of needle update animation |
+| needleUpdateSpeed | number ⩾ 0 | determines the speed of needle update animation |
 | arcColors | [array of values supported by CSS](https://www.w3schools.com/colors/default.asp) | colorizes gauge with specified color |
 | arcDelimiters | array of numbers from 0 to 100 | specifies delimiters of the gauge in ascending order |
 | rangeLabel | array of two strings | depicts gauge ranges on both sides of the chart |
