@@ -1,6 +1,6 @@
 {
   "name": "@recogizer/gauge-chart",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "**A library for creating nice and flexible gauge charts.**",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
@@ -52,7 +52,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-typescript": "^3.0.0",
     "karma-webpack": "^2.0.3",
-    "lint-staged": "^7.0.0",
+    "lint-staged": "^7.3.0",
     "prettier": "^1.11.1",
     "source-map-loader": "^0.2.0",
     "tslint": "^5.1.0",
@@ -63,8 +63,9 @@
     "typescript": "^2.2.1",
     "uglify-js": "^2.8.23",
     "uglifyjs-webpack-plugin": "^0.4.3",
-    "webpack": "^4.29.6",
-    "webpack-dev-server": "^3.2.1",
+    "webpack": "^2.3.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^2.4.1",
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
