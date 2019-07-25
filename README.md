@@ -75,8 +75,12 @@ Feel free to change or delete any of the gaugeOptions properties as long as thei
 | needleUpdateSpeed | number ⩾ 0 | determines the speed of needle update animation |
 | arcColors | [array of values supported by CSS](https://www.w3schools.com/colors/default.asp) | colorizes gauge with specified color |
 | arcDelimiters | array of numbers from 0 to 100 | specifies delimiters of the gauge in ascending order |
+| arcOverEffect | true / false | determines if over effect on ars is enabled or not |
+| arcLabels | array of strings | specifies labels to be placed at delimiters ends |
+| arcPadding | number | specifies padding between arcs (in degrees) |
 | rangeLabel | array of two strings | depicts gauge ranges on both sides of the chart |
 | centralLabel | string | depicts gauge inner label |
+| labelsFont | string | specifies font-family to be used for labels |
 
 
 #### .gaugeChart( ... )
