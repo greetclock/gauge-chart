@@ -150,15 +150,15 @@ export function arcOutline(
         let centerY = offset-chartHeight * (scale - 1)
 
         svg.append('rect')
-          .attr('x', -2)
-          .attr('y', 2)
+          .attr('x', 0)
+          .attr('y', 0)
           .attr('fill', paddingColor)
           .attr('width', padding)
           .attr('height', chartHeight*scale)
           .attr(
             'transform',
             'translate(' + centerX + ',' + centerY + ') ' +
-            'rotate(' + endAngle*180/Math.PI + ', ' + 0 +  ',' + chartHeight*scale + ')'
+            'rotate(' + endAngle*180/Math.PI + ', ' + 0 +  ',' + (chartHeight*scale) + ')'
           )
 
       }
