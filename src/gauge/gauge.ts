@@ -66,18 +66,15 @@ export function arcOutline(
   arcDelimiters: number[],
   arcOverEffect: boolean,
   padding: number,
+  paddingColor: string,
   arcLabels: string[],
   arcLabelFontSize: number,
   labelsFont: string,
 ) {
   arcColors.forEach((color, i) => {
-    let paddingRad = padding / 2 * Math.PI / 180
-    let startAngle = i
-      ? perc2RadWithShift(arcDelimiters[i - 1]) + paddingRad
-      : perc2RadWithShift(0)
-    let endAngle = arcDelimiters[i]
-      ? perc2RadWithShift(arcDelimiters[i]) - paddingRad
-      : perc2RadWithShift(100) // 100 for last arc slice
+
+    let startAngle = perc2RadWithShift(i ? arcDelimiters[i - 1] : 0)
+    let endAngle = perc2RadWithShift(arcDelimiters[i] || 100) // 100 for last arc slice
 
     let gaugeArc = arc()
       .innerRadius(chartHeight)
@@ -138,46 +135,74 @@ export function arcOutline(
         })
     }
 
-    if (arcLabels[i]) {
-      // end of arc
-      let x =
-        chartHeight +
-        offset * 2 +
-        Math.cos(endAngle - Math.PI / 2) * (chartHeight * 1.07)
-      let y =
-        chartHeight +
-        offset +
-        Math.sin(endAngle - Math.PI / 2) * (chartHeight * 1.07)
-
-      // font size
-      arcLabelFontSize =
-        arcLabelFontSize || Math.round(chartHeight * 0.18 * 0.5)
-
-      // measure text width
-      let canvas = document.createElement('canvas')
-      let ctx = canvas.getContext('2d')
-      ctx.font = arcLabelFontSize + 'px'
-      let size = ctx.measureText(arcLabels[i])
-
-      // calc offset:
-      // labels on the left need more offset (full width)
-      // labels on the top need medium offset (half width)
-      // labels on the right need little to no offset
-      // endAngle = -PI/2 => offset = -width
-      // endAngle = PI/2 => offset = 0
-      let xOffset = (endAngle - Math.PI / 2) / Math.PI * size.width
-
-      // now place label
-      let label = svg
-        .append('text')
-        .attr('x', x + xOffset)
-        .attr('y', y)
-        .text(arcLabels[i])
-        .attr('align', 'center')
-        .attr('font-size', arcLabelFontSize + 'px')
-        .attr('font-family', labelsFont)
-    }
   })
+
+  arcColors.forEach((color, i) => {
+
+    if (arcDelimiters[i]) {
+
+      let endAngle = perc2RadWithShift(arcDelimiters[i])
+
+      if (padding && paddingColor) {
+
+        let scale = 1.1
+        let centerX = chartHeight + offset * 2
+        let centerY = offset-chartHeight * (scale - 1)
+
+        svg.append('rect')
+          .attr('x', -2)
+          .attr('y', 2)
+          .attr('fill', paddingColor)
+          .attr('width', padding)
+          .attr('height', chartHeight*scale)
+          .attr(
+            'transform',
+            'translate(' + centerX + ',' + centerY + ') ' +
+            'rotate(' + endAngle*180/Math.PI + ', ' + 0 +  ',' + chartHeight*scale + ')'
+          )
+
+      }
+
+      if (arcLabels[i]) {
+       
+        // end of arc
+        let spacing = 1.07
+        let x = chartHeight + offset * 2 + Math.cos(endAngle - Math.PI / 2) * (chartHeight * spacing)
+        let y = chartHeight + offset + Math.sin(endAngle - Math.PI / 2) * (chartHeight * spacing)
+
+        // font size
+        let fontScale = 0.09
+        arcLabelFontSize = arcLabelFontSize || Math.round(chartHeight * fontScale)
+
+        // measure text width
+        let canvas = document.createElement('canvas')
+        let ctx = canvas.getContext('2d')
+        ctx.font = arcLabelFontSize + 'px'
+        let size = ctx.measureText(arcLabels[i])
+
+        // calc offset:
+        // labels on the left need more offset (full width)
+        // labels on the top need medium offset (half width)
+        // labels on the right need little to no offset
+        // endAngle = -PI/2 => offset = -width
+        // endAngle = PI/2 => offset = 0
+        let xPadding = 4
+        let xOffset = (endAngle - Math.PI / 2) / Math.PI * (size.width+xPadding)
+
+        // now place label
+        svg.append('text')
+          .attr('x', x + xOffset)
+          .attr('y', y)
+          .text(arcLabels[i])
+          .attr('align', 'center')
+          .attr('font-size', arcLabelFontSize + 'px')
+          .attr('font-family', labelsFont)
+      }
+
+    }
+  
+  })
+
 }
 
 /**
@@ -359,6 +384,7 @@ export function gaugeChart(
     arcDelimiters: [],
     arcOverEffect: true,
     arcPadding: 0,
+    arcPaddingColor: undefined,
     arcLabels: [],
     arcLabelFontSize: undefined,
     rangeLabel: [],
@@ -375,6 +401,7 @@ export function gaugeChart(
     arcDelimiters,
     arcOverEffect,
     arcPadding,
+    arcPaddingColor,
     arcLabels,
     arcLabelFontSize,
     rangeLabel,
@@ -399,6 +426,21 @@ export function gaugeChart(
     .attr('width', chartWidth + offset * 2)
     .attr('height', chartHeight + offset * 4)
 
+    arcOutline(
+      svg,
+      chartHeight,
+      offset,
+      arcColors,
+      outerRadius,
+      arcDelimiters,
+      arcOverEffect,
+      arcPadding,
+      arcPaddingColor,
+      arcLabels,
+      arcLabelFontSize,
+      labelsFont,
+    )
+  
   let needle = null
   if (hasNeedle) {
     needle = needleOutline(
@@ -420,20 +462,6 @@ export function gaugeChart(
       outerNeedle,
     )
   }
-
-  arcOutline(
-    svg,
-    chartHeight,
-    offset,
-    arcColors,
-    outerRadius,
-    arcDelimiters,
-    arcOverEffect,
-    arcPadding,
-    arcLabels,
-    arcLabelFontSize,
-    labelsFont,
-  )
 
   labelOutline(
     svg,

@@ -10,7 +10,8 @@ let gaugeOptions = {
   // arc options
   arcColors: [],
   arcDelimiters: [10, 60, 90],
-  arcPadding: 2,
+  arcPadding: 6,
+  arcPaddingColor: 'white',
   arcLabels: ['35', '210', '315'],
   arcLabelFontSize: false,
   //arcOverEffect: false,

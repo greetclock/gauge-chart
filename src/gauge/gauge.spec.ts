@@ -86,7 +86,8 @@ describe('arc outlining', () => {
       arcDelimiters,
       true,
       0,
-      null,
+      undefined,
+      undefined,
       undefined,
       'sans-serif',
     )
@@ -111,7 +112,8 @@ describe('arc outlining', () => {
       arcDelimiters,
       true,
       0,
-      null,
+      undefined,
+      undefined,
       undefined,
       'sans-serif',
     )
@@ -143,7 +145,8 @@ describe('arc outlining', () => {
       arcDelimiters,
       true,
       0,
-      null,
+      undefined,
+      undefined,
       undefined,
       'sans-serif',
     )

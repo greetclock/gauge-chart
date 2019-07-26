@@ -77,7 +77,8 @@ Feel free to change or delete any of the gaugeOptions properties as long as thei
 | arcDelimiters | array of numbers from 0 to 100 | specifies delimiters of the gauge in ascending order |
 | arcOverEffect | true / false | determines if over effect on ars is enabled or not |
 | arcLabels | array of strings | specifies labels to be placed at delimiters ends |
-| arcPadding | number | specifies padding between arcs (in degrees) |
+| arcPadding | number | specifies padding between arcs (in pixels) |
+| arcPaddingColor | [value supported by CSS](https://www.w3schools.com/colors/default.asp) | color of the padding between delimeters |
 | rangeLabel | array of two strings | depicts gauge ranges on both sides of the chart |
 | centralLabel | string | depicts gauge inner label |
 | labelsFont | string | specifies font-family to be used for labels |
