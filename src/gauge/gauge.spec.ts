@@ -146,7 +146,7 @@ describe('arc outlining', () => {
       true,
       0,
       undefined,
-      undefined,
+      [],
       undefined,
       'sans-serif',
     )
