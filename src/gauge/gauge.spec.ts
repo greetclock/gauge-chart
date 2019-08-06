@@ -84,12 +84,6 @@ describe('arc outlining', () => {
       arcColors,
       outerRadius,
       arcDelimiters,
-      true,
-      0,
-      undefined,
-      undefined,
-      undefined,
-      'sans-serif',
     )
     expect(svg).not.toBe(null)
     expect(svg.html().match(/path/g).length / 2).toBe(2)
@@ -110,12 +104,6 @@ describe('arc outlining', () => {
       arcColors,
       outerRadius,
       arcDelimiters,
-      true,
-      0,
-      undefined,
-      undefined,
-      undefined,
-      'sans-serif',
     )
     // define the whole path string (M...A...L...A...Z for svg arc)
 
@@ -143,12 +131,6 @@ describe('arc outlining', () => {
       arcColors,
       outerRadius,
       arcDelimiters,
-      true,
-      0,
-      undefined,
-      undefined,
-      undefined,
-      'sans-serif',
     )
     // number of paths in svg html has to be 4 (2 arcs and 2 arc shadows onmouseover)
     expect(svg.html().match(/path/g).length / 2).toBe(4)
@@ -410,7 +392,6 @@ describe('label outlining', () => {
       rangeLabel,
       centralLabel,
       rangeLabelFontSize,
-      'sans-serif',
     )
     expect(svg).not.toBe(null)
     expect(svg.html().match(/text/g).length / 2).toBe(3)
@@ -434,20 +415,21 @@ describe('label outlining', () => {
       rangeLabel,
       centralLabel,
       rangeLabelFontSize,
-      'sans-serif',
     )
 
     let svgHtml = svg.html().split('</text>')
     svgHtml.pop() // removed last element (empty string)
     expect(svgHtml[0]).toBe(
-      '<text x="0" y="106.8" font-size="14px"' + ' font-family="sans-serif">',
+      '<text x="0" y="106.8" font-size="14px"' +
+        ' font-family="Roboto,Helvetica Neue,sans-serif">',
     )
     expect(svgHtml[1]).toBe(
-      '<text x="0" y="106.8" font-size="14px"' + ' font-family="sans-serif">',
+      '<text x="0" y="106.8" font-size="14px"' +
+        ' font-family="Roboto,Helvetica Neue,sans-serif">',
     )
     expect(svgHtml[2]).toBe(
       '<text x="94.12" y="90" font-size="21px"' +
-        ' font-family="sans-serif">' +
+        ' font-family="Roboto,Helvetica Neue,sans-serif">' +
         centralLabel,
     )
   })
@@ -470,23 +452,23 @@ describe('label outlining', () => {
       rangeLabel,
       centralLabel,
       rangeLabelFontSize,
-      'sans-serif',
     )
 
     let svgHtml = svg.html().split('</text>')
     svgHtml.pop() // removed last element (empty string)
     expect(svgHtml[0]).toBe(
       '<text x="25.8" y="106.8" font-size="14px"' +
-        ' font-family="sans-serif">' +
+        ' font-family="Roboto,Helvetica Neue,sans-serif">' +
         rangeLabel[0],
     )
     expect(svgHtml[1]).toBe(
       '<text x="165.8" y="106.8" font-size="14px"' +
-        ' font-family="sans-serif">' +
+        ' font-family="Roboto,Helvetica Neue,sans-serif">' +
         rangeLabel[1],
     )
     expect(svgHtml[2]).toBe(
-      '<text x="100" y="90" font-size="21px"' + ' font-family="sans-serif">',
+      '<text x="100" y="90" font-size="21px"' +
+        ' font-family="Roboto,Helvetica Neue,sans-serif">',
     )
   })
 
@@ -508,24 +490,23 @@ describe('label outlining', () => {
       rangeLabel,
       centralLabel,
       rangeLabelFontSize,
-      'sans-serif',
     )
 
     let svgHtml = svg.html().split('</text>')
     svgHtml.pop() // removed last element (empty string)
     expect(svgHtml[0]).toBe(
       '<text x="25.8" y="106.8" font-size="14px"' +
-        ' font-family="sans-serif">' +
+        ' font-family="Roboto,Helvetica Neue,sans-serif">' +
         rangeLabel[0],
     )
     expect(svgHtml[1]).toBe(
       '<text x="165.8" y="106.8" font-size="14px"' +
-        ' font-family="sans-serif">' +
+        ' font-family="Roboto,Helvetica Neue,sans-serif">' +
         rangeLabel[1],
     )
     expect(svgHtml[2]).toBe(
       '<text x="94.12" y="90" font-size="21px"' +
-        ' font-family="sans-serif">' +
+        ' font-family="Roboto,Helvetica Neue,sans-serif">' +
         centralLabel,
     )
   })
