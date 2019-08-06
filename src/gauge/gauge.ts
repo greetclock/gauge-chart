@@ -40,8 +40,8 @@ export function needleValueModifier(needleValue: number) {
 }
 
 /**
- * Function that converts value in degrees into radians.
- * @param deg - value in degrees.
+ * Function that converts percentage into radians.
+ * @param perc - percentage.
  * @returns value in radians.
  */
 export function perc2RadWithShift(perc: number) {
@@ -64,15 +64,22 @@ export function arcOutline(
   arcColors: string[],
   outerRadius: number,
   arcDelimiters: number[],
+  arcOverEffect: boolean,
+  padding: number,
+  paddingColor: string,
+  arcLabels: string[],
+  arcLabelFontSize: number,
+  labelsFont: string,
 ) {
   arcColors.forEach((color, i) => {
+    let startAngle = perc2RadWithShift(i ? arcDelimiters[i - 1] : 0)
+    let endAngle = perc2RadWithShift(arcDelimiters[i] || 100) // 100 for last arc slice
+
     let gaugeArc = arc()
       .innerRadius(chartHeight)
       .outerRadius(outerRadius)
-      .startAngle(
-        i ? perc2RadWithShift(arcDelimiters[i - 1]) : perc2RadWithShift(0),
-      )
-      .endAngle(perc2RadWithShift(arcDelimiters[i] || 100)) // 100 for last arc slice
+      .startAngle(startAngle)
+      .endAngle(endAngle)
 
     let innerArc = svg
       .append('path')
@@ -87,45 +94,124 @@ export function arcOutline(
           ')',
       )
 
-    gaugeArc = arc()
-      .innerRadius(chartHeight)
-      .outerRadius(chartHeight + chartHeight * 0.1)
-      .startAngle(
-        i ? perc2RadWithShift(arcDelimiters[i - 1]) : perc2RadWithShift(0),
-      )
-      .endAngle(perc2RadWithShift(arcDelimiters[i] || 100)) // 100 for last arc slice
+    if (arcOverEffect) {
+      gaugeArc = arc()
+        .innerRadius(chartHeight)
+        .outerRadius(chartHeight + chartHeight * 0.1)
+        .startAngle(startAngle)
+        .endAngle(endAngle)
 
-    let outerArc = svg
-      .append('path')
-      .attr('d', gaugeArc)
-      .attr('fill', 'transparent')
-      .attr('opacity', '0.2')
-      .attr(
-        'transform',
-        'translate(' +
-          (chartHeight + offset * 2) +
-          ', ' +
-          (chartHeight + offset) +
-          ')',
-      )
+      let outerArc = svg
+        .append('path')
+        .attr('d', gaugeArc)
+        .attr('fill', 'transparent')
+        .attr('opacity', '0.2')
+        .attr(
+          'transform',
+          'translate(' +
+            (chartHeight + offset * 2) +
+            ', ' +
+            (chartHeight + offset) +
+            ')',
+        )
 
-    innerArc
-      .on('mouseover', () => {
-        innerArc.style('opacity', 0.8)
-        outerArc
-          .transition()
-          .duration(50)
-          .ease(easeLinear)
-          .attr('fill', color)
-      })
-      .on('mouseout', () => {
-        innerArc.style('opacity', 1)
-        outerArc
-          .transition()
-          .duration(300)
-          .ease(easeLinear)
-          .attr('fill', 'transparent')
-      })
+      innerArc
+        .on('mouseover', () => {
+          innerArc.style('opacity', 0.8)
+          outerArc
+            .transition()
+            .duration(50)
+            .ease(easeLinear)
+            .attr('fill', color)
+        })
+        .on('mouseout', () => {
+          innerArc.style('opacity', 1)
+          outerArc
+            .transition()
+            .duration(300)
+            .ease(easeLinear)
+            .attr('fill', 'transparent')
+        })
+    }
+  })
+
+  arcColors.forEach((color, i) => {
+    if (arcDelimiters[i]) {
+      let endAngle = perc2RadWithShift(arcDelimiters[i])
+
+      if (padding && paddingColor) {
+        let scale = 1.1
+        let centerX = chartHeight + offset * 2
+        let centerY = offset - chartHeight * (scale - 1)
+
+        svg
+          .append('rect')
+          .attr('x', 0)
+          .attr('y', 0)
+          .attr('fill', paddingColor)
+          .attr('width', padding)
+          .attr('height', chartHeight * scale)
+          .attr(
+            'transform',
+            'translate(' +
+              centerX +
+              ',' +
+              centerY +
+              ') ' +
+              'rotate(' +
+              endAngle * 180 / Math.PI +
+              ', ' +
+              0 +
+              ',' +
+              chartHeight * scale +
+              ')',
+          )
+      }
+
+      if (arcLabels[i]) {
+        // end of arc
+        let spacing = 1.07
+        let x =
+          chartHeight +
+          offset * 2 +
+          Math.cos(endAngle - Math.PI / 2) * (chartHeight * spacing)
+        let y =
+          chartHeight +
+          offset +
+          Math.sin(endAngle - Math.PI / 2) * (chartHeight * spacing)
+
+        // font size
+        let fontScale = 0.09
+        arcLabelFontSize =
+          arcLabelFontSize || Math.round(chartHeight * fontScale)
+
+        // measure text width
+        let canvas = document.createElement('canvas')
+        let ctx = canvas.getContext('2d')
+        ctx.font = arcLabelFontSize + 'px'
+        let size = ctx.measureText(arcLabels[i])
+
+        // calc offset:
+        // labels on the left need more offset (full width)
+        // labels on the top need medium offset (half width)
+        // labels on the right need little to no offset
+        // endAngle = -PI/2 => offset = -width
+        // endAngle = PI/2 => offset = 0
+        let xPadding = 4
+        let xOffset =
+          (endAngle - Math.PI / 2) / Math.PI * (size.width + xPadding)
+
+        // now place label
+        svg
+          .append('text')
+          .attr('x', x + xOffset)
+          .attr('y', y)
+          .text(arcLabels[i])
+          .attr('align', 'center')
+          .attr('font-size', arcLabelFontSize + 'px')
+          .attr('font-family', labelsFont)
+      }
+    }
   })
 }
 
@@ -225,6 +311,7 @@ export function labelOutline(
   rangeLabel: string[],
   centralLabel: string,
   rangeLabelFontSize: number,
+  labelsFont: string,
 ) {
   let arcWidth = chartHeight - outerRadius
 
@@ -258,7 +345,7 @@ export function labelOutline(
     .attr('y', rangeLabelOffsetY)
     .text(rangeLabel ? rangeLabel[0] : '')
     .attr('font-size', rangeLabelFontSize + 'px')
-    .attr('font-family', 'Roboto,Helvetica Neue,sans-serif')
+    .attr('font-family', labelsFont)
 
   svg
     .append('text')
@@ -266,7 +353,7 @@ export function labelOutline(
     .attr('y', rangeLabelOffsetY)
     .text(rangeLabel ? rangeLabel[1] : '')
     .attr('font-size', rangeLabelFontSize + 'px')
-    .attr('font-family', 'Roboto,Helvetica Neue,sans-serif')
+    .attr('font-family', labelsFont)
 
   svg
     .append('text')
@@ -274,7 +361,7 @@ export function labelOutline(
     .attr('y', centralLabelOffsetY)
     .text(centralLabel)
     .attr('font-size', centralLabelFontSize + 'px')
-    .attr('font-family', 'Roboto,Helvetica Neue,sans-serif')
+    .attr('font-family', labelsFont)
 }
 
 export interface GaugeOptions {
@@ -305,19 +392,32 @@ export function gaugeChart(
     needleUpdateSpeed: 1000,
     arcColors: [],
     arcDelimiters: [],
+    arcOverEffect: true,
+    arcPadding: 0,
+    arcPaddingColor: undefined,
+    arcLabels: [],
+    arcLabelFontSize: undefined,
     rangeLabel: [],
     centralLabel: '',
     rangeLabelFontSize: undefined,
+    labelsFont: 'Roboto,Helvetica Neue,sans-serif',
   }
+
   let {
     hasNeedle,
     needleColor,
     needleUpdateSpeed,
     arcColors,
     arcDelimiters,
+    arcOverEffect,
+    arcPadding,
+    arcPaddingColor,
+    arcLabels,
+    arcLabelFontSize,
     rangeLabel,
     centralLabel,
     rangeLabelFontSize,
+    labelsFont,
     outerNeedle,
     needleStartValue,
   } = (Object as any).assign(defaultGaugeOption, gaugeOptions)
@@ -335,6 +435,21 @@ export function gaugeChart(
     .append('svg')
     .attr('width', chartWidth + offset * 2)
     .attr('height', chartHeight + offset * 4)
+
+  arcOutline(
+    svg,
+    chartHeight,
+    offset,
+    arcColors,
+    outerRadius,
+    arcDelimiters,
+    arcOverEffect,
+    arcPadding,
+    arcPaddingColor,
+    arcLabels,
+    arcLabelFontSize,
+    labelsFont,
+  )
 
   let needle = null
   if (hasNeedle) {
@@ -357,7 +472,7 @@ export function gaugeChart(
       outerNeedle,
     )
   }
-  arcOutline(svg, chartHeight, offset, arcColors, outerRadius, arcDelimiters)
+
   labelOutline(
     svg,
     areaWidth,
@@ -367,6 +482,7 @@ export function gaugeChart(
     rangeLabel,
     centralLabel,
     rangeLabelFontSize,
+    labelsFont,
   )
 
   return new Gauge(svg, needleUpdateSpeed, needle)
