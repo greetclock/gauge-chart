@@ -9,17 +9,11 @@ let gaugeOptions = {
   needleUpdateSpeed: 1000,
   // arc options
   arcColors: [],
-  arcDelimiters: [10, 60, 90],
-  arcPadding: 6,
-  arcPaddingColor: 'white',
-  arcLabels: ['35', '210', '315'],
-  arcLabelFontSize: false,
-  //arcOverEffect: false,
+  arcDelimiters: [10, 60],
   // label options
   rangeLabel: ['0', '350'],
-  centralLabel: '175',
+  centralLabel: '10',
   rangeLabelFontSize: false,
-  labelsFont: 'Consolas',
 }
 
 GaugeChart
