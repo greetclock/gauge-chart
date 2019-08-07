@@ -13,7 +13,7 @@ You can [catch us on twitter](https://twitter.com/recogizer): [@recogizer](https
 The easiest way to get started is to install it via npm:
 
 ```
-  npm install @recogizer/gauge-chart
+  npm install gauge-chart
 ```
 
 Or to add manually a link to the library into your html file:
