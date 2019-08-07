@@ -1,3 +1,16 @@
+## 0.5.0
+
+* New functionality developed by [Nicolas Bonamy](https://github.com/nbonamy):
+
+  Enable/disable over effect.
+
+  Padding between arc.
+
+  Arc labels.
+
+* Updated dependencies, README.
+* Fixed tests.
+
 ## 0.4.4
 
 * Updated readme.
