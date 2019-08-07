@@ -8,7 +8,7 @@
 
   Arc labels.
 
-* Updated dependencies, README.
+* Updated README.
 * Fixed tests.
 
 ## 0.4.4
