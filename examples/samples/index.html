@@ -19,7 +19,7 @@
   </div>
 
   <footer>© 2018 RECOGIZER GROUP GmbH - All Rights Reserved.</footer>
-  <script src="https://unpkg.com/gauge-chart@0.4.3/dist/bundle.js"></script>
+  <script src="https://unpkg.com/gauge-chart@0.5.0/dist/bundle.js"></script>
   <script>
     // Element inside which you want to see the chart.
     let element1 = document.querySelector('#gaugeArea1')
@@ -53,21 +53,38 @@
 	    rangeLabelFontSize: 42,
     }
 
-    let zebraArcDelimiters = []
-    let zebraArcColors = []
-    zebraArcColors.push('black')
-    for (let i = 2; i < 100; i = i + 2) {
-      zebraArcDelimiters.push(i)
-      i % 4 ? zebraArcColors.push('white') : zebraArcColors.push('black')
-    }
-    zebraArcColors.push('black')
+    // let zebraArcDelimiters = []
+    // let zebraArcColors = []
+    // zebraArcColors.push('black')
+    // for (let i = 2; i < 100; i = i + 2) {
+    //   zebraArcDelimiters.push(i)
+    //   i % 4 ? zebraArcColors.push('white') : zebraArcColors.push('black')
+    // }
+    // zebraArcColors.push('black')
   
-	  let options4 = {
+	  // let options4 = {
+	  //   hasNeedle: true,
+	  //   needleColor: 'black',
+    //   arcDelimiters: zebraArcDelimiters,
+    //   arcColors: zebraArcColors,
+    //   centralLabel: 'zebra',
+    // }  
+
+	  let options5 = {
 	    hasNeedle: true,
 	    needleColor: 'black',
-      arcDelimiters: zebraArcDelimiters,
-      arcColors: zebraArcColors,
-      centralLabel: 'zebra',
+      arcColors: [],
+      arcDelimiters: [10, 60, 90],
+      arcPadding: 6,
+      arcPaddingColor: 'white',
+      arcLabels: ['35', '210', '315'],
+      arcLabelFontSize: false,
+      //arcOverEffect: false,
+      // label options
+      rangeLabel: ['0', '350'],
+      centralLabel: '175',
+      rangeLabelFontSize: false,
+      labelsFont: 'Consolas',
     }
 
     // Drawing and updating the chart.  
@@ -84,7 +101,7 @@
       .updateNeedle(60)
   
 	  GaugeChart
-      .gaugeChart(element4, 400, options4)
+      .gaugeChart(element4, 400, options5)
       .updateNeedle(30)
 
     function edit(id) {
