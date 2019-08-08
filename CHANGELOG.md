@@ -1,3 +1,8 @@
+## 0.5.1
+
+* Fixed bug with build avialability via cdn.
+* Updated gitignore and readme
+
 ## 0.5.0
 
 * New functionality developed by [Nicolas Bonamy](https://github.com/nbonamy):
