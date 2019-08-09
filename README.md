@@ -16,7 +16,7 @@ The easiest way to get started is to install it via npm:
   npm install gauge-chart
 ```
 
-**beware that we moved from `@recogizer/gauge-chart` to `gauge-chart`**)
+**beware that we moved from `@recogizer/gauge-chart` to `gauge-chart`**
 
 Or to add manually a link to the library into your html file:
 
