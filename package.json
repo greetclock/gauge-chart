@@ -12,20 +12,21 @@
     "build:prod_warn": "ENV=prod_warn webpack --config webpack/prod.config.js",
     "typedoc": "typedoc --out docs --exclude '**/*.spec.ts' ./src/",
     "precommit": "lint-staged",
-    "fix-all-ts":
-      "prettier --write src/**/*.ts && tslint --fix -c ./tslint.json 'src/**/*.ts'",
+    "fix-all-ts": "prettier --write src/**/*.ts && tslint --fix -c ./tslint.json 'src/**/*.ts'",
     "start": "npm run dev"
   },
   "lint-staged": {
-    "*.{js,json,css,md}": ["prettier --write", "git add"],
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ],
     "*.ts": [
       "prettier --write",
       "tslint --fix -c ./tslint.json 'src/**/*.ts'",
       "git add"
     ]
   },
-  "author":
-    "“Maxim Maltsev” <“maltsevmn@ya.ru”>, “Alexey Karpov” <“karpovad@yandex.ru”>",
+  "author": "“Maxim Maltsev” <“maltsevmn@ya.ru”>, “Alexey Karpov” <“karpovad@yandex.ru”>",
   "license": "MIT",
   "devDependencies": {
     "@types/d3": "^4.13.2",
