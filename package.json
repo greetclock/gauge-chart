@@ -16,10 +16,6 @@
     "start": "npm run dev"
   },
   "lint-staged": {
-    "*.{js,json,css,md}": [
-      "prettier --write",
-      "git add"
-    ],
     "*.ts": [
       "prettier --write",
       "tslint --fix -c ./tslint.json 'src/**/*.ts'",
@@ -55,7 +51,7 @@
     "karma-typescript": "^3.0.13",
     "karma-webpack": "^2.0.13",
     "lint-staged": "^7.3.0",
-    "prettier": "^1.11.1",
+    "prettier": "^1.18.2",
     "source-map-loader": "^0.2.0",
     "tslint": "^5.1.0",
     "tslint-microsoft-contrib": "^5.2.1",
