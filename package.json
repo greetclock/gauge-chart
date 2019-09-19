@@ -1,6 +1,6 @@
 {
   "name": "gauge-chart",
-  "version": "0.5.2-rc.0",
+  "version": "0.5.2",
   "description": "**A library for creating nice and flexible gauge charts.**",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",

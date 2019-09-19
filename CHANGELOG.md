@@ -1,3 +1,7 @@
+## 0.5.2
+
+- Updated typescript to `3.x.x`.
+
 ## 0.5.2-rc.0
 
 - Updating dependencies.
