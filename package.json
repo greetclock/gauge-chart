@@ -74,5 +74,13 @@
   "directories": {
     "doc": "docs",
     "example": "examples"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/recogizer/gauge-chart.git"
+  },
+  "bugs": {
+    "url": "https://github.com/recogizer/gauge-chart/issues"
+  },
+  "homepage": "https://github.com/recogizer/gauge-chart#readme"
 }
