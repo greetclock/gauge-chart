@@ -67,19 +67,12 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "@types/tapable": "^0.2.5",
     "d3": "^4.13.0",
     "d3-scale-chromatic": "^1.1.1"
   },
   "directories": {
     "doc": "docs",
     "example": "examples"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/recogizer/gauge-chart.git"
-  },
-  "bugs": {
-    "url": "https://github.com/recogizer/gauge-chart/issues"
-  },
-  "homepage": "https://github.com/recogizer/gauge-chart#readme"
+  }
 }

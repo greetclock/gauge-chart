@@ -90,6 +90,7 @@ describe('arc outlining', () => {
       undefined,
       undefined,
       'sans-serif',
+      '#000111',
     )
     expect(svg).not.toBe(null)
     expect(svg.html().match(/path/g).length / 2).toBe(2)
@@ -116,6 +117,7 @@ describe('arc outlining', () => {
       undefined,
       undefined,
       'sans-serif',
+      'red',
     )
     // define the whole path string (M...A...L...A...Z for svg arc)
 
@@ -149,6 +151,7 @@ describe('arc outlining', () => {
       [],
       undefined,
       'sans-serif',
+      'red',
     )
     // number of paths in svg html has to be 4 (2 arcs and 2 arc shadows onmouseover)
     expect(svg.html().match(/path/g).length / 2).toBe(4)
