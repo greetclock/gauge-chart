@@ -7,5 +7,5 @@ export function error(...args) {
 }
 
 export function warn(...args) {
-  if (ENV !== 'production') console.warn.apply(console, arguments)
+  console.warn.apply(console, arguments)
 }

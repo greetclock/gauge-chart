@@ -15,7 +15,7 @@
     "strictNullChecks": false,
     "lib": ["dom", "es6"],
     "typeRoots": ["node_modules/@types"],
-    "types": ["jasmine", "node", "source-map", "webpack"]
+    "types": ["jasmine", "node", "source-map"]
   },
   "exclude": ["node_modules", "dist"],
   "awesomeTypescriptLoaderOptions": {
