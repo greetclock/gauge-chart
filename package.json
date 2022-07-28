@@ -9,7 +9,6 @@
     "watch:test": "npm run test -- --auto-watch --no-single-run",
     "dev": "webpack-dev-server --config webpack/dev.config.js --hot",
     "build": "webpack --config webpack/prod.config.js",
-    "typedoc": "typedoc --out docs --exclude '**/*.spec.ts' ./src/",
     "precommit": "lint-staged",
     "fix-all-ts": "prettier --write src/**/*.ts && tslint --fix -c ./tslint.json 'src/**/*.ts'",
     "start": "npm run dev"
@@ -55,8 +54,6 @@
     "tslint": "^5.1.0",
     "tslint-microsoft-contrib": "^5.2.1",
     "tsutils": "^1.9.1",
-    "typedoc": "^0.14.2",
-    "typedoc-webpack-plugin": "^1.1.4",
     "typescript": "~3.6.3",
     "uglify-js": "^2.8.29",
     "uglifyjs-webpack-plugin": "^0.4.6",
