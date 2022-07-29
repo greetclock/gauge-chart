@@ -1,5 +1,4 @@
 // let path = require('path')
-let ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin
 
 let helpers = require('./helpers')
@@ -25,17 +24,11 @@ module.exports = function() {
           },
           exclude: [/\.(spec|e2e)\.ts$/],
         },
-        {
-          test: /\.css$/,
-          use: ExtractTextPlugin.extract({
-            use: 'css-loader',
-          }),
-        },
       ],
     },
     resolve: {
       extensions: ['.ts', '.js', '.css'],
     },
-    plugins: [new ExtractTextPlugin('styles.css'), new CheckerPlugin()],
+    plugins: [new CheckerPlugin()],
   }
 }
