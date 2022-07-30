@@ -3,14 +3,24 @@
   "version": "1.0.0-beta.0",
   "description": "**A library for creating nice and flexible gauge charts.**",
   "main": "dist/index.js",
+  "author": "",
+  "license": "ISC",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "bundle": "esbuild src/index.ts --bundle --target=es2020 --outdir=dist",
     "compile-types": "tsc",
-    "build": "rm -rf dist && npm run bundle && npm run compile-types"
+    "build": "rm -rf dist && npm run bundle && npm run compile-types",
+    "prepare": "husky install"
   },
-  "author": "",
-  "license": "ISC",
+  "lint-staged": {
+    "**/*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "**/*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write --ignore-unknown"
+    ]
+  },
   "dependencies": {
     "d3": "^4.13.0",
     "d3-scale-chromatic": "^1.5.0"
@@ -18,7 +28,18 @@
   "devDependencies": {
     "@types/d3": "^4.13.12",
     "@types/d3-scale-chromatic": "^1.5.1",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "@typescript-eslint/parser": "^5.31.0",
     "esbuild": "^0.14.51",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.4",
+    "eslint-plugin-promise": "^6.0.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "2.7.1",
     "typescript": "^4.7.4"
   }
 }

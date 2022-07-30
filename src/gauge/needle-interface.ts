@@ -87,12 +87,12 @@ export class Needle {
       ? this.chartHeight * 0.7
       : this.chartHeight * 0.1
     needleWidth = this.outerNeedle ? this.chartHeight * 0.25 : needleWidth
-    let needleHeadLength = this.outerNeedle
+    const needleHeadLength = this.outerNeedle
       ? this.outerRadius * 1.4
       : this.outerRadius * 0.97
-    let needleTailLength = needleWidth * 0.5
-    let needleWaypointOffset = needleWidth * 0.5
-    let needleAngle = gauge.perc2RadWithShift(this.needleValue)
+    const needleTailLength = needleWidth * 0.5
+    const needleWaypointOffset = needleWidth * 0.5
+    const needleAngle = gauge.perc2RadWithShift(this.needleValue)
     let needleCoords: any
 
     if (this.outerNeedle) {

@@ -35,9 +35,9 @@ export class Gauge {
       .duration(this.needleUpdateSpeed)
       .ease(easeCubic)
       .tween('needle animation', () => {
-        let prevValue = this.needle.getValue()
-        let i = interpolateNumber(prevValue, needleValue)
-        return t => this.needle.setValue(i(t))
+        const prevValue = this.needle.getValue()
+        const i = interpolateNumber(prevValue, needleValue)
+        return (t) => this.needle.setValue(i(t))
       })
   }
 

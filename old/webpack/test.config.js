@@ -3,7 +3,7 @@ let path = require('path')
 let commonConfig = require('./common.config.js')
 let helpers = require('./helpers')
 
-module.exports = function() {
+module.exports = function () {
   return webpackMerge(commonConfig(), {
     module: {
       rules: [

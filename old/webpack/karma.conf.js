@@ -1,6 +1,6 @@
 let testWebpackConfig = require('./test.config.js')
 
-module.exports = function(config) {
+module.exports = function (config) {
   let webpack = testWebpackConfig()
 
   let configuration = {

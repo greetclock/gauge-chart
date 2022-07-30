@@ -3,7 +3,7 @@ const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin
 
 let helpers = require('./helpers')
 
-module.exports = function() {
+module.exports = function () {
   // let isProd = options.env === 'production'
 
   return {

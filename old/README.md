@@ -21,7 +21,7 @@ The easiest way to get started is to install it via npm:
 Or to add manually a link to the library into your html file:
 
 ```html
-  <script src="https://unpkg.com/gauge-chart@latest/dist/bundle.js"></script>
+<script src="https://unpkg.com/gauge-chart@latest/dist/bundle.js"></script>
 ```
 
 ## Usage
@@ -29,7 +29,7 @@ Or to add manually a link to the library into your html file:
 Create an element for positioning gauge in your html file:
 
 ```html
-  <div id="gaugeArea"></div>
+<div id="gaugeArea"></div>
 ```
 
 Now you're ready to draw your own gauge.

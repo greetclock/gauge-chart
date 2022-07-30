@@ -17,7 +17,7 @@ export function arcColorsModifier(
   arcColors: string[],
 ) {
   if (arcDelimiters.length > arcColors.length - 1) {
-    let colorDiff = arcDelimiters.length - arcColors.length + 1
+    const colorDiff = arcDelimiters.length - arcColors.length + 1
     for (let i = 0; i < colorDiff; i++) {
       arcColors.push(schemePaired[i % schemePaired.length])
     }
@@ -71,8 +71,8 @@ export function arcOutline(
   labelsFont: string,
 ) {
   arcColors.forEach((color, i) => {
-    let startAngle = perc2RadWithShift(i ? arcDelimiters[i - 1] : 0)
-    let endAngle = perc2RadWithShift(arcDelimiters[i] || 100) // 100 for last arc slice
+    const startAngle = perc2RadWithShift(i ? arcDelimiters[i - 1] : 0)
+    const endAngle = perc2RadWithShift(arcDelimiters[i] || 100) // 100 for last arc slice
 
     let gaugeArc = arc()
       .innerRadius(chartHeight)
@@ -80,7 +80,7 @@ export function arcOutline(
       .startAngle(startAngle)
       .endAngle(endAngle)
 
-    let innerArc = svg
+    const innerArc = svg
       .append('path')
       .attr('d', gaugeArc)
       .attr('fill', color)
@@ -100,7 +100,7 @@ export function arcOutline(
         .startAngle(startAngle)
         .endAngle(endAngle)
 
-      let outerArc = svg
+      const outerArc = svg
         .append('path')
         .attr('d', gaugeArc)
         .attr('fill', 'transparent')
@@ -136,12 +136,12 @@ export function arcOutline(
 
   arcColors.forEach((color, i) => {
     if (arcDelimiters[i]) {
-      let endAngle = perc2RadWithShift(arcDelimiters[i])
+      const endAngle = perc2RadWithShift(arcDelimiters[i])
 
       if (padding && paddingColor) {
-        let scale = 1.1
-        let centerX = chartHeight + offset * 2
-        let centerY = offset - chartHeight * (scale - 1)
+        const scale = 1.1
+        const centerX = chartHeight + offset * 2
+        const centerY = offset - chartHeight * (scale - 1)
 
         svg
           .append('rect')
@@ -169,26 +169,26 @@ export function arcOutline(
 
       if (arcLabels[i]) {
         // end of arc
-        let spacing = 1.07
-        let x =
+        const spacing = 1.07
+        const x =
           chartHeight +
           offset * 2 +
           Math.cos(endAngle - Math.PI / 2) * (chartHeight * spacing)
-        let y =
+        const y =
           chartHeight +
           offset +
           Math.sin(endAngle - Math.PI / 2) * (chartHeight * spacing)
 
         // font size
-        let fontScale = 0.09
+        const fontScale = 0.09
         arcLabelFontSize =
           arcLabelFontSize || Math.round(chartHeight * fontScale)
 
         // measure text width
-        let canvas = document.createElement('canvas')
-        let ctx = canvas.getContext('2d')
+        const canvas = document.createElement('canvas')
+        const ctx = canvas.getContext('2d')
         ctx.font = arcLabelFontSize + 'px'
-        let size = ctx.measureText(arcLabels[i])
+        const size = ctx.measureText(arcLabels[i])
 
         // calc offset:
         // labels on the left need more offset (full width)
@@ -196,8 +196,8 @@ export function arcOutline(
         // labels on the right need little to no offset
         // endAngle = -PI/2 => offset = -width
         // endAngle = PI/2 => offset = 0
-        let xPadding = 4
-        let xOffset =
+        const xPadding = 4
+        const xOffset =
           ((endAngle - Math.PI / 2) / Math.PI) * (size.width + xPadding)
 
         // now place label
@@ -231,9 +231,9 @@ export function needleBaseOutline(
   outerNeedle: boolean,
 ) {
   // Different circle radiuses in the base of needle
-  let innerGaugeRadius =
+  const innerGaugeRadius =
     centralLabel || outerNeedle ? chartHeight * 0.5 : chartHeight * 0.1
-  let gaugeArc = arc()
+  const gaugeArc = arc()
     .innerRadius(innerGaugeRadius)
     .outerRadius(0)
     .startAngle(perc2RadWithShift(0))
@@ -275,8 +275,8 @@ export function needleOutline(
   outerNeedle: boolean,
   needleStartValue: number,
 ) {
-  let needleValue = needleStartValue
-  let needle = new Needle(
+  const needleValue = needleStartValue
+  const needle = new Needle(
     svg,
     needleValue,
     centralLabel,
@@ -312,31 +312,31 @@ export function labelOutline(
   rangeLabelFontSize: number,
   labelsFont: string,
 ) {
-  let arcWidth = chartHeight - outerRadius
+  const arcWidth = chartHeight - outerRadius
 
   // Fonts specification (responsive to chart size)
   rangeLabelFontSize = rangeLabelFontSize || Math.round(chartHeight * 0.18)
-  let realRangeFontSize = rangeLabelFontSize * 0.6 // counted empirically
-  let centralLabelFontSize = rangeLabelFontSize * 1.5
-  let realCentralFontSize = centralLabelFontSize * 0.56
+  const realRangeFontSize = rangeLabelFontSize * 0.6 // counted empirically
+  const centralLabelFontSize = rangeLabelFontSize * 1.5
+  const realCentralFontSize = centralLabelFontSize * 0.56
 
   // Offsets specification (responsive to chart size)
-  let leftRangeLabelOffsetX = rangeLabel[0]
+  const leftRangeLabelOffsetX = rangeLabel[0]
     ? areaWidth / 2 -
       outerRadius -
       arcWidth / 2 -
       (realRangeFontSize * rangeLabel[0].length) / 2
     : 0
-  let rightRangeLabelOffsetX = rangeLabel[1]
+  const rightRangeLabelOffsetX = rangeLabel[1]
     ? areaWidth / 2 +
       outerRadius +
       arcWidth / 2 -
       (realRangeFontSize * rangeLabel[1].length) / 2
     : 0
-  let rangeLabelOffsetY = offset + chartHeight + realRangeFontSize * 2
-  let centralLabelOffsetX =
+  const rangeLabelOffsetY = offset + chartHeight + realRangeFontSize * 2
+  const centralLabelOffsetX =
     areaWidth / 2 - (realCentralFontSize * centralLabel.length) / 2
-  let centralLabelOffsetY = offset + chartHeight
+  const centralLabelOffsetY = offset + chartHeight
 
   svg
     .append('text')
@@ -383,7 +383,7 @@ export function gaugeChart(
   areaWidth: number,
   gaugeOptions: GaugeOptions,
 ): GaugeInterface {
-  let defaultGaugeOption = {
+  const defaultGaugeOption = {
     hasNeedle: false,
     outerNeedle: false,
     needleColor: 'gray',
@@ -426,11 +426,11 @@ export function gaugeChart(
 
   arcColors = arcColorsModifier(arcDelimiters, arcColors)
 
-  let offset = areaWidth * 0.075
-  let chartHeight = areaWidth * 0.5 - offset * 2
-  let chartWidth = areaWidth - offset * 2
-  let outerRadius = chartHeight * 0.75
-  let svg = select(element)
+  const offset = areaWidth * 0.075
+  const chartHeight = areaWidth * 0.5 - offset * 2
+  const chartWidth = areaWidth - offset * 2
+  const outerRadius = chartHeight * 0.75
+  const svg = select(element)
     .append('svg')
     .attr('width', chartWidth + offset * 2)
     .attr('height', chartHeight + offset * 4)

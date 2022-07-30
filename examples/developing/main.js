@@ -1,6 +1,6 @@
-let element = document.querySelector('#gaugeArea')
+const element = document.querySelector('#gaugeArea')
 
-let gaugeOptions = {
+const gaugeOptions = {
   // needle options
   hasNeedle: true,
   outerNeedle: false,
@@ -14,7 +14,7 @@ let gaugeOptions = {
   arcPaddingColor: 'white',
   arcLabels: ['35', '210', '315'],
   arcLabelFontSize: false,
-  //arcOverEffect: false,
+  // arcOverEffect: false,
   // label options
   rangeLabel: ['0', '350'],
   centralLabel: '175',
