@@ -1,5 +1,0 @@
-dist/gauge
-dist/index.d.ts
-node_modules
-coverage
-npm-debug.log
