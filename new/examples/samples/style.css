@@ -1,0 +1,112 @@
+* { font-family: Roboto,Helvetica Neue,sans-serif; }
+
+a { text-decoration: none; }
+
+.header {
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.subheader {
+  font-size: 23px;
+  color: #939298;
+  margin-top: 24px;
+}
+
+.gauge-row {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  margin-bottom: 10px;
+  min-height: calc(97vh - 100px);
+}
+
+.edit {
+  height: 25px;
+  width: 70%;
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid lightgray;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.edit:hover { background-color: #f8f8f8; }
+
+.edit-leftside {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  margin-bottom: 10px;
+  min-height: calc(97vh - 100px);
+}
+
+.edit-box {
+  width: 260px;
+  height: 455px;
+  border: 1px solid lightgray;
+  padding: 15px;
+}
+
+.edit-box__input {
+  width: 100px;
+  margin: 4px;
+  padding: 3px;
+}
+
+.link { 
+  text-decoration: none;
+  color: #0366d6;
+  font-size: 42px;
+}
+
+.button-wrap {
+  display: flex;
+  flex-direction: row;
+  float: right;
+  width: 292px;
+  justify-content: flex-end;
+}
+
+.button {
+  font-size: 12px;
+  font-weight: 800; 
+  cursor: pointer;
+  padding: 3px;
+  background-color: #444;
+  color: white;
+  margin-left: 4px;
+}
+
+#code { opacity: 0; }
+
+.link:hover { text-decoration: underline; }
+
+.fork-me {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+}
+
+#input-chartWidth, #input-needleValue, #input-needleStartValue, #input-needleUpdateSpeed {
+  width: 60px;
+}
+
+#input-hasNeedle, #input-outerNeedle {
+  margin: 4px;
+  padding: 3px;
+  background-color: white;
+}
+
+footer {
+  font-size: 12px;
+  text-align: center;
+  position: relative;
+}

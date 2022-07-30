@@ -1,0 +1,63 @@
+<html>
+<head>
+  <title>Gauge Chart Editor - Recogizer</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<body>
+	<a href="http://recogizer.com/en">
+		<div class="header">
+			<img src="logo-recogizer.jpg" />
+			<div class="subheader">_open_source</div>
+		</div>
+	</a>
+  <div class="edit-container">
+		<div class="edit-leftside">
+    	<div id="edit-box" class="edit-box">
+	  	  Chart width: <input id="input-chartWidth" type="number" onchange="optionChange()" class="edit-box__input" /><br />
+	  	  Needle value: <input id="input-needleValue" type="number" onchange="optionChange()" class="edit-box__input" /><br />
+	  	  <h3>Extra Options:</h3>
+				hasNeedle: <select onchange="optionChange()" id="input-hasNeedle">
+										<option value="true">true</option>
+										<option value="false">false</option>
+										<option value="blank" selected></option>
+									</select><br />
+	  	  outerNeedle:  <select onchange="optionChange()" id="input-outerNeedle">
+												<option value="true">true</option>
+												<option value="false">false</option>
+												<option value="blank" selected></option>
+											</select><br />
+	  	  needleColor: <input id="input-needleColor" type="text" onchange="optionChange()" class="edit-box__input" /><br />
+	  	  needleStartValue: <input id="input-needleStartValue" type="number" onchange="optionChange()" class="edit-box__input" /><br />
+	  	  needleUpdateSpeed: <input id="input-needleUpdateSpeed" type="number" onchange="optionChange()" class="edit-box__input" /><br />
+	  	  arcColors: <input id="input-arcColors" type="text" onchange="optionChange()" class="edit-box__input" /><br />
+				arcDelimiters: <input id="input-arcDelimiters" type="text" onchange="optionChange()" class="edit-box__input" /><br />
+				<!-- arcPadding: <input id="input-arcPadding" type="text" onchange="optionChange()" class="edit-box__input" /><br />
+				arcPaddingColor: <input id="input-arcPaddingColor" type="text" onchange="optionChange()" class="edit-box__input" /><br />
+				arcLabels: <input id="input-arcLabels" type="text" onchange="optionChange()" class="edit-box__input" /><br />
+				arcLabelFontSize: <input id="input-arcLabelFontSize" type="text" onchange="optionChange()" class="edit-box__input" /><br /> -->
+	  	  rangeLabel: <input id="input-rangeLabel" type="text" onchange="optionChange()" class="edit-box__input" /><br />
+	  	  centralLabel: <input id="input-centralLabel" type="text" onchange="optionChange()" class="edit-box__input" /><br />
+				rangeLabelFontSize: <input id="input-rangeLabelFontSize" type="number" onchange="optionChange()" class="edit-box__input" /><br />
+				<!-- labelsFont: <input id="input-labelsFont" type="text" onchange="optionChange()" class="edit-box__input" /><br /> -->
+			</div>
+			<div class="button-wrap">
+				<span class="button" onclick="saveAsPng()">save as image</span>
+				<span class="button" onclick="copyAsCode()">copy as code</span>
+			</div>
+			<textarea id="code"></textarea>
+		</div>
+	  <div id="gaugeArea"></div>
+  </div>
+  <a href="https://github.com/recogizer">
+    <img class="fork-me" alt="Fork me on GitHub" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+	</a>
+	
+	<footer>© 2018 RECOGIZER GROUP GmbH - All Rights Reserved.</footer>
+
+	<!-- SCRIPTS -->
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://unpkg.com/gauge-chart@0.4.3/dist/bundle.js"></script>
+	<script src="main.js"></script>
+</body>
+</html>

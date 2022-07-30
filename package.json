@@ -9,16 +9,8 @@
     "watch:test": "npm run test -- --auto-watch --no-single-run",
     "dev": "webpack-dev-server --config webpack/dev.config.js --hot",
     "build": "webpack --config webpack/prod.config.js",
-    "precommit": "lint-staged",
     "fix-all-ts": "prettier --write src/**/*.ts && tslint --fix -c ./tslint.json 'src/**/*.ts'",
     "start": "npm run dev"
-  },
-  "lint-staged": {
-    "*.ts": [
-      "prettier --write",
-      "tslint --fix -c ./tslint.json 'src/**/*.ts'",
-      "git add"
-    ]
   },
   "author": "“Maxim Maltsev” <“maltsevmn@ya.ru”>, “Alexey Karpov” <“karpovad@yandex.ru”>",
   "license": "MIT",
@@ -35,7 +27,6 @@
     "eslint-config-airbnb": "^17.0.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-react": "^7.0.1",
-    "husky": "^0.14.3",
     "istanbul-instrumenter-loader": "^2.0.0",
     "jasmine-core": "^4.3.0",
     "karma": "^6.4.0",

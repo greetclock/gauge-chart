@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "moduleResolution": "node",
+    "declaration": true,
+    "outDir": "dist",
+    "stripInternal": true,
+    "emitDeclarationOnly": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "noEmitHelpers": true,
+    "strictNullChecks": false,
+    "typeRoots": ["node_modules/@types"],
+    "types": []
+  },
+  "exclude": ["node_modules", "dist"]
+}
