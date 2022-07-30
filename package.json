@@ -14,7 +14,8 @@
     "build": "rm -rf dist && npm run bundle:prod && npm run compile-types",
     "prepare": "husky install",
     "dev-server": "vite . --open /examples/developing/",
-    "dev": "concurrently 'npm run dev-server' 'npm run bundle:watch'"
+    "dev": "concurrently 'npm run dev-server' 'npm run bundle:watch'",
+    "lint": "prettier --check . && eslint src/**/*.ts "
   },
   "lint-staged": {
     "**/*": [
