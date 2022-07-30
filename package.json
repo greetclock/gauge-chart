@@ -10,7 +10,8 @@
     "bundle": "esbuild src/index.ts --bundle --target=es2020 --outdir=dist",
     "compile-types": "tsc",
     "build": "rm -rf dist && npm run bundle && npm run compile-types",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "dev": "vite . --open /examples/developing/"
   },
   "lint-staged": {
     "**/*": [
@@ -46,6 +47,7 @@
     "lint-staged": "^13.0.3",
     "prettier": "2.7.1",
     "ts-jest": "^28.0.7",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "vite": "^3.0.4"
   }
 }
