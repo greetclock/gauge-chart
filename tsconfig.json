@@ -13,7 +13,7 @@
     "noEmitHelpers": true,
     "strictNullChecks": false,
     "typeRoots": ["node_modules/@types"],
-    "types": []
+    "types": ["jest"]
   },
   "exclude": ["node_modules", "dist"]
 }

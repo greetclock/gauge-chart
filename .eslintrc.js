@@ -11,4 +11,12 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {},
+  overrides: [
+    {
+      files: ['**/*.spec.ts'],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 }
