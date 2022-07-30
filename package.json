@@ -8,10 +8,12 @@
   "scripts": {
     "test": "jest",
     "bundle": "esbuild src/index.ts --bundle --target=es2020 --outdir=dist",
+    "bundle:watch": "npm run bundle -- --watch",
     "compile-types": "tsc",
     "build": "rm -rf dist && npm run bundle && npm run compile-types",
     "prepare": "husky install",
-    "dev": "vite . --open /examples/developing/"
+    "dev-server": "vite . --open /examples/developing/",
+    "dev": "concurrently 'npm run dev-server' 'npm run bundle:watch'"
   },
   "lint-staged": {
     "**/*": [
@@ -34,6 +36,7 @@
     "@types/jest": "^28.1.6",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
+    "concurrently": "^7.3.0",
     "esbuild": "^0.14.51",
     "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
