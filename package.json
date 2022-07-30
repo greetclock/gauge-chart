@@ -26,6 +26,8 @@
     "d3-scale-chromatic": "^1.5.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
     "@types/d3": "^4.13.12",
     "@types/d3-scale-chromatic": "^1.5.1",
     "@typescript-eslint/eslint-plugin": "^5.31.0",
