@@ -1,3 +1,5 @@
+import { gaugeChart } from '../../dist/bundle.mjs'
+
 const element = document.querySelector('#gaugeArea')
 
 const gaugeOptions = {
@@ -22,4 +24,4 @@ const gaugeOptions = {
   labelsFont: 'Consolas',
 }
 
-GaugeChart.gaugeChart(element, 400, gaugeOptions).updateNeedle(50)
+gaugeChart(element, 400, gaugeOptions).updateNeedle(50)
