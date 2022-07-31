@@ -18,7 +18,8 @@
     "prepare": "husky install",
     "dev-server": "vite . --open /examples/developing/",
     "dev": "concurrently 'npm run dev-server' 'npm run bundle:watch'",
-    "lint": "prettier --check . && eslint src/**/*.ts "
+    "lint": "prettier --check . && eslint src/**/*.ts",
+    "prepublish": "npm run build"
   },
   "lint-staged": {
     "**/*": [
