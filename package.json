@@ -2,7 +2,7 @@
   "name": "gauge-chart",
   "version": "0.0.0",
   "description": "**A library for creating nice and flexible gauge charts.**",
-  "main": "dist/bundle.mjs",
+  "main": "dist/commonjs-bundle.js",
   "author": "",
   "license": "ISC",
   "scripts": {
