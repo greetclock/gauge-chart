@@ -4,7 +4,7 @@
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/greetclock/gauge-chart/Test%20Workflow?style=flat-square) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-## [Demo](https://recogizer.github.io/gauge-chart/examples/samples/) | [Documentation](https://recogizer.github.io/gauge-chart/docs/)
+## [Demo](https://greetclock.github.io/gauge-chart/examples/samples/)
 
 ## Installation
 
@@ -106,10 +106,6 @@ Some examples of what you can get out of the library using different properties:
 
 Build the library with `npm run build`. For a production version with console warnings, execute `npm run build:prod_warn`. This will fetch all dependencies and then compile the `dist` files. To see the examples locally you can start a web server with `npm run dev` and go to `localhost:8080` (`localhost:8081` if port `8080` is busy).
 
-## License
-
-MIT License. Copyright (c) 2017-2019 RECOGIZER GROUP GmbH.
-
 ## Authors
 
-[Alexey Karpov](https://github.com/cherurg), [Maxim Maltsev](https://github.com/mmaltsev).
+[Alexey Karpov](https://github.com/greetclock), [Maxim Maltsev](https://github.com/mmaltsev).
