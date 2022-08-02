@@ -113,9 +113,11 @@
       GaugeChart.gaugeChart(element4, 400, options5).updateNeedle(30)
 
       function edit(id) {
-        params = objToUrlStr(id)
-        window.open('edit.html?' + params)
+        let params = objToUrlStr(id)
+        window.open('edit.html?' + encodeURIComponent(params))
       }
+
+      window.edit = edit
 
       function objToUrlStr(id) {
         let options = {}

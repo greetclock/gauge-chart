@@ -10,7 +10,7 @@ window.onload = function () {
     const jsonStr = href
       .substr(jsonStrStartId + 1, href.length - 1)
       .replace(/%22/g, '"')
-    options = JSON.parse(jsonStr)
+    options = JSON.parse(decodeURIComponent(jsonStr))
   } else {
     // DEFAULT VALUES
     options = {
