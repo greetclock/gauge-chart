@@ -21,7 +21,7 @@ const GaugeChart = require('gauge-chart')
 You can also import the library as ES Module:
 
 ```js
-import * as GaugeChart from 'https://unpkg.com/gauge-chart@1.0.0-beta.4/dist/bundle.mjs'
+import * as GaugeChart from 'https://unpkg.com/gauge-chart@next/dist/bundle.mjs'
 ```
 
 ## Usage
