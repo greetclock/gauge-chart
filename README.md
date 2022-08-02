@@ -104,7 +104,7 @@ Some examples of what you can get out of the library using different properties:
 
 ## Contributing
 
-Build the library with `npm run build`. For a production version with console warnings, execute `npm run build:prod_warn`. This will fetch all dependencies and then compile the `dist` files. To see the examples locally you can start a web server with `npm run dev` and go to `localhost:8080` (`localhost:8081` if port `8080` is busy).
+Build the library with `npm run build`. This will compile the `dist` files. To see the examples locally you can start a web server with `npm run dev`.
 
 ## Authors
 
