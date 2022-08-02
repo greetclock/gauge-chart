@@ -1,4 +1,7 @@
+import * as GaugeChart from 'https://unpkg.com/gauge-chart@next/dist/bundle.mjs'
+
 let gauge
+
 window.onload = function () {
   const href = window.location.href
   const jsonStrStartId = href.search('\\?')
@@ -41,7 +44,7 @@ function setGauge(isDel, options, chartWidth, needleValue) {
 }
 
 function setEditorValues(options) {
-  optionNames = [
+  const optionNames = [
     'chartWidth',
     'needleValue',
     'hasNeedle',
@@ -55,13 +58,13 @@ function setEditorValues(options) {
     'centralLabel',
     'rangeLabelFontSize',
   ]
-  for (optionName of optionNames)
+  for (let optionName of optionNames)
     if (options.hasOwnProperty(optionName))
       document.getElementById('input-' + optionName).value = options[optionName]
 }
 
 function optionChange() {
-  allOptionNames = [
+  const allOptionNames = [
     'chartWidth',
     'needleValue',
     'hasNeedle',
@@ -78,7 +81,7 @@ function optionChange() {
   const allOptions = {}
   const chartWidth = 0
   const needleValue = 0
-  for (optionName of allOptionNames) {
+  for (let optionName of allOptionNames) {
     const optionElement = document.getElementById('input-' + optionName)
     if (optionElement && optionElement.value) {
       // delete all redundant spaces from the string
@@ -107,11 +110,13 @@ function optionChange() {
   setGauge(true, allOptions, allOptions.chartWidth, allOptions.needleValue)
 }
 
+window.optionChange = optionChange
+
 function colorsStrToArr(str) {
   const colorArr = []
   let color = ''
   let openBracket = false
-  for (char of str) {
+  for (let char of str) {
     if (char === '(') {
       openBracket = true
       color += char

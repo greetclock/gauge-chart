@@ -30,9 +30,9 @@
       </div>
     </div>
 
-    <footer>© 2018 RECOGIZER GROUP GmbH - All Rights Reserved.</footer>
-    <script src="https://unpkg.com/gauge-chart@0.5.1/dist/bundle.js"></script>
-    <script>
+    <script type="module">
+      import * as GaugeChart from 'https://unpkg.com/gauge-chart@next/dist/bundle.mjs'
+
       // Element inside which you want to see the chart.
       let element1 = document.querySelector('#gaugeArea1')
       let element2 = document.querySelector('#gaugeArea2')
