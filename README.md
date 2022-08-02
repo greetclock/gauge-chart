@@ -2,26 +2,26 @@
 
 **A library for creating nice and flexible gauge charts.**
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-You can [catch us on twitter](https://twitter.com/recogizer): [@recogizer](https://twitter.com/recogizer) or head over to [our company's website](http://www.recogizer.com/).
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/greetclock/gauge-chart/Test%20Workflow?style=flat-square) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 ## [Demo](https://recogizer.github.io/gauge-chart/examples/samples/) | [Documentation](https://recogizer.github.io/gauge-chart/docs/)
 
 ## Installation
 
-The easiest way to get started is to install it via npm:
+The easiest way to get started is to install it via npm. When you import it in you code, then by default it will use CommonJS module.
 
 ```
   npm install gauge-chart
 ```
 
-**beware that we moved from `@recogizer/gauge-chart` to `gauge-chart`**
+```js
+const GaugeChart = require('gauge-chart')
+```
 
-Or to add manually a link to the library into your html file:
+You can also import the library as ES Module:
 
-```html
-<script src="https://unpkg.com/gauge-chart@latest/dist/bundle.js"></script>
+```js
+import * as GaugeChart from 'https://unpkg.com/gauge-chart@1.0.0-beta.4/dist/bundle.mjs'
 ```
 
 ## Usage
@@ -34,7 +34,7 @@ Create an element for positioning gauge in your html file:
 
 Now you're ready to draw your own gauge.
 
-Just copy this code into your js / ts file or into `<script> </script>` tags in html file:
+Just copy this code into your Javascript or Typescript file or into `<script> </script>` tags in HTML file:
 
 ```javascript
 // Element inside which you want to see the chart
