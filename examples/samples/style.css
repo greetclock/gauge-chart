@@ -1,6 +1,10 @@
-* { font-family: Roboto,Helvetica Neue,sans-serif; }
+* {
+  font-family: Roboto, Helvetica Neue, sans-serif;
+}
 
-a { text-decoration: none; }
+a {
+  text-decoration: none;
+}
 
 .header {
   border-bottom: 1px solid lightgray;
@@ -32,7 +36,9 @@ a { text-decoration: none; }
   margin: 0 auto;
 }
 
-.edit:hover { background-color: #f8f8f8; }
+.edit:hover {
+  background-color: #f8f8f8;
+}
 
 .edit-leftside {
   display: flex;
@@ -60,7 +66,7 @@ a { text-decoration: none; }
   padding: 3px;
 }
 
-.link { 
+.link {
   text-decoration: none;
   color: #0366d6;
   font-size: 42px;
@@ -76,7 +82,7 @@ a { text-decoration: none; }
 
 .button {
   font-size: 12px;
-  font-weight: 800; 
+  font-weight: 800;
   cursor: pointer;
   padding: 3px;
   background-color: #444;
@@ -84,9 +90,13 @@ a { text-decoration: none; }
   margin-left: 4px;
 }
 
-#code { opacity: 0; }
+#code {
+  opacity: 0;
+}
 
-.link:hover { text-decoration: underline; }
+.link:hover {
+  text-decoration: underline;
+}
 
 .fork-me {
   position: absolute;
@@ -95,11 +105,15 @@ a { text-decoration: none; }
   border: 0;
 }
 
-#input-chartWidth, #input-needleValue, #input-needleStartValue, #input-needleUpdateSpeed {
+#input-chartWidth,
+#input-needleValue,
+#input-needleStartValue,
+#input-needleUpdateSpeed {
   width: 60px;
 }
 
-#input-hasNeedle, #input-outerNeedle {
+#input-hasNeedle,
+#input-outerNeedle {
   margin: 4px;
   padding: 3px;
   background-color: white;

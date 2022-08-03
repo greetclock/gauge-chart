@@ -2,26 +2,26 @@
 
 **A library for creating nice and flexible gauge charts.**
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/greetclock/gauge-chart/Test%20Workflow?style=flat-square) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-You can [catch us on twitter](https://twitter.com/recogizer): [@recogizer](https://twitter.com/recogizer) or head over to [our company's website](http://www.recogizer.com/).
-
-## [Demo](https://recogizer.github.io/gauge-chart/examples/samples/) | [Documentation](https://recogizer.github.io/gauge-chart/docs/)
+## [Demo](https://greetclock.github.io/gauge-chart/examples/samples/)
 
 ## Installation
 
-The easiest way to get started is to install it via npm:
+The easiest way to get started is to install it via npm. When you import it in you code, then by default it will use CommonJS module.
 
 ```
   npm install gauge-chart@0.5.3
 ```
 
-**beware that we moved from `@recogizer/gauge-chart` to `gauge-chart`**
+```js
+const GaugeChart = require('gauge-chart')
+```
 
-Or to add manually a link to the library into your html file:
+You can also import the library as ES Module:
 
-```html
-  <script src="https://unpkg.com/gauge-chart@latest/dist/bundle.js"></script>
+```js
+import * as GaugeChart from 'https://unpkg.com/gauge-chart@next/dist/bundle.mjs'
 ```
 
 ## Usage
@@ -29,12 +29,12 @@ Or to add manually a link to the library into your html file:
 Create an element for positioning gauge in your html file:
 
 ```html
-  <div id="gaugeArea"></div>
+<div id="gaugeArea"></div>
 ```
 
 Now you're ready to draw your own gauge.
 
-Just copy this code into your js / ts file or into `<script> </script>` tags in html file:
+Just copy this code into your Javascript or Typescript file or into `<script> </script>` tags in HTML file:
 
 ```javascript
 // Element inside which you want to see the chart
@@ -104,12 +104,8 @@ Some examples of what you can get out of the library using different properties:
 
 ## Contributing
 
-Build the library with `npm run build`. For a production version with console warnings, execute `npm run build:prod_warn`. This will fetch all dependencies and then compile the `dist` files. To see the examples locally you can start a web server with `npm run dev` and go to `localhost:8080` (`localhost:8081` if port `8080` is busy).
-
-## License
-
-MIT License. Copyright (c) 2017-2019 RECOGIZER GROUP GmbH.
+Build the library with `npm run build`. This will compile the `dist` files. To see the examples locally you can start a web server with `npm run dev`.
 
 ## Authors
 
-[Alexey Karpov](https://github.com/cherurg), [Maxim Maltsev](https://github.com/mmaltsev).
+[Alexey Karpov](https://github.com/greetclock), [Maxim Maltsev](https://github.com/mmaltsev).

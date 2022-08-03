@@ -7,7 +7,7 @@ import * as gaugeParam from './param-checker'
 
 function pathValueChecker(svgHtml, startChar, stopChar, expectedValues) {
   svgHtml = svgHtml.slice(svgHtml.search(startChar) + 1, svgHtml.length)
-  let svgA = svgHtml
+  const svgA = svgHtml
     .slice(0, stopChar ? svgHtml.search(stopChar) : svgHtml.length)
     .split(',')
     .map(Number)
@@ -63,20 +63,20 @@ describe('variable modifiers', () => {
 })
 
 describe('arc outlining', () => {
-  let offset = 10
-  let chartWidth = 200 - offset * 2
-  let chartHeight = 100 - offset * 2
-  let outerRadius = chartHeight * 0.75
-  let element = document.createElement('test')
+  const offset = 10
+  const chartWidth = 200 - offset * 2
+  const chartHeight = 100 - offset * 2
+  const outerRadius = chartHeight * 0.75
+  const element = document.createElement('test')
 
   it('checks arc svg outline', () => {
-    let svg = d3
+    const svg = d3
       .select(element)
       .append('svg')
       .attr('width', chartWidth + offset * 2)
       .attr('height', chartHeight + offset * 2)
-    let arcDelimiters = []
-    let arcColors = ['red']
+    const arcDelimiters = []
+    const arcColors = ['red']
     gauge.arcOutline(
       svg,
       chartHeight,
@@ -96,13 +96,13 @@ describe('arc outlining', () => {
   })
 
   it('checks correct path of arc', () => {
-    let svg = d3
+    const svg = d3
       .select(element)
       .append('svg')
       .attr('width', chartWidth + offset * 2)
       .attr('height', chartHeight + offset * 2)
-    let arcDelimiters = []
-    let arcColors = ['red']
+    const arcDelimiters = []
+    const arcColors = ['red']
     gauge.arcOutline(
       svg,
       chartHeight,
@@ -125,17 +125,17 @@ describe('arc outlining', () => {
     svgHtml = pathValueChecker(svgHtml, 'M', 'A', [-80, 0])
     svgHtml = pathValueChecker(svgHtml, 'A', 'L', [80, 80, 0, 1, 1, 80, 0])
     svgHtml = pathValueChecker(svgHtml, 'L', 'A', [60, 0])
-    svgHtml = pathValueChecker(svgHtml, 'A', '', [60, 60, 0, 1, 0, -60, 0])
+    pathValueChecker(svgHtml, 'A', '', [60, 60, 0, 1, 0, -60, 0])
   })
 
   it('checks splitting of arc', () => {
-    let svg = d3
+    const svg = d3
       .select(element)
       .append('svg')
       .attr('width', chartWidth + offset * 2)
       .attr('height', chartHeight + offset * 2)
-    let arcDelimiters = [50]
-    let arcColors = ['red', 'blue']
+    const arcDelimiters = [50]
+    const arcColors = ['red', 'blue']
     gauge.arcOutline(
       svg,
       chartHeight,
@@ -210,25 +210,25 @@ describe('arc outlining', () => {
     svgHtml = pathValueChecker(svgHtml, 'M', 'A', [0, -88])
     svgHtml = pathValueChecker(svgHtml, 'A', 'L', [88, 88, 0, 0, 1, 88, 0])
     svgHtml = pathValueChecker(svgHtml, 'L', 'A', [80, 0])
-    svgHtml = pathValueChecker(svgHtml, 'A', '', [80, 80, 0, 0, 0, 0, -80])
+    pathValueChecker(svgHtml, 'A', '', [80, 80, 0, 0, 0, 0, -80])
   })
 })
 
 describe('needle base outlining', () => {
-  let offset = 10
-  let chartWidth = 200 - offset * 2
-  let chartHeight = 100 - offset * 2
-  let element = document.createElement('test')
-  let needleColor = 'gray'
+  const offset = 10
+  const chartWidth = 200 - offset * 2
+  const chartHeight = 100 - offset * 2
+  const element = document.createElement('test')
+  const needleColor = 'gray'
 
   it('checks needle svg outline', () => {
-    let svg = d3
+    const svg = d3
       .select(element)
       .append('svg')
       .attr('width', chartWidth + offset * 2)
       .attr('height', chartHeight + offset * 2)
-    let centralLabel = ''
-    let outerNeedle = false
+    const centralLabel = ''
+    const outerNeedle = false
     gauge.needleBaseOutline(
       svg,
       chartHeight,
@@ -242,13 +242,13 @@ describe('needle base outlining', () => {
   })
 
   it('checks correct path of needle base without label', () => {
-    let svg = d3
+    const svg = d3
       .select(element)
       .append('svg')
       .attr('width', chartWidth + offset * 2)
       .attr('height', chartHeight + offset * 2)
-    let centralLabel = ''
-    let outerNeedle = false
+    const centralLabel = ''
+    const outerNeedle = false
     gauge.needleBaseOutline(
       svg,
       chartHeight,
@@ -263,17 +263,17 @@ describe('needle base outlining', () => {
       .slice(svg.html().search('M') + 1, svg.html().search('Z'))
     svgHtml = pathValueChecker(svgHtml, 'M', 'A', [-8, 0])
     svgHtml = pathValueChecker(svgHtml, 'A', 'A', [8, 8, 0, 1, 1, 8, 0])
-    svgHtml = pathValueChecker(svgHtml, 'A', '', [8, 8, 0, 1, 1, -8, 0])
+    pathValueChecker(svgHtml, 'A', '', [8, 8, 0, 1, 1, -8, 0])
   })
 
   it('checks correct path of needle base with label', () => {
-    let svg = d3
+    const svg = d3
       .select(element)
       .append('svg')
       .attr('width', chartWidth + offset * 2)
       .attr('height', chartHeight + offset * 2)
-    let centralLabel = '23'
-    let outerNeedle = false
+    const centralLabel = '23'
+    const outerNeedle = false
     gauge.needleBaseOutline(
       svg,
       chartHeight,
@@ -288,27 +288,27 @@ describe('needle base outlining', () => {
       .slice(svg.html().search('M'), svg.html().search('Z'))
     svgHtml = pathValueChecker(svgHtml, 'M', 'A', [-40, 0])
     svgHtml = pathValueChecker(svgHtml, 'A', 'A', [40, 40, 0, 1, 1, 40, 0])
-    svgHtml = pathValueChecker(svgHtml, 'A', '', [40, 40, 0, 1, 1, -40, 0])
+    pathValueChecker(svgHtml, 'A', '', [40, 40, 0, 1, 1, -40, 0])
   })
 })
 
 describe('needle outlining', () => {
-  let offset = 10
-  let chartWidth = 200 - offset * 2
-  let chartHeight = 100 - offset * 2
-  let element = document.createElement('test')
-  let outerRadius = chartHeight * 0.75
-  let needleColor = 'gray'
+  const offset = 10
+  const chartWidth = 200 - offset * 2
+  const chartHeight = 100 - offset * 2
+  const element = document.createElement('test')
+  const outerRadius = chartHeight * 0.75
+  const needleColor = 'gray'
 
   it('checks needle svg outline', () => {
-    let svg = d3
+    const svg = d3
       .select(element)
       .append('svg')
       .attr('width', chartWidth + offset * 2)
       .attr('height', chartHeight + offset * 2)
-    let centralLabel = ''
-    let outerNeedle = false
-    let needleStartValue = 0
+    const centralLabel = ''
+    const outerNeedle = false
+    const needleStartValue = 0
     gauge.needleOutline(
       svg,
       chartHeight,
@@ -324,14 +324,14 @@ describe('needle outlining', () => {
   })
 
   it('checks correct path of needle without label', () => {
-    let svg = d3
+    const svg = d3
       .select(element)
       .append('svg')
       .attr('width', chartWidth + offset * 2)
       .attr('height', chartHeight + offset * 2)
-    let centralLabel = ''
-    let outerNeedle = false
-    let needleStartValue = 0
+    const centralLabel = ''
+    const outerNeedle = false
+    const needleStartValue = 0
     gauge.needleOutline(
       svg,
       chartHeight,
@@ -350,18 +350,18 @@ describe('needle outlining', () => {
     svgHtml = pathValueChecker(svgHtml, 'L', 'L', [0, 4])
     svgHtml = pathValueChecker(svgHtml, 'L', 'L', [4, 0])
     svgHtml = pathValueChecker(svgHtml, 'L', 'L', [0, -4])
-    svgHtml = pathValueChecker(svgHtml, 'L', '', [-58.2, 0])
+    pathValueChecker(svgHtml, 'L', '', [-58.2, 0])
   })
 
   it('checks correct path of needle with label', () => {
-    let svg = d3
+    const svg = d3
       .select(element)
       .append('svg')
       .attr('width', chartWidth + offset * 2)
       .attr('height', chartHeight + offset * 2)
-    let centralLabel = '23'
-    let outerNeedle = false
-    let needleStartValue = 0
+    const centralLabel = '23'
+    const outerNeedle = false
+    const needleStartValue = 0
     gauge.needleOutline(
       svg,
       chartHeight,
@@ -373,34 +373,34 @@ describe('needle outlining', () => {
       needleStartValue,
     )
     // define the whole path string (M...L...L...L... for svg arc)
-    console.log('hi')
+
     let svgHtml = svg
       .html()
       .slice(svg.html().search('M') + 1, svg.html().search('" stroke'))
     svgHtml = pathValueChecker(svgHtml, 'M', 'L', [-58.2, 0])
     svgHtml = pathValueChecker(svgHtml, 'L', 'L', [-42, 9.3])
     svgHtml = pathValueChecker(svgHtml, 'L', 'L', [-42, -9.3])
-    svgHtml = pathValueChecker(svgHtml, 'L', '', [-58.2, 0])
+    pathValueChecker(svgHtml, 'L', '', [-58.2, 0])
   })
 })
 
 describe('label outlining', () => {
-  let offset = 10
-  let areaWidth = 200
-  let chartWidth = 200 - offset * 2
-  let chartHeight = 100 - offset * 2
-  let element = document.createElement('test')
-  let outerRadius = chartHeight * 0.75
+  const offset = 10
+  const areaWidth = 200
+  const chartWidth = 200 - offset * 2
+  const chartHeight = 100 - offset * 2
+  const element = document.createElement('test')
+  const outerRadius = chartHeight * 0.75
 
   it('checks label svg outline', () => {
-    let svg = d3
+    const svg = d3
       .select(element)
       .append('svg')
       .attr('width', chartWidth + offset * 2)
       .attr('height', chartHeight + offset * 2)
-    let centralLabel = '2'
-    let rangeLabel = ['0', '4']
-    let rangeLabelFontSize = null
+    const centralLabel = '2'
+    const rangeLabel = ['0', '4']
+    const rangeLabelFontSize = null
     gauge.labelOutline(
       svg,
       areaWidth,
@@ -417,14 +417,14 @@ describe('label outlining', () => {
   })
 
   it('checks correct text of gauge with central label', () => {
-    let svg = d3
+    const svg = d3
       .select(element)
       .append('svg')
       .attr('width', chartWidth + offset * 2)
       .attr('height', chartHeight + offset * 2)
-    let centralLabel = '2'
-    let rangeLabel = []
-    let rangeLabelFontSize = null
+    const centralLabel = '2'
+    const rangeLabel = []
+    const rangeLabelFontSize = null
     gauge.labelOutline(
       svg,
       areaWidth,
@@ -437,7 +437,7 @@ describe('label outlining', () => {
       'sans-serif',
     )
 
-    let svgHtml = svg.html().split('</text>')
+    const svgHtml = svg.html().split('</text>')
     svgHtml.pop() // removed last element (empty string)
     expect(svgHtml[0]).toBe(
       '<text x="0" y="106.8" font-size="14px"' + ' font-family="sans-serif">',
@@ -453,14 +453,14 @@ describe('label outlining', () => {
   })
 
   it('checks correct text of gauge with range labels', () => {
-    let svg = d3
+    const svg = d3
       .select(element)
       .append('svg')
       .attr('width', chartWidth + offset * 2)
       .attr('height', chartHeight + offset * 2)
-    let centralLabel = ''
-    let rangeLabel = ['0', '4']
-    let rangeLabelFontSize = null
+    const centralLabel = ''
+    const rangeLabel = ['0', '4']
+    const rangeLabelFontSize = null
     gauge.labelOutline(
       svg,
       areaWidth,
@@ -473,7 +473,7 @@ describe('label outlining', () => {
       'sans-serif',
     )
 
-    let svgHtml = svg.html().split('</text>')
+    const svgHtml = svg.html().split('</text>')
     svgHtml.pop() // removed last element (empty string)
     expect(svgHtml[0]).toBe(
       '<text x="25.8" y="106.8" font-size="14px"' +
@@ -491,14 +491,14 @@ describe('label outlining', () => {
   })
 
   it('checks correct text of gauge with central and range labels', () => {
-    let svg = d3
+    const svg = d3
       .select(element)
       .append('svg')
       .attr('width', chartWidth + offset * 2)
       .attr('height', chartHeight + offset * 2)
-    let centralLabel = '2'
-    let rangeLabel = ['0', '4']
-    let rangeLabelFontSize = null
+    const centralLabel = '2'
+    const rangeLabel = ['0', '4']
+    const rangeLabelFontSize = null
     gauge.labelOutline(
       svg,
       areaWidth,
@@ -511,7 +511,7 @@ describe('label outlining', () => {
       'sans-serif',
     )
 
-    let svgHtml = svg.html().split('</text>')
+    const svgHtml = svg.html().split('</text>')
     svgHtml.pop() // removed last element (empty string)
     expect(svgHtml[0]).toBe(
       '<text x="25.8" y="106.8" font-size="14px"' +
@@ -532,17 +532,28 @@ describe('label outlining', () => {
 })
 
 describe('chart outlining', () => {
+  let consoleWarn: any
+
+  beforeEach(() => {
+    consoleWarn = console.warn
+    console.warn = jest.fn()
+  })
+
+  afterEach(() => {
+    console.warn = consoleWarn
+  })
+
   it('checks correct parameters of final svg', () => {
-    let areaWidth = 200
-    let element = document.createElement('test')
-    let gaugeOptions = {}
-    let g = gauge.gaugeChart(element, areaWidth, gaugeOptions)
-    let svgHtml = (g as any).svg.html().split(/<\/[a-z]+>/g)
+    const areaWidth = 200
+    const element = document.createElement('test')
+    const gaugeOptions = {}
+    const g = gauge.gaugeChart(element, areaWidth, gaugeOptions)
+    const svgHtml = (g as any).svg.html().split(/<\/[a-z]+>/g)
     svgHtml.pop() // removed last element (empty string)
     expect(svgHtml.length).toBe(5)
     let pathNum = 0
     let textNum = 0
-    svgHtml.forEach(svgEl => {
+    svgHtml.forEach((svgEl) => {
       if (svgEl.substr(0, 5) === '<path') pathNum += 1
       else if (svgEl.substr(0, 5) === '<text') textNum += 1
     })
@@ -552,23 +563,23 @@ describe('chart outlining', () => {
 })
 
 describe('needle value updating', () => {
-  let offset = 10
-  let chartWidth = 200 - offset * 2
-  let chartHeight = 100 - offset * 2
-  let element = document.createElement('test')
-  let outerRadius = chartHeight * 0.75
-  let needleColor = 'gray'
+  const offset = 10
+  const chartWidth = 200 - offset * 2
+  const chartHeight = 100 - offset * 2
+  const element = document.createElement('test')
+  const outerRadius = chartHeight * 0.75
+  const needleColor = 'gray'
 
-  it('checks correct path of new needle position', done => {
-    let svg = d3
+  it('checks correct path of new needle position', (done) => {
+    const svg = d3
       .select(element)
       .append('svg')
       .attr('width', chartWidth + offset * 2)
       .attr('height', chartHeight + offset * 2)
-    let centralLabel = ''
-    let outerNeedle = false
-    let needleStartValue = 0
-    let needle = gauge.needleOutline(
+    const centralLabel = ''
+    const outerNeedle = false
+    const needleStartValue = 0
+    const needle = gauge.needleOutline(
       svg,
       chartHeight,
       offset,
@@ -578,8 +589,8 @@ describe('needle value updating', () => {
       outerNeedle,
       needleStartValue,
     )
-    let needleUpdateSpeed = 1000
-    let g = new Gauge(svg, needleUpdateSpeed, needle)
+    const needleUpdateSpeed = 1000
+    const g = new Gauge(svg, needleUpdateSpeed, needle)
     g.updateNeedle(10)
     setTimeout(() => {
       // define the whole path string (M...L...L...L...L... for svg arc)
@@ -590,50 +601,61 @@ describe('needle value updating', () => {
       svgHtml = pathValueChecker(svgHtml, 'L', 'L', [-1.2, 3.8])
       svgHtml = pathValueChecker(svgHtml, 'L', 'L', [3.8, 1.2])
       svgHtml = pathValueChecker(svgHtml, 'L', 'L', [1.2, -3.8])
-      svgHtml = pathValueChecker(svgHtml, 'L', '', [-55.4, -18])
+      pathValueChecker(svgHtml, 'L', '', [-55.4, -18])
       done()
     }, needleUpdateSpeed * 2)
   })
 })
 
 describe('console warnings and errors', () => {
+  let consoleWarn: any
+  let consoleError: any
+
+  beforeEach(() => {
+    consoleWarn = console.warn
+    consoleError = console.error
+
+    console.warn = jest.fn()
+    console.error = jest.fn()
+  })
+
+  afterEach(() => {
+    console.warn = consoleWarn
+    console.error = consoleError
+  })
+
   it('spies an error about delimiters range', () => {
-    spyOn(console, 'error')
-    let arcDelimiters = [-10, 5]
-    let message =
+    const arcDelimiters = [-10, 5]
+    const message =
       'Gauge-chart Error: gauge delimiters have to be LARGER than 0 and LESS than 100'
     gaugeParam.delimiterRangeErrorChecker(arcDelimiters)
     expect(console.error).toHaveBeenCalledWith(message)
   })
   it('spies an error about delimiters sorting', () => {
-    spyOn(console, 'error')
-    let arcDelimiters = [50, 5]
-    let message = 'Gauge-chart Error: gauge delimiters are not sorted'
+    const arcDelimiters = [50, 5]
+    const message = 'Gauge-chart Error: gauge delimiters are not sorted'
     gaugeParam.delimiterSortErrorChecker(arcDelimiters)
     expect(console.error).toHaveBeenCalledWith(message)
   })
   it('spies a warning about lack of colors', () => {
-    spyOn(console, 'warn')
-    let arcDelimiters = [2]
-    let arcColors = []
-    let message =
+    const arcDelimiters = [2]
+    const arcColors = []
+    const message =
       'Gauge-chart Warning: list of colors is not complete, standard colors added to the chart'
     gaugeParam.colorsLackWarnChecker(arcDelimiters, arcColors)
     expect(console.warn).toHaveBeenCalledWith(message)
   })
   it('spies a warning about too many colors', () => {
-    spyOn(console, 'warn')
-    let arcDelimiters = []
-    let arcColors = ['red', 'blue']
-    let message =
+    const arcDelimiters = []
+    const arcColors = ['red', 'blue']
+    const message =
       'Gauge-chart Warning: list of colors exceeds number of slices, therefore it was shortened'
     gaugeParam.colorsExcessWarnChecker(arcDelimiters, arcColors)
     expect(console.warn).toHaveBeenCalledWith(message)
   })
   it('spies a warning about neddle value range', () => {
-    spyOn(console, 'warn')
-    let needleValue = -10
-    let message =
+    const needleValue = -10
+    const message =
       'Gauge-chart Warning: value of needdle is less that 0 or larger than 100'
     gaugeParam.needleValueWarnChecker(needleValue)
     expect(console.warn).toHaveBeenCalledWith(message)

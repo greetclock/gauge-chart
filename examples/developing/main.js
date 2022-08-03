@@ -1,6 +1,8 @@
-let element = document.querySelector('#gaugeArea')
+import { gaugeChart } from '../../dist/bundle.mjs'
 
-let gaugeOptions = {
+const element = document.querySelector('#gaugeArea')
+
+const gaugeOptions = {
   // needle options
   hasNeedle: true,
   outerNeedle: false,
@@ -14,7 +16,7 @@ let gaugeOptions = {
   arcPaddingColor: 'white',
   arcLabels: ['35', '210', '315'],
   arcLabelFontSize: false,
-  //arcOverEffect: false,
+  // arcOverEffect: false,
   // label options
   rangeLabel: ['0', '350'],
   centralLabel: '175',
@@ -22,4 +24,4 @@ let gaugeOptions = {
   labelsFont: 'Consolas',
 }
 
-GaugeChart.gaugeChart(element, 400, gaugeOptions).updateNeedle(50)
+gaugeChart(element, 400, gaugeOptions).updateNeedle(50)

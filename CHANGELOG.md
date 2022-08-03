@@ -1,4 +1,5 @@
 ## 0.5.3
+
 - Don't format `bundle.js` with prettier.
 
 ## 0.5.2
