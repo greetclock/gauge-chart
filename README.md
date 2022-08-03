@@ -11,7 +11,7 @@
 The easiest way to get started is to install it via npm. When you import it in you code, then by default it will use CommonJS module.
 
 ```
-  npm install gauge-chart@0.5.3
+  npm install gauge-chart
 ```
 
 ```js
