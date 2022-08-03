@@ -70,6 +70,7 @@ export function arcOutline(
   arcLabels: string[],
   arcLabelFontSize: number,
   labelsFont: string,
+  labelsColor?: string,
 ) {
   arcColors.forEach((color, i) => {
     let startAngle = perc2RadWithShift(i ? arcDelimiters[i - 1] : 0)
@@ -159,7 +160,7 @@ export function arcOutline(
               centerY +
               ') ' +
               'rotate(' +
-              endAngle * 180 / Math.PI +
+              (endAngle * 180) / Math.PI +
               ', ' +
               0 +
               ',' +
@@ -199,7 +200,7 @@ export function arcOutline(
         // endAngle = PI/2 => offset = 0
         let xPadding = 4
         let xOffset =
-          (endAngle - Math.PI / 2) / Math.PI * (size.width + xPadding)
+          ((endAngle - Math.PI / 2) / Math.PI) * (size.width + xPadding)
 
         // now place label
         svg
@@ -210,6 +211,7 @@ export function arcOutline(
           .attr('align', 'center')
           .attr('font-size', arcLabelFontSize + 'px')
           .attr('font-family', labelsFont)
+          .attr('fill', labelsColor)
       }
     }
   })
@@ -312,6 +314,7 @@ export function labelOutline(
   centralLabel: string,
   rangeLabelFontSize: number,
   labelsFont: string,
+  labelsColor?: string,
 ) {
   let arcWidth = chartHeight - outerRadius
 
@@ -326,17 +329,17 @@ export function labelOutline(
     ? areaWidth / 2 -
       outerRadius -
       arcWidth / 2 -
-      realRangeFontSize * rangeLabel[0].length / 2
+      (realRangeFontSize * rangeLabel[0].length) / 2
     : 0
   let rightRangeLabelOffsetX = rangeLabel[1]
     ? areaWidth / 2 +
       outerRadius +
       arcWidth / 2 -
-      realRangeFontSize * rangeLabel[1].length / 2
+      (realRangeFontSize * rangeLabel[1].length) / 2
     : 0
   let rangeLabelOffsetY = offset + chartHeight + realRangeFontSize * 2
   let centralLabelOffsetX =
-    areaWidth / 2 - realCentralFontSize * centralLabel.length / 2
+    areaWidth / 2 - (realCentralFontSize * centralLabel.length) / 2
   let centralLabelOffsetY = offset + chartHeight
 
   svg
@@ -346,6 +349,7 @@ export function labelOutline(
     .text(rangeLabel ? rangeLabel[0] : '')
     .attr('font-size', rangeLabelFontSize + 'px')
     .attr('font-family', labelsFont)
+    .attr('fill', labelsColor)
 
   svg
     .append('text')
@@ -354,6 +358,7 @@ export function labelOutline(
     .text(rangeLabel ? rangeLabel[1] : '')
     .attr('font-size', rangeLabelFontSize + 'px')
     .attr('font-family', labelsFont)
+    .attr('fill', labelsColor)
 
   svg
     .append('text')
@@ -362,6 +367,7 @@ export function labelOutline(
     .text(centralLabel)
     .attr('font-size', centralLabelFontSize + 'px')
     .attr('font-family', labelsFont)
+    .attr('fill', labelsColor)
 }
 
 export interface GaugeOptions {
@@ -401,6 +407,7 @@ export function gaugeChart(
     centralLabel: '',
     rangeLabelFontSize: undefined,
     labelsFont: 'Roboto,Helvetica Neue,sans-serif',
+    labelsColor: '#333333',
   }
 
   let {
@@ -418,6 +425,7 @@ export function gaugeChart(
     centralLabel,
     rangeLabelFontSize,
     labelsFont,
+    labelsColor,
     outerNeedle,
     needleStartValue,
   } = (Object as any).assign(defaultGaugeOption, gaugeOptions)
@@ -449,6 +457,7 @@ export function gaugeChart(
     arcLabels,
     arcLabelFontSize,
     labelsFont,
+    labelsColor,
   )
 
   let needle = null
@@ -483,6 +492,7 @@ export function gaugeChart(
     centralLabel,
     rangeLabelFontSize,
     labelsFont,
+    labelsColor,
   )
 
   return new Gauge(svg, needleUpdateSpeed, needle)

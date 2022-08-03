@@ -81,6 +81,7 @@ Feel free to change or delete any of the gaugeOptions properties as long as thei
 | rangeLabel        | array of two strings                                                             | depicts gauge ranges on both sides of the chart      |
 | centralLabel      | string                                                                           | depicts gauge inner label                            |
 | labelsFont        | string                                                                           | specifies font-family to be used for labels          |
+| labelsColor       | string                                                                           | specifies font color to be used for labels          |
 
 #### .gaugeChart( ... )
 
